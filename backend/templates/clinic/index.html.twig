@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Clínica{% endblock %}
+
+{% block body %}
+    <h1>Clínicas</h1>
+    <a href="{{ path('app_clinic_new') }}">Crear nueva clínica</a>
+    <br>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Url</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for clinic in clinics %}
+                <tr>
+                    <td>{{ clinic.id }}</td>
+                    <td>{{ clinic.name }}</td>
+                    <td>{{ clinic.location }}</td>
+                    <td>{{ clinic.email ? clinic.email : 'No disponible' }}</td>
+                    <td>{{ clinic.phone ? clinic.phone : 'No disponible' }}</td>
+                    <td>{{ clinic.url ? clinic.url : 'Sin sitio web' }}</td>
+                    <td>
+                        <a href="{{ path('app_clinic_show', {'id': clinic.id}) }}">Mostrar</a>
+                        <a href="{{ path('app_clinic_edit', {'id': clinic.id}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">No hay registros de clínicas</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

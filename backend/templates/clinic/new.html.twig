@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Clínica{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_clinic_index') }}">Volver</a>
+    <h1 class="h3 mb-3 font-weight-normal">Formulario de creación de clínica</h1>
+    {{ include('clinic/_form.html.twig') }}
+{% endblock %}

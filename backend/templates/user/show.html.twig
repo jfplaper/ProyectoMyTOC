@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Usuario{% endblock %}
+
+{% block body %}
+    <h1>Datos del usuario {{ user.username}}</h1>
+    <table class="table w-50">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ user.image }}</td>
+            </tr>
+            <tr>
+                <th>Banned</th>
+                <td>{{ user.banned ? 'Sí' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_user_index') }}">Volver</a>
+{% endblock %}

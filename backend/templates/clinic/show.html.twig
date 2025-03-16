@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Clínica{% endblock %}
+
+{% block body %}
+    <h1>Datos de la clínica {{ clinic.name}}</h1>
+    <table class="table w-50">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ clinic.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ clinic.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ clinic.description }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ clinic.location }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ clinic.email ? clinic.email : 'No disponible' }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ clinic.phone ? clinic.phone : 'No disponible' }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ clinic.url ? clinic.url : 'Sin sitio web' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_clinic_index') }}">Volver</a>
+{% endblock %}

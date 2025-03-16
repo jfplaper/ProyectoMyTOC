@@ -71,6 +71,7 @@ class RegistrationController extends AbstractController
                 // subida o el del avatar por defecto si el usuario no sube una (pero no la imagen en sí)
                 $user->setImage($newFilename);
                 // Guardo todos los datos restantes
+                $user->setRoles(["ROLE_USER"]);
                 $user->setBanned(false);
                 //$user->setEmail($request->get('email')); // No es necesario porque está mapped a true en RegistrationFormType
 
