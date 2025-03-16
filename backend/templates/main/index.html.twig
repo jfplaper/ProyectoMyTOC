@@ -1,20 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}MyTOC - Inicio{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Usuario/Desktop/FP Lanz (24-25) DAW/Proyecto de DAW/mytoc_proyecto/backend/src/Controller/MainController.php</code></li>
-        <li>Your template at <code>C:/Users/Usuario/Desktop/FP Lanz (24-25) DAW/Proyecto de DAW/mytoc_proyecto/backend/templates/main/index.html.twig</code></li>
-    </ul>
-</div>
+    {% if app.user %}
+        {# --------------------------------- V I S T A   A D M I N --------------------------------- #}
+		{% if 'ROLE_ADMIN' in app.user.roles %}
+            <h1>Dashboard</h1>
+            <h4>Endpoints accesibles y almacenamiento / gestión de la base de datos MyTOC</h4>
+            <br>
+            <table class="table w-50">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Enlace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="bg-primary rounded mx-auto d-block">
+                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">/api/user</a>
+                        </td>
+                        <td><a href="{{ path('app_main') }}">Ver / gestionar usuarios</a></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-danger rounded mx-auto d-block">
+                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">/api/toc</a>
+                        </td>
+                        <td><a href="{{ path('app_main') }}">Ver / gestionar tipos de TOC</a></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-success rounded mx-auto d-block">
+                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">/api/clinic</a>
+                        </td>
+                        <td><a href="{{ path('app_main') }}">Ver / gestionar clínicas</a></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-secondary rounded mx-auto d-block">
+                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">/api/thread</a>
+                        </td>
+                        <td><a href="{{ path('app_main') }}">Ver / gestionar threads</a></td>
+                    </tr>
+                    <tr>
+                        <td class="bg-warning rounded mx-auto d-block">
+                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">/api/comment</a>
+                        </td>
+                        <td><a href="{{ path('app_main') }}">Ver / gestionar comentarios</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    {% else %}
+		<img src="./images/showcase.png" alt="Logotipo de MyTOC" width="auto" height="300" />
+	{% endif %}
 {% endblock %}

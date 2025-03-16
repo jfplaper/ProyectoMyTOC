@@ -1,19 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}MyTOC - Registro{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
+        <h1 class="h3 mb-3 font-weight-normal text-center">Formulario de registro</h1>
         {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+        {{ form_row(registrationForm.confirmationPlainPassword, {
+            label: 'Repite password'
+        }) }}
+        <br>
+        {{ form_row(registrationForm.image) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn btn-lg btn-primary mx-auto d-block">Registrarme</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

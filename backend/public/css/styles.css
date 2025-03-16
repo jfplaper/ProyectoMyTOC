@@ -1,0 +1,25 @@
+/* Importa la fuente Montserrat (regular y bold) para poder usarla en cualquier momento */
+@font-face { font-family: myFontRegular; src: url(fonts/Montserrat-Regular.woff); font-display: swap; }
+@font-face { font-family: myFontBold; src: url(fonts/Montserrat-Bold.woff); font-display: swap; }
+
+/* Aplicado a todo el documento */
+* { box-sizing: border-box; font-family: myFontRegular; font-size: 1rem; color: #000; margin: 0; padding: 0; }
+
+/* Aplicado a los enlaces del navbar */
+.nav-link { font-size: 1.2rem; }
+
+/* Aplicado a los enlaces del navbar al pasar el cursor por encima */
+.nav-link:hover { color: #1a1a1a; }
+
+/* Aplicado a todos los mensajes flash */
+.flash { background-color: #D3D3D3; font-weight: bold; border-radius: 5px; padding: 15px; margin: 15px 0px; }
+
+/* Aplicado a los mensajes flash según el tipo */
+.flash-success { background-color: #4ADE80; border: 1px solid #008000; color: #fff; }
+.flash-warning { background-color: #FBBF24; border: 1px solid #9b6500; color: #fff; }
+.flash-error { background-color: #F87171; border: 1px solid #FF0000; color: #fff; }
+
+h1 { color: #2AB7FA; font-size: 1.6rem; margin-bottom: 30px; }
+form { background-color: #F3F4F6; padding: 30px; border-radius: 5px; }
+.table th, td { padding: 10px 25px; }
+.center { text-align: center; }
