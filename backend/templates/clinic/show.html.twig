@@ -4,6 +4,8 @@
 
 {% block body %}
     <h1>Datos de la clínica {{ clinic.name}}</h1>
+    <img src="/uploads/images/{{ clinic.image }}" alt="Imagen de la clínica {{ clinic.name }}" width="200" height="auto" />
+    <br>
     <table class="table w-50">
         <tbody>
             <tr>
@@ -33,6 +35,10 @@
             <tr>
                 <th>Url</th>
                 <td>{{ clinic.url ? clinic.url : 'Sin sitio web' }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ clinic.image }}</td>
             </tr>
         </tbody>
     </table>

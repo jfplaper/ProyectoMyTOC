@@ -7,9 +7,13 @@ use App\Form\ClinicType;
 use App\Repository\ClinicRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/clinic')]
@@ -24,13 +28,40 @@ final class ClinicController extends AbstractController{
     }
 
     #[Route('/new', name: 'app_clinic_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(
+        Request $request,
+        SluggerInterface $slugger,
+        EntityManagerInterface $entityManager,
+        #[Autowire('%kernel.project_dir%/public/uploads/images')] string $imagesDirectory
+    ): Response
     {
         $clinic = new Clinic();
         $form = $this->createForm(ClinicType::class, $clinic);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('image')->getData();
+
+            // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
+            // de que, si el usuario no sube una imagen, le pondremos una por defecto a la clínica
+            $newFilename = "clinic_default.jpg";
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move($imagesDirectory, $newFilename);
+                } catch (FileException $e) {
+                    throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                }
+            }
+
+            // Actualiza la propiedad 'image' de la entidad Clinic almacenando el nombre de la clínica 
+            // subido o el de la imagen de clínica por defecto si el usuario no sube una (pero no la imagen en sí)
+            $clinic->setImage($newFilename);
             $entityManager->persist($clinic);
             $entityManager->flush();
 
@@ -53,12 +84,41 @@ final class ClinicController extends AbstractController{
     }
 
     #[Route('/{id}/edit', name: 'app_clinic_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Clinic $clinic, EntityManagerInterface $entityManager): Response
+    public function edit(
+        Request $request,
+        SluggerInterface $slugger,
+        Clinic $clinic,
+        EntityManagerInterface $entityManager,
+        #[Autowire('%kernel.project_dir%/public/uploads/images')] string $imagesDirectory
+    ): Response
     {
         $form = $this->createForm(ClinicType::class, $clinic);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('image')->getData();
+
+            // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
+            // de que, si el usuario no sube una imagen, le pondremos una por defecto a la clínica
+            $newFilename = "clinic_default.jpg";
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move($imagesDirectory, $newFilename);
+                } catch (FileException $e) {
+                    throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                }
+            }
+
+            // Actualiza la propiedad 'image' de la entidad Clinic almacenando el nombre de la imagen de la clínica 
+            // subido o el de la imagen de clínica por defecto si el usuario no sube una (pero no la imagen en sí)
+            $clinic->setImage($newFilename);
+            $entityManager->persist($clinic);
             $entityManager->flush();
 
             $this->addFlash('success', '¡Registro de la clínica actualizado con éxito!');

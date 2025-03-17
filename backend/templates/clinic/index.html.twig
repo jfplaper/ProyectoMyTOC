@@ -15,7 +15,7 @@
                     <th>Location</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Url</th>
+                    <th>Image</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -27,7 +27,7 @@
                     <td>{{ clinic.location }}</td>
                     <td>{{ clinic.email ? clinic.email : 'No disponible' }}</td>
                     <td>{{ clinic.phone ? clinic.phone : 'No disponible' }}</td>
-                    <td>{{ clinic.url ? clinic.url : 'Sin sitio web' }}</td>
+                    <td><img src="/uploads/images/{{ clinic.image }}" alt="Imagen de la clínica {{ clinic.name }}" width="50" height="auto" /></td>
                     <td>
                         <a href="{{ path('app_clinic_show', {'id': clinic.id}) }}">Mostrar</a>
                         <a href="{{ path('app_clinic_edit', {'id': clinic.id}) }}">Editar</a>
