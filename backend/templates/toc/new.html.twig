@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - TOC{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_toc_index') }}">Volver</a>
+    <h1 class="h3 mb-3 font-weight-normal">Formulario de creación de TOC</h1>
+    {{ include('toc/_form.html.twig') }}
+{% endblock %}

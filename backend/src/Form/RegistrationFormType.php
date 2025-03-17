@@ -76,7 +76,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('image', FileType::class, [
-                'label' => 'Sube una imagen de perfil (jpeg o png)',
+                'label' => 'Sube una imagen de perfil (jpeg, jpg o png)',
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
                 'attr' => ['class' => 'px-1'],
@@ -88,9 +88,10 @@ class RegistrationFormType extends AbstractType
                         'maxSize' => '5000k',
                         'mimeTypes' => [
                             'image/jpeg',
+                            'image/jpg',
                             'image/png',
                         ],
-                        'mimeTypesMessage' => 'Por favor, sube una imagen válida (formato jpeg o png).',
+                        'mimeTypesMessage' => 'Por favor, sube una imagen válida (formato jpeg, jpg o png).',
                     ])
                 ],
             ])

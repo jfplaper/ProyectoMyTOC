@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -41,6 +43,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $banned = null;
+
+    /**
+     * @var Collection<int, Toc>
+     */
+    #[ORM\OneToMany(targetEntity: Toc::class, mappedBy: 'creator')]
+    private Collection $tocs;
+
+    public function __construct()
+    {
+        $this->tocs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -147,6 +160,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBanned(bool $banned): static
     {
         $this->banned = $banned;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Toc>
+     */
+    public function getTocs(): Collection
+    {
+        return $this->tocs;
+    }
+
+    public function addToc(Toc $toc): static
+    {
+        if (!$this->tocs->contains($toc)) {
+            $this->tocs->add($toc);
+            $toc->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeToc(Toc $toc): static
+    {
+        if ($this->tocs->removeElement($toc)) {
+            // set the owning side to null (unless already changed)
+            if ($toc->getCreator() === $this) {
+                $toc->setCreator(null);
+            }
+        }
 
         return $this;
     }

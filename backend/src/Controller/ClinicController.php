@@ -32,6 +32,7 @@ final class ClinicController extends AbstractController{
             $entityManager->persist($clinic);
             $entityManager->flush();
 
+            $this->addFlash('success', '¡Registro de la clínica creado con éxito!');
             return $this->redirectToRoute('app_clinic_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -58,6 +59,7 @@ final class ClinicController extends AbstractController{
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', '¡Registro de la clínica actualizado con éxito!');
             return $this->redirectToRoute('app_clinic_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -75,6 +77,7 @@ final class ClinicController extends AbstractController{
             $entityManager->flush();
         }
 
+        $this->addFlash('success', 'El registro de la clínica ha sido eliminado');
         return $this->redirectToRoute('app_clinic_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - TOC{% endblock %}
+
+{% block body %}
+    <h1>Trastornos obsesivos-compulsivos (TOC)</h1>
+    <a href="{{ path('app_toc_new') }}">Crear nuevo TOC</a>
+    <br>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Customed</th>
+                    <th>Creator</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for toc in tocs %}
+                <tr>
+                    <td>{{ toc.id }}</td>
+                    <td>{{ toc.name }}</td>
+                    <td>{{ toc.description }}</td>
+                    <td>{{ toc.image }}</td>
+                    <td>{{ toc.customed ? 'Sí' : 'No' }}</td>
+                    <td>{{ toc.creator ? toc.creator.username : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_toc_show', {'id': toc.id}) }}">Mostrar</a>
+                        <a href="{{ path('app_toc_edit', {'id': toc.id}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">No hay registros de TOC</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

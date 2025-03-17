@@ -40,6 +40,7 @@ final class UserController extends AbstractController{
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', '¡Registro del usuario actualizado con éxito!');
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -57,6 +58,7 @@ final class UserController extends AbstractController{
             $entityManager->flush();
         }
 
+        $this->addFlash('success', 'El registro del usuario ha sido eliminado');
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 }

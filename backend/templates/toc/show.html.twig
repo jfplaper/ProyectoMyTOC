@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - TOC{% endblock %}
+
+{% block body %}
+    <h1>Datos del TOC {{ toc.name}}</h1>
+    <table class="table w-50">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ toc.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ toc.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ toc.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ toc.image }}</td>
+            </tr>
+            <tr>
+                <th>Customed</th>
+                <td>{{ toc.customed ? 'Sí' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Creator</th>
+                <td>{{ toc.creator ? toc.creator.username : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_toc_index') }}">Volver</a>
+{% endblock %}
