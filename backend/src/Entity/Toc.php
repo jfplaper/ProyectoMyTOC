@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TocRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TocRepository::class)]
@@ -28,6 +30,17 @@ class Toc
     #[ORM\ManyToOne(inversedBy: 'tocs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $creator = null;
+
+    /**
+     * @var Collection<int, Compulsion>
+     */
+    #[ORM\OneToMany(targetEntity: Compulsion::class, mappedBy: 'toc')]
+    private Collection $compulsions;
+
+    public function __construct()
+    {
+        $this->compulsions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +103,36 @@ class Toc
     public function setCreator(?User $creator): static
     {
         $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Compulsion>
+     */
+    public function getCompulsions(): Collection
+    {
+        return $this->compulsions;
+    }
+
+    public function addCompulsion(Compulsion $compulsion): static
+    {
+        if (!$this->compulsions->contains($compulsion)) {
+            $this->compulsions->add($compulsion);
+            $compulsion->setToc($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompulsion(Compulsion $compulsion): static
+    {
+        if ($this->compulsions->removeElement($compulsion)) {
+            // set the owning side to null (unless already changed)
+            if ($compulsion->getToc() === $this) {
+                $compulsion->setToc(null);
+            }
+        }
 
         return $this;
     }

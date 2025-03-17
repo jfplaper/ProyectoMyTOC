@@ -62,11 +62,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'author')]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, Compulsion>
+     */
+    #[ORM\OneToMany(targetEntity: Compulsion::class, mappedBy: 'user')]
+    private Collection $compulsions;
+
     public function __construct()
     {
         $this->tocs = new ArrayCollection();
         $this->threads = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->compulsions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -262,6 +269,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getAuthor() === $this) {
                 $comment->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Compulsion>
+     */
+    public function getCompulsions(): Collection
+    {
+        return $this->compulsions;
+    }
+
+    public function addCompulsion(Compulsion $compulsion): static
+    {
+        if (!$this->compulsions->contains($compulsion)) {
+            $this->compulsions->add($compulsion);
+            $compulsion->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompulsion(Compulsion $compulsion): static
+    {
+        if ($this->compulsions->removeElement($compulsion)) {
+            // set the owning side to null (unless already changed)
+            if ($compulsion->getUser() === $this) {
+                $compulsion->setUser(null);
             }
         }
 
