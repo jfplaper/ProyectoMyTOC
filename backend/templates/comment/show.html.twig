@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Comentario{% endblock %}
+
+{% block body %}
+    <h1>Datos del comentario</h1>
+    <table class="table w-50">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ comment.id }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ comment.text }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Visible</th>
+                <td>{{ comment.visible ? 'Sí' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ comment.author ? comment.author.username : '' }}</td>
+            </tr>
+            <tr>
+                <th>Thread</th>
+                <td>{{ comment.thread ? comment.thread.title : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_comment_index') }}">Volver</a>
+{% endblock %}

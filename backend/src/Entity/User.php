@@ -50,9 +50,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Toc::class, mappedBy: 'creator')]
     private Collection $tocs;
 
+    /**
+     * @var Collection<int, Thread>
+     */
+    #[ORM\OneToMany(targetEntity: Thread::class, mappedBy: 'author')]
+    private Collection $threads;
+
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'author')]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->tocs = new ArrayCollection();
+        $this->threads = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,6 +202,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($toc->getCreator() === $this) {
                 $toc->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Thread>
+     */
+    public function getThreads(): Collection
+    {
+        return $this->threads;
+    }
+
+    public function addThread(Thread $thread): static
+    {
+        if (!$this->threads->contains($thread)) {
+            $this->threads->add($thread);
+            $thread->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeThread(Thread $thread): static
+    {
+        if ($this->threads->removeElement($thread)) {
+            // set the owning side to null (unless already changed)
+            if ($thread->getAuthor() === $this) {
+                $thread->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getAuthor() === $this) {
+                $comment->setAuthor(null);
             }
         }
 

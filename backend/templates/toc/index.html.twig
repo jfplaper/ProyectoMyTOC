@@ -21,18 +21,20 @@
             </thead>
             <tbody>
             {% for toc in tocs %}
-                <tr>
-                    <td>{{ toc.id }}</td>
-                    <td>{{ toc.name }}</td>
-                    <td>{{ toc.description }}</td>
-                    <td>{{ toc.image }}</td>
-                    <td>{{ toc.customed ? 'Sí' : 'No' }}</td>
-                    <td>{{ toc.creator ? toc.creator.username : '' }}</td>
-                    <td>
-                        <a href="{{ path('app_toc_show', {'id': toc.id}) }}">Mostrar</a>
-                        <a href="{{ path('app_toc_edit', {'id': toc.id}) }}">Editar</a>
-                    </td>
-                </tr>
+                {% if toc.customed == false %}
+                    <tr>
+                        <td>{{ toc.id }}</td>
+                        <td>{{ toc.name }}</td>
+                        <td>{{ toc.description }}</td>
+                        <td><img src="/uploads/images/{{ toc.image }}" alt="Imagen del TOC de {{ toc.name }}" width="35" height="auto" /></td>
+                        <td>{{ toc.customed ? 'Sí' : 'No' }}</td>
+                        <td>{{ toc.creator ? toc.creator.username : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_toc_show', {'id': toc.id}) }}">Mostrar</a>
+                            <a href="{{ path('app_toc_edit', {'id': toc.id}) }}">Editar</a>
+                        </td>
+                    </tr>
+                {% endif %}
             {% else %}
                 <tr>
                     <td colspan="6">No hay registros de TOC</td>

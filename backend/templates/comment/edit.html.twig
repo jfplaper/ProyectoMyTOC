@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Comentario{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_comment_index') }}">Volver</a>
+    <h1 class="h3 mb-3 font-weight-normal">Editar comentario</h1>
+    {{ include('comment/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    {{ include('comment/_delete_form.html.twig') }}
+{% endblock %}

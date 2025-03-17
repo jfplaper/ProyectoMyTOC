@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Comentario{% endblock %}
+
+{% block body %}
+    <h1>Comentarios</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Text</th>
+                    <th>Date</th>
+                    <th>Visible</th>
+                    <th>Author</th>
+                    <th>Thread</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    <td>{{ comment.text }}</td>
+                    <td>{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ comment.visible ? 'Sí' : 'No' }}</td>
+                    <td>{{ comment.author ? comment.author.username : '' }}</td>
+                    <td>{{ comment.thread ? comment.thread.title : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_comment_show', {'id': comment.id}) }}">Mostrar</a>
+                        <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No hay registros de comentarios</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

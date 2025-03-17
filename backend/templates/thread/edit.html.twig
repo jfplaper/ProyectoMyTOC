@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Thread{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_thread_index') }}">Volver</a>
+    <h1 class="h3 mb-3 font-weight-normal">Editar thread</h1>
+    {{ include('thread/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    {{ include('thread/_delete_form.html.twig') }}
+{% endblock %}

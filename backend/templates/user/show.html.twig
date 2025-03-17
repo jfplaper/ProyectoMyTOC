@@ -3,7 +3,9 @@
 {% block title %}MyTOC - Usuario{% endblock %}
 
 {% block body %}
-    <h1>Datos del usuario {{ user.username}}</h1>
+    <h1>Datos del usuario {{ user.username }}</h1>
+    <img src="/uploads/images/{{ user.image }}" alt="Imagen de perfil de {{ user.username }}" width="50" height="auto" />
+    <br>
     <table class="table w-50">
         <tbody>
             <tr>

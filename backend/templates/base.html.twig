@@ -10,7 +10,7 @@
         {% endblock %}
     </head>
     <body>
-        <div class="navbar navbar-expand-lg" style="height: 75px; background-image: linear-gradient(#2ABF7A, #1F8F5B);">
+        <div class="navbar navbar-expand-lg shadow-lg mb-4" style="height: 75px; background-image: linear-gradient(#2ABF7A, #1F8F5B);">
             <div class="container-fluid d-flex justify-content-between align-items-center">
                 {% if app.user %}
                     <div class="d-flex justify-content-start align-items-center">
@@ -19,13 +19,13 @@
                         <a class="nav-link text-white" href="{{ path('app_user_index') }}">Usuarios</a>
                         <a class="nav-link text-white" href="{{ path('app_toc_index') }}">TOC</a>
                         <a class="nav-link text-white" href="{{ path('app_clinic_index') }}">Clínicas</a>
-                        <a class="nav-link text-white" href="{{ path('app_main') }}">Threads</a>
-                        <a class="nav-link text-white" href="{{ path('app_main') }}">Comentarios</a>
+                        <a class="nav-link text-white" href="{{ path('app_thread_index') }}">Threads</a>
+                        <a class="nav-link text-white" href="{{ path('app_comment_index') }}">Comentarios</a>
                         <a class="nav-link text-white" href="{{ path('app_main') }}">API</a>
                     </div>
                     <div class="d-flex justify-content-end align-items-center">
                         <b class="px-2" style="font-size: 1.1rem;">{{ app.user.username }}</b>
-                        <img src="uploads/images/{{ app.user.image }}" alt="Imagen de perfil" class="rounded-circle" style="width: 50px; height: auto;" />
+                        <img src="/uploads/images/{{ app.user.image }}" alt="Imagen de perfil" class="rounded-circle" style="width: 50px; height: auto;" />
                         <a class="nav-link text-white" href="{{ path('app_logout') }}">Cerrar sesión</a>
                     </div>
                 {% else %}

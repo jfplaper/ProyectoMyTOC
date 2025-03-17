@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Thread{% endblock %}
+
+{% block body %}
+    <h1>Datos del thread</h1>
+    <table class="table w-50">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ thread.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ thread.title }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ thread.date ? thread.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Visible</th>
+                <td>{{ thread.visible ? 'Sí' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ thread.author ? thread.author.username : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_thread_index') }}">Volver</a>
+{% endblock %}

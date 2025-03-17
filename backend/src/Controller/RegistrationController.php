@@ -78,7 +78,7 @@ class RegistrationController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
 
-                $this->addFlash('success', '¡Bienvenido! ¡Te has registrado como nuevo usuario!');
+                $this->addFlash('success', '¡Bienvenido/a! ¡Te has registrado como nuevo usuario/a!');
                 return $this->redirectToRoute('app_login');
             }
 

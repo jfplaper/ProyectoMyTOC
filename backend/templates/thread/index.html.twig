@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Thread{% endblock %}
+
+{% block body %}
+    <h1>Threads</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Visible</th>
+                    <th>Author</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for thread in threads %}
+                <tr>
+                    <td>{{ thread.id }}</td>
+                    <td>{{ thread.title }}</td>
+                    <td>{{ thread.date ? thread.date|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ thread.visible ? 'Sí' : 'No' }}</td>
+                    <td>{{ thread.author ? thread.author.username : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_thread_show', {'id': thread.id}) }}">Mostrar</a>
+                        <a href="{{ path('app_thread_edit', {'id': thread.id}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No hay registros de threads</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

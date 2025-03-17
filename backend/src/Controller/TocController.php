@@ -14,8 +14,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/toc')]
+#[IsGranted("ROLE_ADMIN")]
 final class TocController extends AbstractController{
     #[Route(name: 'app_toc_index', methods: ['GET'])]
     public function index(TocRepository $tocRepository): Response
