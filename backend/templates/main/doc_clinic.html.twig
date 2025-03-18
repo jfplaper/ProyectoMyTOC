@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Clinic doc{% endblock %}
+
+{% block body %}
+    <h1>API doc</h1>
+    <h4>Clinic</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Request</th>
+                <th>Path / Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/clinics/{id}</code> Recupera un recurso Clinic</td>
+            </tr>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/clinics</code> Recupera la colección de recursos Clinic</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Schemas</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type / Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                <td><code class="mx-2 text-primary">integer</code> El id de esta clínica</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">name</td>
+                <td><code class="mx-2 text-primary">string</code> El nombre de esta clínica</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">location</td>
+                <td><code class="mx-2 text-primary">string</code> La ubicación de esta clínica</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">email</td>
+                <td><code class="mx-2 text-primary">string</code> <i class="text-secondary">(nullable: true)</i> El email de esta clínica</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">phone</td>
+                <td><code class="mx-2 text-primary">string</code> <i class="text-secondary">(nullable: true)</i> La teléfono de esta clínica</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">url</td>
+                <td><code class="mx-2 text-primary">string</code> <i class="text-secondary">(nullable: true)</i> La url o sitio web de esta clínica</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">description</td>
+                <td><code class="mx-2 text-primary">string</code> La descripción de esta clínica</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
+                <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de esta clínica</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Ejemplo JSON de clinic</h4>
+    <br>
+    <div class="container w-50">
+        {{ clinics[0]|serialize(format = 'json') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Compulsion doc{% endblock %}
+
+{% block body %}
+    <h1>API doc</h1>
+    <h4>Compulsion</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Request</th>
+                <th>Path / Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/compulsions/{id}</code> Recupera un recurso Compulsion</td>
+            </tr>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/compulsions</code> Recupera la colección de recursos Compulsion</td>
+            </tr>
+            <tr>
+                <td class="bg-success rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">POST</a>
+                </td>
+                <td><code class="mx-2">/compulsions</code> Crea un recurso Compulsion</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Schemas</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type / Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                <td><code class="mx-2 text-primary">integer</code> El id de esta compulsion</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">user</td>
+                <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea esta compulsion</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">toc</td>
+                <td><code class="mx-2 text-primary">integer</code> El id del toc al que pertenece esta compulsion</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">date</td>
+                <td><code class="mx-2 text-primary">string($date-time)</code> La fecha de esta compulsion</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Ejemplo JSON de compulsion</h4>
+    <br>
+    <div class="container w-50">
+        {{ compulsion|serialize(format = 'json') }}
+    </div>
+{% endblock %}

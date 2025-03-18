@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Comment doc{% endblock %}
+
+{% block body %}
+    <h1>API doc</h1>
+    <h4>Comment</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Request</th>
+                <th>Path / Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/comments/{id}</code> Recupera un recurso Comment</td>
+            </tr>
+            <tr>
+                <td class="bg-warning rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">PUT</a>
+                </td>
+                <td><code class="mx-2">/comments/{id}</code> Reemplaza el recurso Comment</td>
+            </tr>
+            <tr>
+                <td class="bg-danger rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">DELETE</a>
+                </td>
+                <td><code class="mx-2">/comments/{id}</code> Elimina el recurso Comment</td>
+            </tr>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/comments</code> Recupera la colección de recursos Comment</td>
+            </tr>
+            <tr>
+                <td class="bg-success rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">POST</a>
+                </td>
+                <td><code class="mx-2">/comments</code> Crea un recurso Comment</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Schemas</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type / Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                <td><code class="mx-2 text-primary">integer</code> El id de este comentario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">author</td>
+                <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este comentario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">thread</td>
+                <td><code class="mx-2 text-primary">integer</code> El id del thread al que pertenece este comentario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">text</td>
+                <td><code class="mx-2 text-primary">string</code> El texto o contenido de este comentario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">date</td>
+                <td><code class="mx-2 text-primary">string($date-time)</code> La fecha de publicación de este comentario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">visible</td>
+                <td><code class="mx-2 text-primary">boolean</code> Estado de visibilidad de este comentario</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Ejemplo JSON de comment</h4>
+    <br>
+    <div class="container w-50">
+        {# {{ comments[0]|serialize(format = 'json') }}   NO VA #}
+    </div>
+{% endblock %}

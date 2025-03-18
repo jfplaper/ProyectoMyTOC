@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Thread doc{% endblock %}
+
+{% block body %}
+    <h1>API doc</h1>
+    <h4>Thread</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Request</th>
+                <th>Path / Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/threads/{id}</code> Recupera un recurso Thread</td>
+            </tr>
+            <tr>
+                <td class="bg-warning rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">PUT</a>
+                </td>
+                <td><code class="mx-2">/threads/{id}</code> Reemplaza el recurso Thread</td>
+            </tr>
+            <tr>
+                <td class="bg-danger rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">DELETE</a>
+                </td>
+                <td><code class="mx-2">/threads/{id}</code> Elimina el recurso Thread</td>
+            </tr>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/threads</code> Recupera la colección de recursos Thread</td>
+            </tr>
+            <tr>
+                <td class="bg-success rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">POST</a>
+                </td>
+                <td><code class="mx-2">/threads</code> Crea un recurso Thread</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Schemas</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type / Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                <td><code class="mx-2 text-primary">integer</code> El id de este thread</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">author</td>
+                <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este thread</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">title</td>
+                <td><code class="mx-2 text-primary">string</code> El título de este thread</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">date</td>
+                <td><code class="mx-2 text-primary">string($date-time)</code> La fecha de publicación de este thread</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">visible</td>
+                <td><code class="mx-2 text-primary">boolean</code> Estado de visibilidad de este thread</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Ejemplo JSON de thread</h4>
+    <br>
+    <div class="container w-50">
+        {# {{ threads[0]|serialize(format = 'json') }}   NO VA #}
+    </div>
+{% endblock %}

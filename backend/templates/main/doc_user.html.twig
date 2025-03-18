@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - User doc{% endblock %}
+
+{% block body %}
+    <h1>API doc</h1>
+    <h4>User</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Request</th>
+                <th>Path / Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/users/{id}</code> Recupera un recurso User</td>
+            </tr>
+            <tr>
+                <td class="bg-warning rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">PUT</a>
+                </td>
+                <td><code class="mx-2">/users/{id}</code> Reemplaza el recurso User</td>
+            </tr>
+            <tr>
+                <td class="bg-danger rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">DELETE</a>
+                </td>
+                <td><code class="mx-2">/users/{id}</code> Elimina el recurso User</td>
+            </tr>
+            <tr>
+                <td class="bg-primary rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                </td>
+                <td><code class="mx-2">/users</code> Recupera la colección de recursos User</td>
+            </tr>
+            <tr>
+                <td class="bg-success rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">POST</a>
+                </td>
+                <td><code class="mx-2">/users</code> Crea un recurso User</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Schemas</h4>
+    <br>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Type / Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                <td><code class="mx-2 text-primary">integer</code> El id de este usuario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">username</td>
+                <td><code class="mx-2 text-primary">string</code> El username de este usuario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">roles</td>
+                <td><code class="mx-2 text-primary">array (string)</code> Los roles de este usuario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">password</td>
+                <td><code class="mx-2 text-primary">string</code> El password de este usuario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">email</td>
+                <td><code class="mx-2 text-primary">string</code> El email de este usuario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
+                <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de este usuario</td>
+            </tr>
+            <tr>
+                <td class="bg-secondary text-white text-center h5 mx-auto d-block">banned</td>
+                <td><code class="mx-2 text-primary">boolean</code> Estado de bloqueo de este usuario</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Ejemplo JSON de user</h4>
+    <br>
+    <div class="container w-50">
+        {# {{ users[0]|serialize(format = 'json') }}   NO VA #}
+    </div>
+{% endblock %}
