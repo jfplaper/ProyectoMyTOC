@@ -25,7 +25,7 @@
                     <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.banned ? 'Sí' : 'No' }}</td>
-                    <td><img src="/uploads/images/{{ user.image }}" alt="Imagen de perfil de {{ user.username }}" width="35" height="auto" /></td>
+                    <td><img src="/uploads/images/{{ user.image }}" alt="Imagen de perfil de {{ user.username }}" width="35" height="auto" style="border-radius: 5px;" /></td>
                     <td>
                         <a href="{{ path('app_user_show', {'id': user.id}) }}">Mostrar</a>
                         <a href="{{ path('app_user_edit', {'id': user.id}) }}">Editar</a>

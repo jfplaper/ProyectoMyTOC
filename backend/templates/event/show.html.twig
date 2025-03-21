@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Evento{% endblock %}
+
+{% block body %}
+    <h1>Datos del evento {{ event.title }}</h1>
+    <img src="/uploads/images/{{ event.image }}" alt="Imagen del evento de {{ event.title }}" width="200" height="auto" style="border-radius: 5px;" />
+    <br>
+    <table class="table w-50">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ event.title }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ event.text }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ event.date ? event.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ event.location ? event.location : 'Virtual / online' }}</td>
+            </tr>
+            <tr>
+                <th>Price(€)</th>
+                <td>{{ event.price ? event.price : 'Gratuito' }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ event.image }}</td>
+            </tr>
+            <tr>
+                <th>Creator</th>
+                <td>{{ event.creator ? event.creator.username : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_event_index') }}">Volver</a>
+{% endblock %}

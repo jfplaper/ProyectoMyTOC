@@ -27,7 +27,7 @@
                     <td>{{ clinic.location }}</td>
                     <td>{{ clinic.email ? clinic.email : 'No disponible' }}</td>
                     <td>{{ clinic.phone ? clinic.phone : 'No disponible' }}</td>
-                    <td><img src="/uploads/images/{{ clinic.image }}" alt="Imagen de la clínica {{ clinic.name }}" width="50" height="auto" /></td>
+                    <td><img src="/uploads/images/{{ clinic.image }}" alt="Imagen de la clínica {{ clinic.name }}" width="50" height="auto" style="border-radius: 5px;" /></td>
                     <td>
                         <a href="{{ path('app_clinic_show', {'id': clinic.id}) }}">Mostrar</a>
                         <a href="{{ path('app_clinic_edit', {'id': clinic.id}) }}">Editar</a>

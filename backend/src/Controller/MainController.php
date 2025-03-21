@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ClinicRepository;
 use App\Repository\CommentRepository;
+use App\Repository\EventRepository;
 use App\Repository\ThreadRepository;
 use App\Repository\TocRepository;
 use App\Repository\UserRepository;
@@ -41,6 +42,14 @@ final class MainController extends AbstractController{
     {
         return $this->render('main/doc_clinic.html.twig', [
             'clinics' => $clinicRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/doc/event', name: 'app_main_doc_event', methods: ['GET'])]
+    public function getEventDoc(EventRepository $eventRepository): Response
+    {
+        return $this->render('main/doc_event.html.twig', [
+            'events' => $eventRepository->findAll(),
         ]);
     }
 

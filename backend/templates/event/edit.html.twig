@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Evento{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_event_index') }}">Volver</a>
+    <h1 class="h3 mb-3 font-weight-normal">Editar evento {{ event.title }}</h1>
+    {{ include('event/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    {{ include('event/_delete_form.html.twig') }}
+{% endblock %}
