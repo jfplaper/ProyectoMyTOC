@@ -17,7 +17,7 @@ final class ApiClinicController extends AbstractController{
         return $this->json($clinics, Response::HTTP_OK, [], ['groups' => 'clinic:read']);
     }
 
-    #[Route('/api/clinic/{id}', name: 'app_clinic_get_one', methods: ['GET'])]
+    #[Route('/api/clinic/{id}', name: 'app_api_clinic_get_one', methods: ['GET'])]
     public function getOne(Clinic $clinic): JsonResponse
     {
         return $this->json($clinic, Response::HTTP_OK, [], ['groups' => 'clinic:read']);

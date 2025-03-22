@@ -17,16 +17,16 @@ final class ApiCompulsionController extends AbstractController{
     public function getAll(CompulsionRepository $compulsionRepository): JsonResponse
     {
         $compulsions = $compulsionRepository->findAll();
-        return $this->json($compulsions, Response::HTTP_OK, [], []);
+        return $this->json($compulsions, Response::HTTP_OK, [], ['groups' => 'compulsion:read']);
     }
 
     #[Route('/api/compulsion/{id}', name: 'app_api_compulsion_get_one', methods: ['GET'])]
     public function getOne(Compulsion $compulsion): JsonResponse
     {
-        return $this->json($compulsion, Response::HTTP_OK, [], []);
+        return $this->json($compulsion, Response::HTTP_OK, [], ['groups' => 'compulsion:read']);
     }
 
-    #[Route('/api/compulsions', name: 'app_api_compulsion_create', methods: ['POST'])]
+    #[Route('/api/compulsion', name: 'app_api_compulsion_create', methods: ['POST'])]
     public function create(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         try {

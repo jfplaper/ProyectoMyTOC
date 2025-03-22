@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -12,23 +14,31 @@ class Comment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["comment:read"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["comment:read"])]
     private ?string $text = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(["comment:read"])]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column]
+    #[Groups(["comment:read"])]
     private ?bool $visible = null;
 
-    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\ManyToOne(inversedBy: 'comments', targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[MaxDepth(1)]
+    #[Groups(["comment:read", "user:read"])]
     private ?User $author = null;
 
-    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\ManyToOne(inversedBy: 'comments', targetEntity: Thread::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[MaxDepth(1)]
+    #[Groups(["comment:read", "thread:read"])]
     private ?Thread $thread = null;
 
     public function getId(): ?int

@@ -6,6 +6,8 @@ use App\Repository\TocRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: TocRepository::class)]
 class Toc
@@ -13,22 +15,29 @@ class Toc
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["toc:read"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["toc:read"])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["toc:read"])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["toc:read"])]
     private ?string $image = null;
 
     #[ORM\Column]
+    #[Groups(["toc:read"])]
     private ?bool $customed = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tocs')]
+    #[ORM\ManyToOne(inversedBy: 'tocs', targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[MaxDepth(1)]
+    #[Groups(["toc:read", "user:read"])]
     private ?User $creator = null;
 
     /**

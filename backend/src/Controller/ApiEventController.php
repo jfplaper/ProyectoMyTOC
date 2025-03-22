@@ -17,7 +17,7 @@ final class ApiEventController extends AbstractController{
         return $this->json($events, Response::HTTP_OK, [], ['groups' => 'event:read']);
     }
 
-    #[Route('/api/event/{id}', name: 'app_event_get_one', methods: ['GET'])]
+    #[Route('/api/event/{id}', name: 'app_api_event_get_one', methods: ['GET'])]
     public function getOne(Event $event): JsonResponse
     {
         return $this->json($event, Response::HTTP_OK, [], ['groups' => 'event:read']);
