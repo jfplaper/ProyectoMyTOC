@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ClinicRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ClinicRepository::class)]
 class Clinic
@@ -11,27 +12,35 @@ class Clinic
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["clinic:read"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["clinic:read"])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["clinic:read"])]
     private ?string $location = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["clinic:read"])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["clinic:read"])]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["clinic:read"])]
     private ?string $url = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["clinic:read"])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["clinic:read"])]
     private ?string $image = null;
 
     public function getId(): ?int

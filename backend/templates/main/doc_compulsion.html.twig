@@ -16,21 +16,21 @@
         <tbody>
             <tr>
                 <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_compulsion_get_one', {'id': '1'}) }}">GET</a>
                 </td>
-                <td><code class="mx-2">/compulsions/{id}</code> Recupera un recurso Compulsion</td>
+                <td><code class="mx-2">/api/compulsion/{id}</code> Recupera un recurso Compulsion</td>
             </tr>
             <tr>
                 <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_compulsion_get_all') }}">GET</a>
                 </td>
-                <td><code class="mx-2">/compulsions</code> Recupera la colección de recursos Compulsion</td>
+                <td><code class="mx-2">/api/compulsion</code> Recupera la colección de recursos Compulsion</td>
             </tr>
             <tr>
                 <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">POST</a>
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_compulsion') }}">POST</a>
                 </td>
-                <td><code class="mx-2">/compulsions</code> Crea un recurso Compulsion</td>
+                <td><code class="mx-2">/api/compulsions</code> Crea un recurso Compulsion</td>
             </tr>
         </tbody>
     </table>

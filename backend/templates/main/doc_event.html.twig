@@ -16,33 +16,15 @@
         <tbody>
             <tr>
                 <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_event_get_one', {'id': '1'}) }}">GET</a>
                 </td>
-                <td><code class="mx-2">/events/{id}</code> Recupera un recurso Event</td>
-            </tr>
-            <tr>
-                <td class="bg-warning rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">PUT</a>
-                </td>
-                <td><code class="mx-2">/events/{id}</code> Reemplaza el recurso Event</td>
-            </tr>
-            <tr>
-                <td class="bg-danger rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">DELETE</a>
-                </td>
-                <td><code class="mx-2">/events/{id}</code> Elimina el recurso Event</td>
+                <td><code class="mx-2">/api/event/{id}</code> Recupera un recurso Event</td>
             </tr>
             <tr>
                 <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_event_get_all') }}">GET</a>
                 </td>
-                <td><code class="mx-2">/events</code> Recupera la colección de recursos Event</td>
-            </tr>
-            <tr>
-                <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">POST</a>
-                </td>
-                <td><code class="mx-2">/events</code> Crea un recurso Event</td>
+                <td><code class="mx-2">/api/event</code> Recupera la colección de recursos Event</td>
             </tr>
         </tbody>
     </table>
@@ -95,6 +77,26 @@
     <h4>Ejemplo JSON de event</h4>
     <br>
     <div class="container w-50">
-        {# {{ events[0]|serialize(format = 'json') }}   NO VA #}
+        <code class="mx-6">{</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "id": 1,</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "title": "Conferencia sobre cómo abordar el TOC",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "text": "Os invitamos a una conferencia de puertas abiertas...",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "date": "2025-06-21T18:00:00+02:00",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "location": "Facultad de Psicología, Granada",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "price": null,</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "image": "evento-conferencia-67ddb0cb97cc4.jpg",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "creator": {</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "id": 1,</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "username": "jorge",</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "roles": &#91;</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ROLE_USER",</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ROLE_ADMIN"</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; &#93;,</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "password": "$2y$13$ooUDDgXNfvv8hqhl20nROut5O8Jl0h4QRzUmGPjoVi/GpSz5TQuD.",</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "email": "jfplaper@gmail.com",</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "image": "foto-perfil-jorge.png",</code><br>
+            <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "banned": false</code><br>
+        <code class="mx-6">&nbsp;&nbsp; }</code><br>
+        <code class="mx-6">}</code>
     </div>
 {% endblock %}

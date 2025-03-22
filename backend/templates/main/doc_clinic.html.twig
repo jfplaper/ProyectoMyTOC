@@ -16,15 +16,15 @@
         <tbody>
             <tr>
                 <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_clinic_get_one', {'id': '1'}) }}">GET</a>
                 </td>
-                <td><code class="mx-2">/clinics/{id}</code> Recupera un recurso Clinic</td>
+                <td><code class="mx-2">/api/clinic/{id}</code> Recupera un recurso Clinic</td>
             </tr>
             <tr>
                 <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main') }}">GET</a>
+                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_clinic_get_all') }}">GET</a>
                 </td>
-                <td><code class="mx-2">/clinics</code> Recupera la colección de recursos Clinic</td>
+                <td><code class="mx-2">/api/clinic</code> Recupera la colección de recursos Clinic</td>
             </tr>
         </tbody>
     </table>
@@ -77,6 +77,16 @@
     <h4>Ejemplo JSON de clinic</h4>
     <br>
     <div class="container w-50">
-        {{ clinics[0]|serialize(format = 'json') }}
+        {# {{ clinics[0]|serialize(format = 'json') }} Aquí sí va #}
+        <code class="mx-6">{</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "id": 1,</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "name": "ITEGRA Psicología",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "location": "C/ Méndez Núñez, 7, Local 23, 18003 - Granada",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "email": null,</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "phone": "628595531",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "url": "https://www.itegrapsicologia.com/psicologo-especialista-en-toc/",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "description": "Especializados en el tratamiento del TOC, ofrecen...",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "image": "itegra-67d8976829672.jpg"</code><br>
+        <code class="mx-6">}</code>
     </div>
 {% endblock %}
