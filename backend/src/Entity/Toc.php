@@ -43,7 +43,7 @@ class Toc
     /**
      * @var Collection<int, Compulsion>
      */
-    #[ORM\OneToMany(targetEntity: Compulsion::class, mappedBy: 'toc')]
+    #[ORM\OneToMany(targetEntity: Compulsion::class, mappedBy: 'toc', cascade: ['remove'])]
     private Collection $compulsions;
 
     public function __construct()

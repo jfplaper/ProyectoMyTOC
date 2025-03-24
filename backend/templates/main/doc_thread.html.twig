@@ -22,13 +22,13 @@
             </tr>
             <tr>
                 <td class="bg-warning rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_thread') }}">PUT</a>
+                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_thread">PUT</a>
                 </td>
                 <td><code class="mx-2">/api/thread/{id}</code> Reemplaza el recurso Thread</td>
             </tr>
             <tr>
                 <td class="bg-danger rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_thread') }}">DELETE</a>
+                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_thread">DELETE</a>
                 </td>
                 <td><code class="mx-2">/api/thread/{id}</code> Elimina el recurso Thread</td>
             </tr>
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_thread') }}">POST</a>
+                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_thread">POST</a>
                 </td>
                 <td><code class="mx-2">/api/thread</code> Crea un recurso Thread</td>
             </tr>
@@ -82,7 +82,7 @@
     <br>
     <h4>Ejemplo JSON de thread</h4>
     <br>
-    <div class="container w-50">
+    <div id="ejemplo_json_thread" class="container w-50">
         <code class="mx-6">{</code><br>
         <code class="mx-6">&nbsp;&nbsp; "id": 1,</code><br>
         <code class="mx-6">&nbsp;&nbsp; "title": "Estoy obsesionada con el orden de mi armario",</code><br>
@@ -99,6 +99,15 @@
             <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "image": "esmeralda-67d84ffe26e10.png",</code><br>
             <code class="mx-6">&nbsp;&nbsp;&nbsp;&nbsp; "banned": false</code><br>
         <code class="mx-6">&nbsp;&nbsp; }</code><br>
+        <code class="mx-6">}</code>
+    </div>
+    <br>
+    <h4>Ejemplo de datos esperados para POST</h4>
+    <br>
+    <div id="ejemplo_post_thread" class="container w-50">
+        <code class="mx-6">{</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "author": 1,</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "title": "Tengo que comprobar varias veces el butano antes de irme a dormir"</code><br>
         <code class="mx-6">}</code>
     </div>
 {% endblock %}

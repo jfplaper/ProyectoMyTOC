@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class ApiClinicController extends AbstractController{
-    #[Route('/api/clinic', name: 'app_api_clinic_get_all')]
+    #[Route('/api/clinic', name: 'app_api_clinic_get_all', methods: ['GET'])]
     public function getAll(ClinicRepository $clinicRepository): JsonResponse
     {
         $clinics = $clinicRepository->findAll();

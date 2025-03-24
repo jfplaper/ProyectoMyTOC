@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class ApiEventController extends AbstractController{
-    #[Route('/api/event', name: 'app_api_event_get_all')]
+    #[Route('/api/event', name: 'app_api_event_get_all', methods: ['GET'])]
     public function getAll(EventRepository $eventRepository): JsonResponse
     {
         $events = $eventRepository->findAll();

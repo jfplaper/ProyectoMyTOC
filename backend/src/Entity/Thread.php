@@ -40,7 +40,7 @@ class Thread
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'thread')]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'thread', cascade: ['remove'])]
     private Collection $comments;
 
     public function __construct()

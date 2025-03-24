@@ -55,31 +55,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Toc>
      */
-    #[ORM\OneToMany(targetEntity: Toc::class, mappedBy: 'creator')]
+    #[ORM\OneToMany(targetEntity: Toc::class, mappedBy: 'creator', cascade: ['remove'])]
     private Collection $tocs;
 
     /**
      * @var Collection<int, Thread>
      */
-    #[ORM\OneToMany(targetEntity: Thread::class, mappedBy: 'author')]
+    #[ORM\OneToMany(targetEntity: Thread::class, mappedBy: 'author', cascade: ['remove'])]
     private Collection $threads;
 
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'author')]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'author', cascade: ['remove'])]
     private Collection $comments;
 
     /**
      * @var Collection<int, Compulsion>
      */
-    #[ORM\OneToMany(targetEntity: Compulsion::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: Compulsion::class, mappedBy: 'user', cascade: ['remove'])]
     private Collection $compulsions;
 
     /**
      * @var Collection<int, Event>
      */
-    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'creator')]
+    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'creator', cascade: ['remove'])]
     private Collection $events;
 
     public function __construct()

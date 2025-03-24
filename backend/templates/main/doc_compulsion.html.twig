@@ -112,17 +112,4 @@
         <code class="mx-6">&nbsp;&nbsp; "toc": 3</code><br>
         <code class="mx-6">}</code>
     </div>
-
-    {# Este script hace un scroll más lento al hacer clic en enlaces internos #}
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 {% endblock %}
