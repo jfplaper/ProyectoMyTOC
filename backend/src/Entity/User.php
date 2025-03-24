@@ -19,37 +19,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["user:read", "event:read", "toc:read", "thread:read", "comment:read"])]
+    #[Groups(["user:read", "event:read", "toc:read", "compulsion:read", "thread:read", "comment:read"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups(["user:read", "event:read", "toc:read", "thread:read", "comment:read"])]
+    #[Groups(["user:read", "event:read", "toc:read", "compulsion:read", "thread:read", "comment:read"])]
     private ?string $username = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    #[Groups(["user:read", "event:read", "toc:read", "thread:read", "comment:read"])]
+    #[Groups(["user:read", "event:read", "toc:read", "compulsion:read", "thread:read", "comment:read"])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Groups(["user:read", "event:read", "toc:read", "thread:read", "comment:read"])]
+    #[Groups(["user:read", "event:read", "toc:read", "compulsion:read", "thread:read", "comment:read"])]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "event:read", "toc:read", "thread:read", "comment:read"])]
+    #[Groups(["user:read", "event:read", "toc:read", "compulsion:read", "thread:read", "comment:read"])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["user:read", "event:read", "toc:read", "thread:read", "comment:read"])]
+    #[Groups(["user:read", "event:read", "toc:read", "compulsion:read", "thread:read", "comment:read"])]
     private ?string $image = null;
 
     #[ORM\Column]
-    #[Groups(["user:read", "event:read", "toc:read", "thread:read", "comment:read"])]
+    #[Groups(["user:read", "event:read", "toc:read", "compulsion:read", "thread:read", "comment:read"])]
     private ?bool $banned = null;
 
     /**

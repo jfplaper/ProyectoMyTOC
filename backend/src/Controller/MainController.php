@@ -72,15 +72,7 @@ final class MainController extends AbstractController{
     #[Route('/doc/compulsion', name: 'app_main_doc_compulsion', methods: ['GET'])]
     public function getCompulsionDoc(): Response
     {
-        $compulsion = [
-            [
-                "id" => "1",
-                "user" => "1",
-                "toc" => "2",
-                "date" => "2025-03-18 14:59:00"
-            ]
-        ];
-
+        $compulsion = [];
         return $this->render('main/doc_compulsion.html.twig', [
             'compulsion' => $compulsion,
         ]);

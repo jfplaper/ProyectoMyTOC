@@ -4,16 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Compulsion;
 use App\Repository\CompulsionRepository;
+use App\Repository\TocRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
 final class ApiCompulsionController extends AbstractController{
-    #[Route('/api/compulsion', name: 'app_api_compulsion_get_all')]
+    #[Route('/api/compulsion', name: 'app_api_compulsion_get_all', methods: ['GET'])]
     public function getAll(CompulsionRepository $compulsionRepository): JsonResponse
     {
         $compulsions = $compulsionRepository->findAll();
@@ -27,20 +28,22 @@ final class ApiCompulsionController extends AbstractController{
     }
 
     #[Route('/api/compulsion', name: 'app_api_compulsion_create', methods: ['POST'])]
-    public function create(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
+    public function create(Request $request, UserRepository $userRepository, TocRepository $tocRepository, EntityManagerInterface $entityManager): JsonResponse
     {
         try {
-            $compulsion = $serializer->deserialize($request->getContent(), Compulsion::class, 'json');
-            if ($compulsion && ($compulsion->getUser() && $compulsion->getToc() && $compulsion->getDate())) {
-                $entityManager->persist($compulsion);
-                $entityManager->flush();
+            $data = json_decode($request->getContent(), true);
 
-                return $this->json($compulsion, Response::HTTP_CREATED, [], []);
-            } else {
-                return $this->json(['error' => 'Todos los campos no están correctos'], Response::HTTP_BAD_REQUEST, [], []);
-            }
+            $compulsion = new Compulsion();
+            $compulsion->setUser($userRepository->find($data['user']));
+            $compulsion->setToc($tocRepository->find($data['toc']));
+            $compulsion->setDate(new \DateTime());
+
+            $entityManager->persist($compulsion);
+            $entityManager->flush();
+
+            return $this->json($compulsion, Response::HTTP_CREATED, [], ['groups' => 'compulsion:read']);
         } catch (\Exception $e) {
-            return $this->json(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST, [], []);
+            return $this->json(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
 }

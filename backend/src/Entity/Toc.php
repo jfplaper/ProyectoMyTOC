@@ -15,29 +15,29 @@ class Toc
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["toc:read"])]
+    #[Groups(["toc:read", "compulsion:read"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["toc:read"])]
+    #[Groups(["toc:read", "compulsion:read"])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["toc:read"])]
+    #[Groups(["toc:read", "compulsion:read"])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["toc:read"])]
+    #[Groups(["toc:read", "compulsion:read"])]
     private ?string $image = null;
 
     #[ORM\Column]
-    #[Groups(["toc:read"])]
+    #[Groups(["toc:read", "compulsion:read"])]
     private ?bool $customed = null;
 
     #[ORM\ManyToOne(inversedBy: 'tocs', targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     #[MaxDepth(1)]
-    #[Groups(["toc:read", "user:read"])]
+    #[Groups(["toc:read", "user:read", "compulsion:read"])]
     private ?User $creator = null;
 
     /**
