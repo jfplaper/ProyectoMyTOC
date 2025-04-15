@@ -27,6 +27,24 @@ final class ApiUserController extends AbstractController{
         return $this->json($user, Response::HTTP_OK, [], ['groups' => 'user:read']);
     }
 
+    #[Route('/api/login', name: 'app_api_user_login', methods: ['POST'])]
+    public function login(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): JsonResponse
+    {
+        if ($this->getUser())
+            return $this->json(['error' => 'User is already logged in'], Response::HTTP_UNAUTHORIZED);
+
+        $data = json_decode($request->getContent(), true);
+        $checkUser = $userRepository->findOneBy(['username' => $data['username']]);
+
+        if (!isset($checkUser))
+            return $this->json(['error' => 'Username or password invalid'], Response::HTTP_UNAUTHORIZED);
+
+        if ($userPasswordHasherInterface->isPasswordValid($checkUser, trim($data['password'])))
+            return $this->json($checkUser, Response::HTTP_OK, [], ['groups' => 'user:read']);
+        
+        return $this->json(['error' => 'Something went wrong. If you see this message, contact support'], Response::HTTP_I_AM_A_TEAPOT);
+    }
+
     #[Route('/api/user', name: 'app_api_user_create', methods: ['POST'])]
     public function create(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): JsonResponse
     {
@@ -37,6 +55,32 @@ final class ApiUserController extends AbstractController{
             $user->setUsername($data['username']);
             $user->setRoles(["ROLE_USER"]);
             $user->setPassword($userPasswordHasher->hashPassword($user, $data['password']));
+            $user->setEmail($data['email']);
+            $user->setImage("avatar_default.png");
+            $user->setBanned(false);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->json($user, Response::HTTP_CREATED, [], ['groups' => 'user:read']);
+        } catch (\Exception $e) {
+            return $this->json(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    #[Route('/api/register', name: 'app_api_user_register', methods: ['POST'])]
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, EntityManagerInterface $entityManager): JsonResponse
+    {
+        try {
+            $data = json_decode($request->getContent(), true);
+
+            if (!isset($data['password']))
+                return $this->json(['error' => 'Password is required'], Response::HTTP_BAD_REQUEST);
+
+            $user = new User();
+            $user->setUserName($data['username']);
+            $user->setRoles(["ROLE_USER"]);
+            $user->setPassword($userPasswordHasherInterface->hashPassword($user, $data['password']));
             $user->setEmail($data['email']);
             $user->setImage("avatar_default.png");
             $user->setBanned(false);

@@ -1,0 +1,75 @@
+services:
+  frontend:
+    restart: unless-stopped
+    build:
+      context: ./frontend
+      dockerfile: dockerfileFrontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Evita sobreescribir node_modules del contenedor
+    environment:
+      CHOKIDAR_USEPOLLING: "true" # Activa polling para asegurar detección de cambios en Docker
+    depends_on:
+      - backend
+    networks:
+      - mytoc_jfpp
+
+  backend:
+    restart: unless-stopped
+    build:
+      context: ./backend
+      dockerfile: dockerfileBackend
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - database
+    command: ["sh", "-c", "composer install && composer show doctrine/dbal && php -S 0.0.0.0:8000 -t public"]
+    networks:
+      - mytoc_jfpp
+
+  database:
+    restart: unless-stopped
+    image: mysql:8.0
+    env_file:
+      - .env
+    ports:
+      - "33065:3306"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - datos_mytoc:/var/lib/mysql
+    networks:
+      - mytoc_jfpp
+
+  admin_mytoc:
+    restart: unless-stopped
+    image: phpmyadmin/phpmyadmin
+    env_file:
+      - .env
+    environment:
+      - PMA_HOST=database
+    depends_on:
+      - database
+    networks:
+      - mytoc_jfpp
+
+  web:
+    restart: unless-stopped
+    build:
+      context: ./web
+      dockerfile: DockerfileWeb
+    ports:
+      - "8020:80"
+      - "443:443"
+    volumes:
+      - ./web/certificado:/etc/nginx/certs
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - mytoc_jfpp
+
+networks:
+  mytoc_jfpp:
+    driver: bridge
+volumes:
+  datos_mytoc:

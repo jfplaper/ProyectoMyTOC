@@ -40,9 +40,21 @@
             </tr>
             <tr>
                 <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_user">POST</a>
+                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_user_y_register">POST</a>
                 </td>
                 <td><code class="mx-2">/api/user</code> Crea un recurso User</td>
+            </tr>
+            <tr>
+                <td class="bg-success rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_user_y_register">POST</a>
+                </td>
+                <td><code class="mx-2">/api/register</code> Crea un recurso User</td>
+            </tr>
+            <tr>
+                <td class="bg-success rounded mx-auto d-block">
+                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_login">POST</a>
+                </td>
+                <td><code class="mx-2">/api/login</code> Autentica y recupera un recurso User</td>
             </tr>
         </tbody>
     </table>
@@ -105,13 +117,22 @@
         <code class="mx-6">}</code>
     </div>
     <br>
-    <h4>Ejemplo de datos esperados para POST</h4>
+    <h4>Ejemplo de datos esperados para POST (/api/user y /api/register)</h4>
     <br>
-    <div id="ejemplo_post_user" class="container w-50">
+    <div id="ejemplo_post_user_y_register" class="container w-50">
         <code class="mx-6">{</code><br>
         <code class="mx-6">&nbsp;&nbsp; "username": "jorge",</code><br>
         <code class="mx-6">&nbsp;&nbsp; "password": "123456",</code><br>
         <code class="mx-6">&nbsp;&nbsp; "email": "jfplaper@gmail.com"</code><br>
+        <code class="mx-6">}</code>
+    </div>
+    <br>
+    <h4>Ejemplo de datos esperados para POST (/api/login)</h4>
+    <br>
+    <div id="ejemplo_post_login" class="container w-50">
+        <code class="mx-6">{</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "username": "jorge",</code><br>
+        <code class="mx-6">&nbsp;&nbsp; "password": "123456"</code><br>
         <code class="mx-6">}</code>
     </div>
 {% endblock %}
