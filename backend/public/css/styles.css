@@ -1,9 +1,15 @@
-/* Importa la fuente Montserrat (regular y bold) para poder usarla en cualquier momento */
-@font-face { font-family: myFontRegular; src: url(fonts/Montserrat-Regular.woff); font-display: swap; }
-@font-face { font-family: myFontBold; src: url(fonts/Montserrat-Bold.woff); font-display: swap; }
+/* Importa la fuente Montserrat (regular) para poder usarla en cualquier momento */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat-Regular.woff2') format('woff2'),
+        url('/fonts/Montserrat-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
-/* Aplicado a todo el documento */
-* { box-sizing: border-box; font-family: myFontRegular; font-size: 1rem; color: #000; margin: 0; padding: 0; }
+/* Se aplica a todos los elementos dentro del body (cuerpo) del documento HTML */
+body { box-sizing: border-box; font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #000; margin: 0; padding: 0; }
 
 /* Aplicado a los enlaces del navbar */
 .nav-link { font-size: 1.2rem; }

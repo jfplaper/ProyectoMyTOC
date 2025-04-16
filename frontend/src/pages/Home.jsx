@@ -48,7 +48,7 @@ const Home = () => {
               <h3>Claudia</h3>
             </div>
             <p lang="es">Al principio me daba vergüenza, no me atrevía a reconocer mi problema, pero ahora me 
-                alegro mucho de haber dado el paso</p>
+              alegro mucho de haber dado el paso</p>
           </div>
           <div class="testimonials-card">
             <div class="testimonials-circle-name">
@@ -56,7 +56,7 @@ const Home = () => {
               <h3>Julian</h3>
             </div>
             <p lang="es">He aprendido a manejar mejor mi ansiedad y he ganado en calidad de vida. ¡Ahora me 
-                arrepiento de no haber pedido ayuda antes!</p>
+              arrepiento de no haber pedido ayuda antes!</p>
           </div>
           <div class="testimonials-card">
             <div class="testimonials-circle-name">
@@ -64,7 +64,7 @@ const Home = () => {
               <h3>Estefanía</h3>
             </div>
             <p lang="es">Realmente recomiendo la herramienta de registro online de MyTOC complementado con 
-                terapia; tomas más conciencia del problema y es muy útil</p>
+              terapia; tomas más conciencia del problema y es muy útil</p>
           </div>
           <div class="testimonials-card">
             <div class="testimonials-circle-name">
@@ -72,7 +72,7 @@ const Home = () => {
               <h3>Raquel</h3>
             </div>
             <p lang="es">Tenía multitud de TOC diferentes y era desesperante. Llegó un momento en que ya no 
-                podía ni disimular y estaba afectando a mi familia. ¡Gracias MyTOC!</p>
+              podía ni disimular y estaba afectando a mi familia. ¡Gracias MyTOC!</p>
           </div>
         </section>
       </div>

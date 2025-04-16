@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
+import { useEvents } from '../contexts/EventsContext';
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Events = () => {
-  return (
-    <div>Events</div>
-  )
-}
+  const { events, eventsLoading } = useEvents();
 
-export default Events
+  if (eventsLoading) {
+    return <LoadingSpinner />
+  } else {
+    return (
+      <div>
+      {events.map((event) => (
+        <div key={event.id}>
+          <h2>{event.title}</h2>
+          <p>{event.location}</p>
+        </div>
+      ))}
+      </div>
+    );
+  }
+};
+
+export default Events;

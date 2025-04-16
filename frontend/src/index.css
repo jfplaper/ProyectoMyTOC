@@ -7,12 +7,27 @@
     --main-lightgreen-color: #ccdfcd;
 }
 
-/* Importa una fuente propia para poder usarla en cualquier momento */
-@font-face { font-family: myFontRegular; src: url(fonts/Montserrat-Regular.woff); font-display: swap; }
-@font-face { font-family: myFontBold; src: url(fonts/Montserrat-Bold.woff); font-display: swap; }
+/* Importa la fuente Montserrat para poder usarla en cualquier momento */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat-Regular.woff2') format('woff2'),
+        url('/fonts/Montserrat-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
-/* Se aplica a todos los elementos del documento HTML */
-* { font-family: myFontRegular; }
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat-Bold.woff2') format('woff2'),
+        url('/fonts/Montserrat-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Se aplica a todos los elementos dentro del body (cuerpo) del documento HTML */
+body { font-family: 'Montserrat', sans-serif; }
 
 /* ----------------------------------- CONTAINER BUTTON UP ARROW ------------------------------------- */
 

@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
+import { useClinics } from "../contexts/ClinicsContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Clinics = () => {
-  return (
-    <div>Clinics</div>
-  )
-}
+  const { clinics, clinicsLoading } = useClinics();
 
-export default Clinics
+  if (clinicsLoading) {
+    return <LoadingSpinner />
+  } else {
+    return (
+      <div>
+      {clinics.map((clinic) => (
+        <div key={clinic.id}>
+          <h2>{clinic.name}</h2>
+          <p>{clinic.location}</p>
+        </div>
+      ))}
+      </div>
+    );
+  }
+};
+
+export default Clinics;
