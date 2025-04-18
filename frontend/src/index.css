@@ -51,7 +51,7 @@ body { font-family: 'Montserrat', sans-serif; }
     align-items: center;
 }
 
-#container-button-up a { font-size: 2.2rem; font-weight: 900; color: #FFF; text-decoration: none; }
+#container-button-up a { font-size: 3rem; font-weight: 900; color: #FFF; text-decoration: none; }
 
 /* ---------------------------------------- LOWER PAGE ZONE ------------------------------------------ */
 
@@ -100,43 +100,3 @@ body { font-family: 'Montserrat', sans-serif; }
 
 /* Estilo aplicado específicamente a uno de los contenedores que contiene la barra vertical */
 .statistics:hover #statistics_recovery { height: 100px; transform: scaleY(1); }
-
-.statistics h2 {
-    width: 50%;
-    font-size: 1.8rem;
-    font-weight: 300;
-    text-align: center;
-    color: #000;
-    margin-bottom: 15px;
-    color: var(--main-blue-color);
-}
-
-/*---------------------------------- SECTION TESTIMONIALS ------------------------------- */
-
-/* Clase aplicada al section de la parte de testimonios */
-.testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 40px; }
-
-/* Clase aplicada a los contenedores tarjeta que hay dentro del section de testimonios */
-.testimonials-card {
-    display: grid;
-    grid-template-rows: auto auto;
-    justify-content: space-between;
-    padding: 8px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: -7px -7px 20px rgba(0, 0, 0, 0.2), 7px  7px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Clase aplicada a los contenedores que contienen una imagen y un nombre dentro de las tarjetas */
-.testimonials-circle-name {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-}
-
-.testimonials img { height: auto; width: 100px; clip-path: circle(); }
-.testimonials h3 { font-family: myFontBold; font-size: 1.5rem; color: var(--main-green-color); }
-.testimonials p { font-size: 1.2rem; text-align: justify; hyphens: auto; padding: 10px; }

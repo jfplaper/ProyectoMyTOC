@@ -24,27 +24,27 @@ const RootLayout = () => {
       <nav className="w-full min-h-10 flex flex-wrap justify-between items-center bg-[#2AB7FA] sticky top-0 z-10 mx-auto px-8 shadow-lg">
         <ul className="flex">
           <li className="list-none">
-            <Link to="/" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-white">
+            <Link to="/" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
               Inicio
             </Link>
           </li>
           <li className="list-none">
-            <Link to="/clinics" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-white">
+            <Link to="/clinics" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
               Clínicas
             </Link>
           </li>
           <li className="list-none">
-            <Link to="/forum" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-white">
+            <Link to="/forum" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
               Foro
             </Link>
           </li>
           <li className="list-none">
-            <Link to="/events" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-white">
+            <Link to="/events" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
               Eventos
             </Link>
           </li>
           <li className="list-none">
-            <Link to="/contact" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-white">
+            <Link to="/contact" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
               Contacto
             </Link>
           </li>

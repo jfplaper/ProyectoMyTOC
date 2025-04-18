@@ -18,12 +18,12 @@ const Contact = () => {
           </p><br/>
           <h3 className="text-2xl font-light text-[#2AB7FA] my-4">Localízanos</h3>
           <div className="flex gap-3">
-            <i class="fa fa-map-marker-alt"></i>
+            <i className="fa fa-map-marker-alt text-[#2AB7FA]"></i>
             <p>C/ Albondón, 12, Ronda, 18003 Granada</p>
           </div>
           <h3 className="text-2xl font-light text-[#2AB7FA] my-4">O mándanos un email:</h3>
           <div className="flex gap-3">
-            <i class="fa fa-at"></i>
+            <i className="fa fa-at text-[#2AB7FA]"></i>
             <p>mytoc@gmail.com</p><br/>
           </div>
         </div>
