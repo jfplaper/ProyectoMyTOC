@@ -2,10 +2,24 @@ import React from 'react';
 
 const LoadingSpinner = () => {
     return (
-        <div className="min-h-screen flex justify-center items-center">
-            <img src="../src/assets/spinner.svg" alt="Spinner de carga" />
+        <div className="relative w-full h-screen flex items-center justify-center bg-white">
+            {/* Contenedor para las imágenes que entran desde los lados */}
+            <div className="relative w-64 h-64 flex items-center justify-center">
+                {/* Imagen que entra desde la derecha */}
+                <div className="absolute right-8 animate-slide-right">
+                    <img className="w-16 h-16" src="/images/spinner1.png" alt="Letra C del logotipo" />
+                </div>
+                {/* Imagen que entra desde arriba */}
+                <div className="absolute top-8 animate-slide-top">
+                    <img className="w-16 h-16" src="/images/spinner2.png" alt="Cruz del logotipo" />
+                </div>
+                {/* Imagen central que aparece después */}
+                <div className="absolute left-14 top-4 animate-fade-center">
+                    <img className="w-40 h-40" src="/images/logotype.png" alt="Logo completo del sitio web My TOC" />
+                </div>
+            </div>
         </div>
     );
-}
+};
 
 export default LoadingSpinner;

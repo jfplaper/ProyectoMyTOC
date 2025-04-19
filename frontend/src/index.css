@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Declaración de variables */
+/* Declaración de variables (finalmente no son necesarias) */
 :root {
     --main-green-color: #2ABF7A;
     --main-blue-color: #2AB7FA;
@@ -29,74 +29,138 @@
 /* Se aplica a todos los elementos dentro del body (cuerpo) del documento HTML */
 body { font-family: 'Montserrat', sans-serif; }
 
-/* ----------------------------------- CONTAINER BUTTON UP ARROW ------------------------------------- */
+/* ---------------------------------- SECTION STATISTICS ------------------------------- */
 
-/* Estilo aplicado al contenedor que contiene otro contenedor para el botón de subir a lo alto de la página */
-#container-button-up {
-    display: flex;
-    justify-content: flex-end;
-    position: sticky;
-    top: 360px;
-    z-index: 1;
-    margin: 5px 25px;
-}
-
-#container-button-up div {
-    width: 50px;
-    height: 50px;
-    background-color: var(--main-blue-color);
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#container-button-up a { font-size: 3rem; font-weight: 900; color: #FFF; text-decoration: none; }
-
-/* ---------------------------------------- LOWER PAGE ZONE ------------------------------------------ */
-
-/* Clase aplicada al contenedor que contiene el section de las estadísticas y el de los testimonios */
-.lower-container { margin: 0 auto; max-width: 1200px; overflow: visible; }
-
-/*---------------------------------- SECTION STATISTICS ------------------------------- */
-
-/* Clase aplicada al section de la parte de estadísticas */
-.statistics {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin: 50px 0;
-    padding: 0px 20px;
-}
-
-/* Clase aplicada a los contenedores que contienen un título y un contenedor para la barra vertical */
-.statistics_container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-/* Clase aplicada a los contenedores que contienen la barra vertical */
-.stats_subcontainer {
+/* Clase base aplicada a los contenedores que contienen la barra vertical */
+.stats-bar {
     width: 100px;
-    height: 0px;
+    height: 0;
     background-image: linear-gradient(to bottom right, #2ABF7A, #ccdfcd);
     border-right: 3px solid #2e2e2e;
     border-left: 3px solid #2e2e2e;
     border-bottom: 3px solid #2e2e2e;
     transform-origin: 0 100%;
-    transition: transform 2s;
     transform: scaleY(0);
 }
+  
+/* Alturas específicas para cada barra */
+.stats-bar.worldwide {
+    height: 200px;
+}
 
-/* Estilo aplicado específicamente a uno de los contenedores que contiene la barra vertical */
-.statistics:hover #statistics_worldwide { height: 200px; transform: scaleY(1); }
+.stats-bar.spain {
+    height: 50px;
+}
 
-/* Estilo aplicado específicamente a uno de los contenedores que contiene la barra vertical */
-.statistics:hover #statistics_spain { height: 50px; transform: scaleY(1); }
+.stats-bar.recovery {
+    height: 100px;
+}
 
-/* Estilo aplicado específicamente a uno de los contenedores que contiene la barra vertical */
-.statistics:hover #statistics_recovery { height: 100px; transform: scaleY(1); }
+/* Animación para las barras cuando la sección es visible */
+@keyframes growBar {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+/* Efecto hover para la sección completa que activa las animaciones */
+.statistics-section:hover .stats-bar {
+    animation: growBar 2s ease-out forwards;
+}
+
+/* Alternativa con IntersectionObserver: Agrega esta clase mediante JavaScript cuando la sección sea visible */
+.stats-bar.animate {
+    animation: growBar 2s ease-out forwards;
+}
+
+/* ---------------------------------------- LOADING ANIMATION ------------------------------------------ */
+
+/* Animaciones personalizadas para el LoadingSpinner */
+@layer utilities {
+    /* Imagen que entra desde la derecha */
+    @keyframes slideFromRight {
+        0% { 
+            transform: translateX(150%) rotate(0deg); 
+            opacity: 1;
+        }
+        33.3% { 
+            transform: translateX(0) rotate(0deg); 
+            opacity: 1;
+        }
+        50% { 
+            transform: translateX(0) rotate(360deg); 
+            opacity: 1;
+        }
+        66.7% { 
+            transform: translateX(0) rotate(360deg); 
+            opacity: 0;
+        }
+        100% { 
+            transform: translateX(150%) rotate(0deg); 
+            opacity: 0;
+        }
+    }
+    
+    /* Imagen que entra desde arriba */
+    @keyframes slideFromTop {
+        0% { 
+            transform: translateY(-150%) rotate(0deg); 
+            opacity: 1;
+        }
+        33.3% { 
+            transform: translateY(0) rotate(0deg); 
+            opacity: 1;
+        }
+        50% { 
+            transform: translateY(0) rotate(360deg); 
+            opacity: 1;
+        }
+        66.7% { 
+            transform: translateY(0) rotate(360deg); 
+            opacity: 0;
+        }
+        100% { 
+            transform: translateY(-150%) rotate(0deg); 
+            opacity: 0;
+        }
+    }
+    
+    /* Imagen central que aparece después */
+    @keyframes fadeInOut {
+        0%, 50% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        66.7% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        90% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    /* Clases de utilidad para las animaciones */
+    .animate-slide-right {
+        animation: slideFromRight 3s infinite;
+        animation-timing-function: ease-out;
+    }
+    
+    .animate-slide-top {
+        animation: slideFromTop 3s infinite;
+        animation-timing-function: ease-out;
+    }
+    
+    .animate-fade-center {
+        animation: fadeInOut 3s infinite;
+        animation-timing-function: ease-in-out;
+    }
+}

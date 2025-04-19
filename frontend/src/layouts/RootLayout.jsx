@@ -50,7 +50,7 @@ const RootLayout = () => {
           </li>
           {isAuthenticated && (
           <li className="list-none">
-            <Link to="/mytocappweb" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-white">
+            <Link to="/mytocappweb" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
               mytocApp web
             </Link>
           </li>
@@ -74,7 +74,7 @@ const RootLayout = () => {
         ) : (
         <div className="flex items-center">
           <Link to="/profile" className="hover:text-[#2AB7FA] hover:border-b-0">
-            <img className="w-8 h-auto rounded-2xl" src="/images/avatar_default.png" alt="Avatar por defecto" />
+            <img className="w-8 h-auto rounded-2xl" src={`${import.meta.env.VITE_BASE_URL}/uploads/images/${user.image}`} alt={`Imagen del usuario ${user.username}`} />
           </Link>
           <button className="text-xl text-gray-800 no-underline mx-2.5 p-2.5 hover:text-white hover:border-b-2 hover:border-gray-800" onClick={handleLogout}>
             Cerrar sesión

@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  // Activate the animation when user see the statistics section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const bars = document.querySelectorAll('.stats-bar');
+            bars.forEach(bar => {
+              bar.classList.add('animate');
+            });
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    
+    const statsSection = document.querySelector('.statistics-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+    
+    return () => {
+      if (statsSection) {
+        observer.unobserve(statsSection);
+      }
+    };
+  }, []);
+
   return (
     <>
       <main className="min-h-[525px] flex flex-col flex-grow justify-center bg-[#ccdfcd] bg-[url('/images/showcase_image.jpg')] bg-no-repeat bg-center bg-cover bg-blend-luminosity text-[#2ABF7A] lg:pl-[90px]">
@@ -19,26 +47,32 @@ const Home = () => {
       </main>
 
       {/* Arrow floating button to get up */}
-      <div id="container-button-up">
-        <div>
-          <a href="#header-page">&#8593;</a>
+      <div className="flex justify-end sticky top-[360px] z-10 my-1.5 mx-6">
+        <div className="w-[50px] h-[50px] bg-[#2AB7FA] rounded-[50px] flex justify-center items-center">
+          <a href="#header-page" className="text-5xl font-[500] text-black; no-underline">&#8593;</a>
         </div>
       </div>
 
-      <div class="lower-container">
+      <div className="my-0 mx-auto max-w-[1200px] overflow-visible">
         <h2 className="text-3xl text-center font-light text-[#2ABF7A] my-12">Algunos datos y estadísticas</h2>
-        <section class="statistics">
-          <div class="statistics_container">
-            <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">70 millones de personas en el mundo sufren TOC</h2>
-            <div id="statistics_worldwide" class="stats_subcontainer"></div>
+        <section className="statistics-section w-full flex justify-between items-end my-12 mx-0 py-0 px-5">
+          <div className="statistics-container w-full flex flex-col justify-end items-center">
+            <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">
+              70 millones de personas en el mundo sufren TOC
+            </h2>
+            <div id="statistics_worldwide" className="stats-bar worldwide"></div>
           </div>
-          <div class="statistics_container">
-            <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">Más de 300.000 personas sólo en España</h2>
-            <div id="statistics_spain" class="stats_subcontainer"></div>
+          <div className="statistics-container w-full flex flex-col justify-end items-center">
+            <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">
+              Más de 300.000 personas sólo en España
+            </h2>
+            <div id="statistics_spain" className="stats-bar spain"></div>
           </div>
-          <div class="statistics_container">
-            <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">Un 50% mejora los síntomas</h2>
-            <div id="statistics_recovery" class="stats_subcontainer"></div>
+          <div className="statistics-container w-full flex flex-col justify-end items-center">
+            <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">
+              Un 50% mejora los síntomas
+            </h2>
+            <div id="statistics_recovery" className="stats-bar recovery"></div>
           </div>
         </section>
 
