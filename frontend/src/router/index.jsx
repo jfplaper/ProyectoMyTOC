@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
 import ErrorPage from "../pages/ErrorPage";
+import ProtectedRoute from "../components/ProtectedRoute";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Clinics from "../pages/Clinics";
 import Forum from "../pages/Forum";
+import ThreadDetail from "../pages/ThreadDetail";
 import Events from "../pages/Events";
 import Contact from "../pages/Contact";
 import Profile from "../pages/Profile";
@@ -31,7 +33,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "clinics",
@@ -40,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "forum",
         element: <Forum />,
+      },
+      {
+        path: "thread/:id",
+        element: <ThreadDetail />,
       },
       {
         path: "events",
@@ -51,7 +61,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "mytocappweb",
-        element: <MyTocAppWeb />,
+        element: (
+          <ProtectedRoute>
+            <MyTocAppWeb />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

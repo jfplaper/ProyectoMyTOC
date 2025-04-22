@@ -95,10 +95,14 @@ final class ApiUserController extends AbstractController{
     }
 
     #[Route('/api/user/{id}', name: 'app_api_user_edit', methods: ['PUT'])]
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
+    public function edit(Request $request, User $user, UserPasswordHasherInterface $userPasswordHasherInterface, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         try {
+            $data = json_decode($request->getContent(), true);
+
             $updatedUser = $serializer->deserialize($request->getContent(), User::class, 'json', ['object_to_populate' => $user]);
+            if (array_key_exists('password', $data))
+                $updatedUser->setPassword($userPasswordHasherInterface->hashPassword($updatedUser, $data['password']));
             $entityManager->flush();
 
             return $this->json($updatedUser, Response::HTTP_OK, [], ['groups' => 'user:read']);

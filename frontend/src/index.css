@@ -39,6 +39,7 @@ body { font-family: 'Montserrat', sans-serif; }
     border-right: 3px solid #2e2e2e;
     border-left: 3px solid #2e2e2e;
     border-bottom: 3px solid #2e2e2e;
+    box-shadow: 8px 8px 6px lightgray;
     transform-origin: 0 100%;
     transform: scaleY(0);
 }

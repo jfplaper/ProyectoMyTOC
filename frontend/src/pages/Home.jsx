@@ -34,7 +34,7 @@ const Home = () => {
     <>
       <main className="min-h-[525px] flex flex-col flex-grow justify-center bg-[#ccdfcd] bg-[url('/images/showcase_image.jpg')] bg-no-repeat bg-center bg-cover bg-blend-luminosity text-[#2ABF7A] lg:pl-[90px]">
         <section className="max-w-[500px]">
-          <h2 className="text-2xl font-light text-white mb-2">Libérate del TOC y maneja tu ansiedad</h2>
+          <h2 className="text-[25px] font-light text-white mb-2">Libérate del TOC y maneja tu ansiedad</h2>
           <div className="bg-white opacity-80 rounded-xl p-2">
             <p className="text-xl text-justify font-medium text-[#2ABF7A] my-2 leading-tight">
               Regístrate y usa gratis nuestra <Link to="/register" className="text-[#2AB7FA] hover:text-[#2198cf] hover:text-xl">herramienta de registro mytocApp</Link> para llevar un control de tu TOC diario, pudiendo complementarlo además con citas presenciales u online con psicólogos especializados.

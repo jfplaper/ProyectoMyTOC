@@ -9,7 +9,6 @@ const Register = () => {
   const [passwordInput, setPasswordInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
 
-  // Si no funciona con async probar sin él
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = usernameInput.trim();

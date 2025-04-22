@@ -60,6 +60,60 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateProfilePassword = async (password) => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/user/${user.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({"password": password})
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Los cambios realizados han sido guardados");
+      }
+      return data;
+    } catch (error) {
+      throw new Error("Error to update password: ", error);
+    }
+  };
+
+  const updateProfileEmail = async (email) => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/user/${user.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({"email": email})
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Los cambios realizados han sido guardados");
+      }
+      return data;
+    } catch (error) {
+      throw new Error("Error to update email: ", error);
+    }
+  };
+
+  const updateProfileAll = async (email, password) => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/user/${user.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({"email": email, "password": password})
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Los cambios realizados han sido guardados");
+      }
+      return data;
+    } catch (error) {
+      throw new Error("Error to update email and password: ", error);
+    }
+  };
+
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
@@ -67,7 +121,7 @@ export const AuthProvider = ({ children }) => {
   };
   
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, register, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, register, login, updateProfilePassword, updateProfileEmail, updateProfileAll, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -95,11 +95,11 @@ const RootLayout = () => {
           </div>
           <nav className="w-full flex-grow my-4">
             <ul className="w-full flex flex-col items-center">
-              <li className="list-none"><a href="#" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Inicio</a></li>
-              <li className="list-none"><a href="#" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Clínicas</a></li>
-              <li className="list-none"><a href="#" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Foro</a></li>
-              <li className="list-none"><a href="#" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Eventos</a></li>
-              <li className="list-none"><a href="#" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Contacto</a></li>
+              <li className="list-none"><Link to="/" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Inicio</Link></li>
+              <li className="list-none"><Link to="/clinics" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Clínicas</Link></li>
+              <li className="list-none"><Link to="/forum" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Foro</Link></li>
+              <li className="list-none"><Link to="/events" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Eventos</Link></li>
+              <li className="list-none"><Link to="/contact" className="text-xl text-white no-underline hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">Contacto</Link></li>
             </ul>
           </nav>
           <div className="w-full flex-grow flex flex-wrap justify-center items-center border-l-2 border-black space-x-2">

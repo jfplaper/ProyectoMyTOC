@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "sonner";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -27,12 +28,30 @@ export const ThreadsProvider = ({ children }) => {
         }
     };
 
+    const createThread = async (user_id, title) => {
+        try {
+          const response = await fetch(`${BASE_URL}/api/thread`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"author": user_id, "title": title})
+          });
+    
+          if (!response.ok) {
+            console.error("Error to create new thread - Response status: ", response.status);
+            toast.error("Error al crear nuevo tema. Rellena correctamente el campo del título");
+          }
+          toast.success("¡Acabas de publicar un nuevo tema!");
+        } catch (error) {
+          throw new Error("Error to create new thread: ", error);
+        }
+    };
+
     useEffect(() => {
         fetchThreads();
     }, []);
     
     return (
-        <ThreadsContext.Provider value={{ threads, threadsLoading }}>
+        <ThreadsContext.Provider value={{ threads, threadsLoading, createThread }}>
             {children}
         </ThreadsContext.Provider>
     );
