@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [cookiesAccepted, setCookiesAccepted] = useState(false);
+
   // Activate the animation when user see the statistics section
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,14 +39,28 @@ const Home = () => {
           <h2 className="text-[25px] font-light text-white mb-2">Libérate del TOC y maneja tu ansiedad</h2>
           <div className="bg-white opacity-80 rounded-xl p-2">
             <p className="text-xl text-justify font-medium text-[#2ABF7A] my-2 leading-tight">
-              Regístrate y usa gratis nuestra <Link to="/register" className="text-[#2AB7FA] hover:text-[#2198cf] hover:text-xl">herramienta de registro mytocApp</Link> para llevar un control de tu TOC diario, pudiendo complementarlo además con citas presenciales u online con psicólogos especializados.
+              Regístrate y usa gratis nuestra <Link to="/register" className="text-[#2AB7FA] hover:text-blue-700">herramienta de registro mytocApp</Link> para llevar un control de tu TOC diario, pudiendo complementarlo además con citas presenciales u online con psicólogos especializados.
             </p>
             <p className="text-xl text-justify font-medium text-[#2ABF7A] my-2">
-              Porque eres TÚ quien debe dirigir su vida y no el TOC, da el paso. <Link to="/register" className="text-[#2AB7FA] hover:text-[#2198cf] hover:text-xl">¡No estás sol@!</Link>
+              Porque eres TÚ quien debe dirigir su vida y no el TOC, da el paso. <Link to="/register" className="text-[#2AB7FA] hover:text-blue-700">¡No estás sol@!</Link>
             </p>
           </div>
         </section>
       </main>
+
+      {/* Cookies container */}
+      {!cookiesAccepted && (
+        <div className="fixed bottom-0 left-0 w-full h-auto z-50 bg-gray-100 border-t border-gray-800 rounded-t-2xl shadow-lg p-4">
+          <h3 className="text-sm text-gray-900 font-semibold mb-2">Consentimiento de cookies</h3>
+          <p className="text-sm text-[#2AB7FA] leading-tight mb-2">
+            Utilizamos cookies para prestar, mantener y mejorar nuestros servicios, además de por motivos de seguridad. 
+            Al hacer clic en "Aceptar todo", aceptas nuestra&nbsp;
+            <Link to="/" className="text-sm underline text-gray-700 hover:text-gray-900">política de cookies</Link>.
+          </p>
+          <button className="w-36 text-sm border border-gray-800 rounded-lg py-2 font-medium bg-[#2AB7FA] hover:bg-blue-700"
+            onClick={() => setCookiesAccepted(true)}>Aceptar todo</button>
+        </div>
+      )}
 
       {/* Arrow floating button to get up */}
       <div className="flex justify-end sticky top-[360px] z-10 my-1.5 mx-6">

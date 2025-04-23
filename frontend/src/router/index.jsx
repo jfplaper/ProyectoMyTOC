@@ -11,7 +11,8 @@ import ThreadDetail from "../pages/ThreadDetail";
 import Events from "../pages/Events";
 import Contact from "../pages/Contact";
 import Profile from "../pages/Profile";
-import MyTocAppWeb from "../pages/MyTocAppWeb"
+import MyTocAppWeb from "../pages/MyTocAppWeb";
+import MyTocAppManual from "../pages/MyTocAppManual";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
             <MyTocAppWeb />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "mytocappmanual",
+        element: <MyTocAppManual />,
       },
     ],
   },
