@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { toast } from "sonner";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -11,7 +12,22 @@ function TocsCard({ toc }) {
     const [currentYearCompulsions, setCurrentYearCompulsions] = useState(0);
     const [compulsionsLoading, setCompulsionsLoading] = useState(false);
 
-    const increaseCompulsions = () => {
+    const increaseCompulsions = async () => {
+        try {
+            const response = await fetch(`${BASE_URL}/api/compulsion`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({"user": user.id, "toc": toc.id})
+            });
+            if (!response.ok) {
+                console.error("Error to create compulsion - Response status: ", response.status);
+                toast.error("Error al crear la compulsión");
+                return;
+            }
+            fetchTotalCompulsions();
+        } catch (error) {
+            console.error("Error to create compulsion: ", error.message);
+        }
         setCurrentDayCompulsions(prev => prev + 1);
         setCurrentMonthCompulsions(prev => prev + 1);
         setCurrentYearCompulsions(prev => prev + 1);
@@ -23,32 +39,34 @@ function TocsCard({ toc }) {
             const response = await fetch(`${BASE_URL}/api/compulsion`);
             const data = await response.json();
             if (response.ok) {
+                let dayTotal = 0;
+                let monthTotal = 0;
+                let yearTotal = 0;
                 data.forEach((compulsion) => {
-                    if (compulsion.user.id == user.id && compulsion.toc.id == toc.id) {
+                    if (compulsion.user.id === user.id && compulsion.toc.id === toc.id) {
+                        const compDate = new Date(compulsion.date);
+                        const todayDate = new Date();
                         // Get the total compulsions for the current day
-                        if (new Date(compulsion.date).getDate() === new Date().getDate() && 
-                            new Date(compulsion.date).getMonth() === new Date().getMonth() && 
-                            new Date(compulsion.date).getFullYear() === new Date().getFullYear()) {
-                                setCurrentDayCompulsions(prev => prev + 1);
-                        }
+                        if (compDate.getDate() === todayDate.getDate() && compDate.getMonth() === todayDate.getMonth() 
+                            && compDate.getFullYear() === todayDate.getFullYear())
+                            dayTotal++;
                         // Get the total compulsions for the current month
-                        if (new Date(compulsion.date).getMonth() === new Date().getMonth() && 
-                            new Date(compulsion.date).getFullYear() === new Date().getFullYear()) {
-                                setCurrentMonthCompulsions(prev => prev + 1);
-                        }
+                        if (compDate.getMonth() === todayDate.getMonth() && compDate.getFullYear() === todayDate.getFullYear())
+                            monthTotal++;
                         // Gets the total compulsions for the current year
-                        if (new Date(compulsion.date).getFullYear() === new Date().getFullYear()) {
-                                setCurrentYearCompulsions(prev => prev + 1);
-                        }
+                        if (compDate.getFullYear() === todayDate.getFullYear())
+                            yearTotal++;
                     }
                 });
-            } else if (!response.ok) {
+                setCurrentDayCompulsions(dayTotal);
+                setCurrentMonthCompulsions(monthTotal);
+                setCurrentYearCompulsions(yearTotal);
+            } else {
                 console.error("Error to get compulsions - Response status: ", response.status);
                 toast.error("Error al obtener las compulsiones");
             }
-            return data;
         } catch (error) {
-            throw new Error("Error to fetch compulsions: " + error.message);
+            console.error("Error to fetch compulsions: ", error.message);
         } finally {
             setCompulsionsLoading(false);
         }

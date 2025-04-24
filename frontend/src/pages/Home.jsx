@@ -39,10 +39,10 @@ const Home = () => {
           <h2 className="text-[25px] font-light text-white mb-2">Libérate del TOC y maneja tu ansiedad</h2>
           <div className="bg-white opacity-80 rounded-xl p-2">
             <p className="text-xl text-justify font-medium text-[#2ABF7A] my-2 leading-tight">
-              Regístrate y usa gratis nuestra <Link to="/register" className="text-[#2AB7FA] hover:text-blue-700">herramienta de registro mytocApp</Link> para llevar un control de tu TOC diario, pudiendo complementarlo además con citas presenciales u online con psicólogos especializados.
+              Regístrate y usa gratis nuestra <Link to="/mytocappmanual" className="text-[#2AB7FA] hover:text-blue-700">herramienta de registro mytocApp</Link> para llevar un control de tu TOC diario, pudiendo complementarlo además con citas presenciales u online con psicólogos especializados.
             </p>
             <p className="text-xl text-justify font-medium text-[#2ABF7A] my-2">
-              Porque eres TÚ quien debe dirigir su vida y no el TOC, da el paso. <Link to="/register" className="text-[#2AB7FA] hover:text-blue-700">¡No estás sol@!</Link>
+              Porque eres TÚ quien debe dirigir su vida y no el TOC, da el paso. <Link to="/forum" className="text-[#2AB7FA] hover:text-blue-700">¡No estás sol@!</Link>
             </p>
           </div>
         </section>
