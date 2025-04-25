@@ -16,13 +16,12 @@ export const EventsProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setEvents(data);
-            } else if (!response.ok) {
+            } else {
                 console.error("Error to get events - Response status: ", response.status);
                 toast.error("Error al obtener los eventos");
             }
-            return data;
         } catch (error) {
-            throw new Error("Error to fetch events: ", error);
+            console.error("Error to fetch events: ", error.message);
         } finally {
             setEventsLoading(false);
         }
@@ -41,8 +40,7 @@ export const EventsProvider = ({ children }) => {
 
 export const useEvents = () => {
     const context = useContext(EventsContext);
-    if (!context) {
+    if (!context)
         throw new Error("useEvents must be used within an EventsProvider");
-    }
     return context;
 };

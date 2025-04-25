@@ -3,17 +3,17 @@ import React from 'react';
 const LoadingSpinner = () => {
     return (
         <div className="relative w-full h-screen flex items-center justify-center bg-white">
-            {/* Contenedor para las imágenes que entran desde los lados */}
+            {/* Container for images entering from the sides */}
             <div className="relative w-64 h-64 flex items-center justify-center">
-                {/* Imagen que entra desde la derecha */}
+                {/* Image entering from the right */}
                 <div className="absolute right-8 animate-slide-right">
                     <img className="w-16 h-16" src="/images/spinner1.png" alt="Letra C del logotipo" />
                 </div>
-                {/* Imagen que entra desde arriba */}
+                {/* Image coming in from above */}
                 <div className="absolute top-8 animate-slide-top">
                     <img className="w-16 h-16" src="/images/spinner2.png" alt="Cruz del logotipo" />
                 </div>
-                {/* Imagen central que aparece después */}
+                {/* Central image that appears after */}
                 <div className="absolute left-14 top-4 animate-fade-center">
                     <img className="w-40 h-40" src="/images/logotype.png" alt="Logo completo del sitio web My TOC" />
                 </div>

@@ -47,11 +47,13 @@ function TocsCard({ toc }) {
                         const compDate = new Date(compulsion.date);
                         const todayDate = new Date();
                         // Get the total compulsions for the current day
-                        if (compDate.getDate() === todayDate.getDate() && compDate.getMonth() === todayDate.getMonth() 
+                        if (compDate.getDate() === todayDate.getDate() 
+                            && compDate.getMonth() === todayDate.getMonth() 
                             && compDate.getFullYear() === todayDate.getFullYear())
                             dayTotal++;
                         // Get the total compulsions for the current month
-                        if (compDate.getMonth() === todayDate.getMonth() && compDate.getFullYear() === todayDate.getFullYear())
+                        if (compDate.getMonth() === todayDate.getMonth() 
+                            && compDate.getFullYear() === todayDate.getFullYear())
                             monthTotal++;
                         // Gets the total compulsions for the current year
                         if (compDate.getFullYear() === todayDate.getFullYear())
@@ -82,8 +84,12 @@ function TocsCard({ toc }) {
         return (
             <div className="h-full flex flex-col justify-between max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                 <div className="relative">
-                    <img className="rounded-t-lg h-56 w-full object-cover shadow-lg" src={`${import.meta.env.VITE_BASE_URL}/uploads/images/${toc.image}`} alt={`Imagen del TOC ${toc.name}`} />
-                    <h5 className="absolute top-2 left-2 bg-white px-2 py-1 rounded text-sm font-bold text-gray-900 shadow">{toc.name}</h5>
+                    <img className="rounded-t-lg h-56 w-full object-cover shadow-lg" 
+                        src={`${import.meta.env.VITE_BASE_URL}/uploads/images/${toc.image}`} 
+                        alt={`Imagen del TOC ${toc.name}`} />
+                    <h5 className="absolute top-2 left-2 bg-white px-2 py-1 rounded text-sm font-bold text-gray-900 shadow">
+                        {toc.name}
+                    </h5>
                     <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-sm text-gray-900 shadow flex items-center gap-2">
                         <i className="fa fa-brain text-[#2AB7FA]"></i>
                         <p className="font-semibold text-gray-900">

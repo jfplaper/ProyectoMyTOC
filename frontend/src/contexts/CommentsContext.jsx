@@ -16,13 +16,12 @@ export const CommentsProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setComments(data);
-            } else if (!response.ok) {
+            } else {
                 console.error("Error to get comments - Response status: ", response.status);
                 toast.error("Error al obtener los comentarios");
             }
-            return data;
         } catch (error) {
-            throw new Error("Error to fetch comments: ", error);
+            console.error("Error to fetch comments: ", error.message);
         } finally {
             setCommentsLoading(false);
         }
@@ -33,7 +32,7 @@ export const CommentsProvider = ({ children }) => {
             const response = await fetch(`${BASE_URL}/api/comment`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({"author": user_id, "thread": thread_id, "text": text})
+                body: JSON.stringify({ "author": user_id, "thread": thread_id, "text": text })
             });
     
             if (!response.ok) {
@@ -42,7 +41,7 @@ export const CommentsProvider = ({ children }) => {
             }
             toast.success("¡Acabas de publicar un comentario!");
         } catch (error) {
-            throw new Error("Error to create new comment: ", error);
+            console.error("Error to create new comment: ", error.message);
         }
     };
 
@@ -59,8 +58,7 @@ export const CommentsProvider = ({ children }) => {
 
 export const useComments = () => {
     const context = useContext(CommentsContext);
-    if (!context) {
+    if (!context)
         throw new Error("useComments must be used within a CommentsProvider");
-    }
     return context;
 };

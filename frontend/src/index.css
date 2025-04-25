@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* Declaración de variables (finalmente no son necesarias) */
+/* Declaration of variables (they are not necessary finally) */
 :root {
     --main-green-color: #2ABF7A;
     --main-blue-color: #2AB7FA;
     --main-lightgreen-color: #ccdfcd;
 }
 
-/* Importa la fuente Montserrat para poder usarla en cualquier momento */
+/* Import the Montserrat font so you can use it anytime */
 @font-face {
     font-family: 'Montserrat';
     src: url('/fonts/Montserrat-Regular.woff2') format('woff2'),
@@ -26,12 +26,12 @@
     font-display: swap;
 }
 
-/* Se aplica a todos los elementos dentro del body (cuerpo) del documento HTML */
+/* It is applied to all elements within the body of the HTML document */
 body { font-family: 'Montserrat', sans-serif; }
 
 /* ---------------------------------- SECTION STATISTICS ------------------------------- */
 
-/* Clase base aplicada a los contenedores que contienen la barra vertical */
+/* Base class applied to containers that contain the vertical bar */
 .stats-bar {
     width: 100px;
     height: 0;
@@ -44,7 +44,7 @@ body { font-family: 'Montserrat', sans-serif; }
     transform: scaleY(0);
 }
   
-/* Alturas específicas para cada barra */
+/* Specific heights for each bar */
 .stats-bar.worldwide {
     height: 200px;
 }
@@ -57,7 +57,7 @@ body { font-family: 'Montserrat', sans-serif; }
     height: 100px;
 }
 
-/* Animación para las barras cuando la sección es visible */
+/* Animation for the bars when the section is visible */
 @keyframes growBar {
     from {
         transform: scaleY(0);
@@ -67,21 +67,21 @@ body { font-family: 'Montserrat', sans-serif; }
     }
 }
 
-/* Efecto hover para la sección completa que activa las animaciones */
+/* Hover effect for the entire section that activates the animations */
 .statistics-section:hover .stats-bar {
     animation: growBar 2s ease-out forwards;
 }
 
-/* Alternativa con IntersectionObserver: Agrega esta clase mediante JavaScript cuando la sección sea visible */
+/* Alternative with IntersectionObserver: Add this class via JavaScript when the section is visible */
 .stats-bar.animate {
     animation: growBar 2s ease-out forwards;
 }
 
 /* ---------------------------------------- LOADING ANIMATION ------------------------------------------ */
 
-/* Animaciones personalizadas para el LoadingSpinner */
+/* Customed animations for the LoadingSpinner */
 @layer utilities {
-    /* Imagen que entra desde la derecha */
+    /* Image entering from the right */
     @keyframes slideFromRight {
         0% { 
             transform: translateX(150%) rotate(0deg); 
@@ -105,7 +105,7 @@ body { font-family: 'Montserrat', sans-serif; }
         }
     }
     
-    /* Imagen que entra desde arriba */
+    /* Image coming in from above */
     @keyframes slideFromTop {
         0% { 
             transform: translateY(-150%) rotate(0deg); 
@@ -129,7 +129,7 @@ body { font-family: 'Montserrat', sans-serif; }
         }
     }
     
-    /* Imagen central que aparece después */
+    /* Central image that appears after */
     @keyframes fadeInOut {
         0%, 50% {
             opacity: 0;
@@ -149,7 +149,7 @@ body { font-family: 'Montserrat', sans-serif; }
         }
     }
 
-    /* Clases de utilidad para las animaciones */
+    /* Utility classes for animations */
     .animate-slide-right {
         animation: slideFromRight 3s infinite;
         animation-timing-function: ease-out;

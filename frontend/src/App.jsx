@@ -9,22 +9,22 @@ import { TocsProvider } from "./contexts/TocsContext";
 import { Toaster } from 'sonner';
 
 const App = () => {
-  return (
-    <ClinicsProvider>
-      <ThreadsProvider>
-        <CommentsProvider>
-          <EventsProvider>
-            <TocsProvider>
-              <AuthProvider>
-                <Toaster position="top-right" richColors />
-                <RouterProvider router={router} />
-              </AuthProvider>
-            </TocsProvider>
-          </EventsProvider>
-        </CommentsProvider>
-      </ThreadsProvider>
-    </ClinicsProvider>
-  );
+    return (
+        <ClinicsProvider>
+            <ThreadsProvider>
+                <CommentsProvider>
+                    <EventsProvider>
+                        <TocsProvider>
+                            <AuthProvider>
+                                <Toaster position="top-right" richColors />
+                                <RouterProvider router={router} />
+                            </AuthProvider>
+                        </TocsProvider>
+                    </EventsProvider>
+                </CommentsProvider>
+            </ThreadsProvider>
+        </ClinicsProvider>
+    );
 };
 
 export default App;

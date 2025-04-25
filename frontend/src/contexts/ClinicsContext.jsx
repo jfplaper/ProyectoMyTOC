@@ -16,13 +16,12 @@ export const ClinicsProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setClinics(data);
-            } else if (!response.ok) {
+            } else {
                 console.error("Error to get clinics - Response status: ", response.status);
                 toast.error("Error al obtener las clínicas");
             }
-            return data;
         } catch (error) {
-            throw new Error("Error to fetch clinics: ", error);
+            console.error("Error to fetch clinics: ", error.message);
         } finally {
             setClinicsLoading(false);
         }
@@ -41,8 +40,7 @@ export const ClinicsProvider = ({ children }) => {
 
 export const useClinics = () => {
     const context = useContext(ClinicsContext);
-    if (!context) {
+    if (!context)
         throw new Error("useClinics must be used within a ClinicsProvider");
-    }
     return context;
 };

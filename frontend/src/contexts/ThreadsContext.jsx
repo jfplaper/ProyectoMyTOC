@@ -16,13 +16,12 @@ export const ThreadsProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setThreads(data);
-            } else if (!response.ok) {
+            } else {
                 console.error("Error to get threads - Response status: ", response.status);
                 toast.error("Error al obtener los hilos/threads");
             }
-            return data;
         } catch (error) {
-            throw new Error("Error to fetch threads: ", error);
+            console.error("Error to fetch threads: ", error.message);
         } finally {
             setThreadsLoading(false);
         }
@@ -30,19 +29,19 @@ export const ThreadsProvider = ({ children }) => {
 
     const createThread = async (user_id, title) => {
         try {
-          const response = await fetch(`${BASE_URL}/api/thread`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"author": user_id, "title": title})
-          });
-    
-          if (!response.ok) {
-            console.error("Error to create new thread - Response status: ", response.status);
-            toast.error("Error al crear nuevo tema. Rellena correctamente el campo del título");
-          }
-          toast.success("¡Acabas de publicar un nuevo tema!");
+            const response = await fetch(`${BASE_URL}/api/thread`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ "author": user_id, "title": title })
+            });
+        
+            if (!response.ok) {
+                console.error("Error to create new thread - Response status: ", response.status);
+                toast.error("Error al crear nuevo tema. Rellena correctamente el campo del título");
+            }
+            toast.success("¡Acabas de publicar un nuevo tema!");
         } catch (error) {
-          throw new Error("Error to create new thread: ", error);
+            console.error("Error to create new thread: ", error.message);
         }
     };
 
@@ -59,8 +58,7 @@ export const ThreadsProvider = ({ children }) => {
 
 export const useThreads = () => {
     const context = useContext(ThreadsContext);
-    if (!context) {
+    if (!context)
         throw new Error("useThreads must be used within a ThreadsProvider");
-    }
     return context;
 };

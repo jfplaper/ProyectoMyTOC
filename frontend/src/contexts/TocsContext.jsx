@@ -16,13 +16,12 @@ export const TocsProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setTocs(data);
-            } else if (!response.ok) {
+            } else {
                 console.error("Error to get tocs - Response status: ", response.status);
                 toast.error("Error al obtener los tocs");
             }
-            return data;
         } catch (error) {
-            throw new Error("Error to fetch tocs: ", error);
+            console.error("Error to fetch tocs: ", error.message);
         } finally {
             setTocsLoading(false);
         }
@@ -41,8 +40,7 @@ export const TocsProvider = ({ children }) => {
 
 export const useTocs = () => {
     const context = useContext(TocsContext);
-    if (!context) {
+    if (!context)
         throw new Error("useTocs must be used within a TocsProvider");
-    }
     return context;
 };

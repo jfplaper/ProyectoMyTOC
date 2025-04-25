@@ -15,63 +15,63 @@ import MyTocAppWeb from "../pages/MyTocAppWeb";
 import MyTocAppManual from "../pages/MyTocAppManual";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "profile",
-        element: (
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "clinics",
-        element: <Clinics />,
-      },
-      {
-        path: "forum",
-        element: <Forum />,
-      },
-      {
-        path: "thread/:id",
-        element: <ThreadDetail />,
-      },
-      {
-        path: "events",
-        element: <Events />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
-      {
-        path: "mytocappweb",
-        element: (
-          <ProtectedRoute>
-            <MyTocAppWeb />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "mytocappmanual",
-        element: <MyTocAppManual />,
-      },
-    ],
-  },
+    {
+        path: "/",
+        element: <RootLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                index: true,
+                element: <Home />,
+            },
+            {
+                path: "register",
+                element: <Register />,
+            },
+            {
+                path: "login",
+                element: <Login />,
+            },
+            {
+                path: "profile",
+                element: (
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "clinics",
+                element: <Clinics />,
+            },
+            {
+                path: "forum",
+                element: <Forum />,
+            },
+            {
+                path: "thread/:id",
+                element: <ThreadDetail />,
+            },
+            {
+                path: "events",
+                element: <Events />,
+            },
+            {
+                path: "contact",
+                element: <Contact />,
+            },
+            {
+                path: "mytocappweb",
+                element: (
+                    <ProtectedRoute>
+                        <MyTocAppWeb />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "mytocappmanual",
+                element: <MyTocAppManual />,
+            },
+        ],
+    },
 ]);
