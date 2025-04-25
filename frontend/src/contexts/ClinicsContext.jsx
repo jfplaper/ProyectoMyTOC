@@ -7,6 +7,7 @@ const ClinicsContext = createContext(null);
 
 export const ClinicsProvider = ({ children }) => {
     const [clinics, setClinics] = useState({});
+    const [filteredClinics, setFilteredClinics] = useState({});
     const [clinicsLoading, setClinicsLoading] = useState(false);
 
     const fetchClinics = async () => {
@@ -16,6 +17,7 @@ export const ClinicsProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setClinics(data);
+                setFilteredClinics(data);
             } else {
                 console.error("Error to get clinics - Response status: ", response.status);
                 toast.error("Error al obtener las clínicas");
@@ -32,7 +34,7 @@ export const ClinicsProvider = ({ children }) => {
     }, []);
     
     return (
-        <ClinicsContext.Provider value={{ clinics, clinicsLoading }}>
+        <ClinicsContext.Provider value={{ clinics, filteredClinics, setFilteredClinics, clinicsLoading }}>
             {children}
         </ClinicsContext.Provider>
     );

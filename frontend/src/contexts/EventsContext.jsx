@@ -7,6 +7,7 @@ const EventsContext = createContext(null);
 
 export const EventsProvider = ({ children }) => {
     const [events, setEvents] = useState({});
+    const [filteredEvents, setFilteredEvents] = useState({});
     const [eventsLoading, setEventsLoading] = useState(false);
 
     const fetchEvents = async () => {
@@ -16,6 +17,7 @@ export const EventsProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setEvents(data);
+                setFilteredEvents(data);
             } else {
                 console.error("Error to get events - Response status: ", response.status);
                 toast.error("Error al obtener los eventos");
@@ -32,7 +34,7 @@ export const EventsProvider = ({ children }) => {
     }, []);
     
     return (
-        <EventsContext.Provider value={{ events, eventsLoading }}>
+        <EventsContext.Provider value={{ events, filteredEvents, setFilteredEvents, eventsLoading }}>
             {children}
         </EventsContext.Provider>
     );
