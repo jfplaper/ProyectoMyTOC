@@ -9,4 +9,9 @@ export default defineConfig({
     allowedHosts: ['frontend'],
   },
   plugins: [react(), tailwindcss()],
+  test: {
+    globals: true, // To use `expect` without import nothing
+    environment: 'jsdom',
+    setupFiles: ['./setupTests.js']
+  }
 });

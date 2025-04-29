@@ -1,8 +1,8 @@
 --
--- Base de datos: `mytoc_test`
+-- Base de datos: `mytoc`
 --
-CREATE DATABASE IF NOT EXISTS `mytoc_test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `mytoc_test`;
+CREATE DATABASE IF NOT EXISTS `mytoc` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `mytoc`;
 
 -- --------------------------------------------------------
 
@@ -90,9 +90,9 @@ INSERT INTO `compulsion` (`id`, `user_id`, `toc_id`, `date`) VALUES
 (2, 1, 2, '2025-03-22 21:48:00'),
 (3, 1, 2, '2025-03-22 21:49:00'),
 (4, 1, 3, '2025-03-24 13:57:09'),
-(6, 1, 1, '2025-04-24 13:51:27'),
-(7, 1, 1, '2025-04-24 13:52:08'),
-(8, 1, 4, '2025-04-24 14:04:10');
+(5, 1, 1, '2025-04-24 13:51:27'),
+(6, 1, 1, '2025-04-24 13:52:08'),
+(7, 1, 4, '2025-04-24 14:04:10');
 
 -- --------------------------------------------------------
 
@@ -247,8 +247,7 @@ INSERT INTO `user` (`id`, `username`, `roles`, `password`, `email`, `image`, `ba
 (5, 'esmeralda', '[\"ROLE_USER\"]', '$2y$13$d97UHJ6u3w5bAKFNq9Prv.LcD1g7pf3raQBaoP2yS/zfkijtVavJe', 'esmeralda@gmail.com', 'esmeralda-67d84ffe26e10.png', 0),
 (6, 'juan', '[\"ROLE_USER\"]', '$2y$13$pge.3pMMFAg6UdRS6Kj9kuRhayTW7IaBoxwErbu9Y4WvkQT8FE6Vy', 'juan@gmail.com', 'juan-67d8506229f16.png', 0),
 (7, 'lola', '[\"ROLE_USER\"]', '$2y$13$GbFOFGdRaCfkvYf2hR1To.0xgwjEHeVQ0oqaq4GA1Ojjh/sJNJKBK', 'lola@gmail.com', 'lola-67d850c1ee749.png', 0),
-(8, 'hugo', '[\"ROLE_USER\"]', '$2y$13$Z/lvfmzy4XTqCJyLDfg2Ge4cL.8WnViO04xmdncwpSZjD26a2iLje', 'hugo@gmail.com', 'hugo-67d8511453043.png', 0),
-(28, 'carla', '[\"ROLE_USER\"]', '$2y$13$W2oC.kjUi6.fkrJlIDsb2.KQOO33GPACNIoqsa9ojifMsiUU9Ihje', 'carla@gmail.com', 'avatar_default.png', 0);
+(8, 'hugo', '[\"ROLE_USER\"]', '$2y$13$Z/lvfmzy4XTqCJyLDfg2Ge4cL.8WnViO04xmdncwpSZjD26a2iLje', 'hugo@gmail.com', 'hugo-67d8511453043.png', 0);
 
 --
 -- Índices para tablas volcadas
@@ -327,25 +326,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `clinic`
 --
 ALTER TABLE `clinic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `compulsion`
 --
 ALTER TABLE `compulsion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `messenger_messages`
@@ -357,19 +356,19 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT de la tabla `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `toc`
 --
 ALTER TABLE `toc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
