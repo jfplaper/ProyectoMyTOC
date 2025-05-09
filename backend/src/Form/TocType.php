@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Toc;
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,10 +16,12 @@ class TocType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control',  'autofocus' => true],
+                'label' => 'Nombre',
+                'attr' => ['class' => 'form-control mb-3',  'autofocus' => true],
                 'mapped' => true,
             ])
             ->add('description', TextType::class, [
+                'label' => 'Descripción',
                 'attr' => ['class' => 'form-control mb-3'],
                 'mapped' => true,
             ])
@@ -44,10 +44,6 @@ class TocType extends AbstractType
                         'mimeTypesMessage' => 'Por favor, sube una imagen válida (formato jpeg, jpg o png).',
                     ])
                 ],
-            ])
-            ->add('creator', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
             ])
         ;
     }

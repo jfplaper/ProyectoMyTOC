@@ -102,10 +102,6 @@ final class TocController extends AbstractController{
             /** @var UploadedFile $imageFile */
             $imageFile = $form->get('image')->getData();
 
-            // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
-            // de que, si el usuario no sube una imagen, le pondremos una por defecto al TOC
-            $newFilename = "toc_default_1.png";
-
             if ($imageFile) {
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
@@ -113,14 +109,13 @@ final class TocController extends AbstractController{
 
                 try {
                     $imageFile->move($imagesDirectory, $newFilename);
+                    // Actualiza la propiedad 'image' de la entidad Toc almacenando el nombre de la nueva imagen
+                    $toc->setImage($newFilename);
                 } catch (FileException $e) {
                     throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
                 }
             }
 
-            // Actualiza la propiedad 'image' de la entidad Toc almacenando el nombre del TOC 
-            // subido o el de la imagen TOC por defecto si el usuario no sube una (pero no la imagen en sí)
-            $toc->setImage($newFilename);
             $entityManager->persist($toc);
             $entityManager->flush();
 

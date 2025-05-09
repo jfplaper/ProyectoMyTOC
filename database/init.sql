@@ -1,4 +1,11 @@
 --
+-- Concede permisos al usuario JFPP si no los tiene aún
+--
+CREATE USER IF NOT EXISTS 'JFPP'@'%' IDENTIFIED BY '883767';
+GRANT ALL PRIVILEGES ON mytoc.* TO 'JFPP'@'%';
+FLUSH PRIVILEGES;
+
+--
 -- Base de datos: `mytoc`
 --
 CREATE DATABASE IF NOT EXISTS `mytoc` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;

@@ -99,10 +99,6 @@ final class ClinicController extends AbstractController{
             /** @var UploadedFile $imageFile */
             $imageFile = $form->get('image')->getData();
 
-            // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
-            // de que, si el usuario no sube una imagen, le pondremos una por defecto a la clínica
-            $newFilename = "clinic_default.jpg";
-
             if ($imageFile) {
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
@@ -110,14 +106,13 @@ final class ClinicController extends AbstractController{
 
                 try {
                     $imageFile->move($imagesDirectory, $newFilename);
+                    // Actualiza la propiedad 'image' de la entidad Clinic almacenando el nombre de la nueva imagen
+                    $clinic->setImage($newFilename);
                 } catch (FileException $e) {
                     throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
                 }
             }
 
-            // Actualiza la propiedad 'image' de la entidad Clinic almacenando el nombre de la imagen de la clínica 
-            // subido o el de la imagen de clínica por defecto si el usuario no sube una (pero no la imagen en sí)
-            $clinic->setImage($newFilename);
             $entityManager->persist($clinic);
             $entityManager->flush();
 

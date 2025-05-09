@@ -7,57 +7,32 @@
         {# --------------------------------- V I S T A   A D M I N --------------------------------- #}
 		{% if 'ROLE_ADMIN' in app.user.roles %}
             <h1>Dashboard</h1>
-            <h4>Endpoints / API doc y almacenamiento / gestión de la base de datos de MyTOC</h4>
+            <h4 style="font-size: 1.1rem;">Almacenamiento / gestión de la base de datos de MyTOC</h4>
             <br>
             <table class="table w-50">
-                <thead>
+                <thead class="text-center" style="background-color: #f5f5f5;">
                     <tr>
-                        <th>Endpoint / API doc</th>
                         <th>Datos almacenados</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     <tr>
-                        <td class="bg-primary rounded mx-auto d-block">
-                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_user') }}">/api/user</a>
-                        </td>
                         <td><a href="{{ path('app_user_index') }}">Ver / gestionar usuarios</a></td>
                     </tr>
                     <tr>
-                        <td class="bg-danger rounded mx-auto d-block">
-                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_toc') }}">/api/toc</a>
-                        </td>
                         <td><a href="{{ path('app_toc_index') }}">Ver / gestionar tipos de TOC</a></td>
                     </tr>
                     <tr>
-                        <td class="bg-success rounded mx-auto d-block">
-                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_clinic') }}">/api/clinic</a>
-                        </td>
                         <td><a href="{{ path('app_clinic_index') }}">Ver / gestionar clínicas</a></td>
                     </tr>
                     <tr>
-                        <td class="bg-info rounded mx-auto d-block">
-                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_event') }}">/api/event</a>
-                        </td>
                         <td><a href="{{ path('app_event_index') }}">Ver / gestionar eventos</a></td>
                     </tr>
                     <tr>
-                        <td class="bg-secondary rounded mx-auto d-block">
-                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_thread') }}">/api/thread</a>
-                        </td>
                         <td><a href="{{ path('app_thread_index') }}">Ver / gestionar threads</a></td>
                     </tr>
                     <tr>
-                        <td class="bg-warning rounded mx-auto d-block">
-                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_comment') }}">/api/comment</a>
-                        </td>
                         <td><a href="{{ path('app_comment_index') }}">Ver / gestionar comentarios</a></td>
-                    </tr>
-                    <tr>
-                        <td class="bg-dark rounded mx-auto d-block">
-                            <a class="nav-link text-white text-center p-0" href="{{ path('app_main_doc_compulsion') }}">/api/compulsion</a>
-                        </td>
-                        <td>Sin acceso por protección de datos</td>
                     </tr>
                 </tbody>
             </table>

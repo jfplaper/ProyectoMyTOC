@@ -3,19 +3,20 @@
 {% block title %}MyTOC - Registro{% endblock %}
 
 {% block body %}
+    <h1>Formulario de registro</h1>
+    <br>
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        <h1 class="h3 mb-3 font-weight-normal text-center">Formulario de registro</h1>
         {{ form_row(registrationForm.username) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Password *'
         }) }}
         {{ form_row(registrationForm.confirmationPlainPassword, {
-            label: 'Repite password'
+            label: 'Repite password *'
         }) }}
-        <br>
+        
         {{ form_row(registrationForm.image) }}
         {{ form_row(registrationForm.agreeTerms) }}
 

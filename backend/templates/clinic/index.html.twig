@@ -10,12 +10,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Location</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Localización</th>
                     <th>Email</th>
-                    <th>Phone</th>
-                    <th>Image</th>
+                    <th>Teléfono</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -26,11 +26,12 @@
                     <td>{{ clinic.name }}</td>
                     <td>{{ clinic.location }}</td>
                     <td>{{ clinic.email ? clinic.email : 'No disponible' }}</td>
-                    <td>{{ clinic.phone ? clinic.phone : 'No disponible' }}</td>
+                    <td style="width: 140px;">{{ clinic.phone ? clinic.phone : 'No disponible' }}</td>
                     <td><img src="/uploads/images/{{ clinic.image }}" alt="Imagen de la clínica {{ clinic.name }}" width="50" height="auto" style="border-radius: 5px;" /></td>
-                    <td>
-                        <a href="{{ path('app_clinic_show', {'id': clinic.id}) }}">Mostrar</a>
-                        <a href="{{ path('app_clinic_edit', {'id': clinic.id}) }}">Editar</a>
+                    <td style="width: 100px;">
+                        <a href="{{ path('app_clinic_show', {'id': clinic.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
+                        <a href="{{ path('app_clinic_edit', {'id': clinic.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
+                        {{ include('clinic/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

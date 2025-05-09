@@ -3,19 +3,20 @@
 {% block title %}MyTOC - Thread{% endblock %}
 
 {% block body %}
-    <h1>Datos del thread</h1>
+    <a href="{{ path('app_thread_index') }}" class="mb-2">Volver</a>
+    <h1>Datos del thread / hilo</h1>
     <table class="table w-50">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ thread.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Título</th>
                 <td>{{ thread.title }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>Fecha</th>
                 <td>{{ thread.date ? thread.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -23,10 +24,9 @@
                 <td>{{ thread.visible ? 'Sí' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Author</th>
+                <th>Autor</th>
                 <td>{{ thread.author ? thread.author.username : '' }}</td>
             </tr>
         </tbody>
     </table>
-    <a href="{{ path('app_thread_index') }}">Volver</a>
 {% endblock %}

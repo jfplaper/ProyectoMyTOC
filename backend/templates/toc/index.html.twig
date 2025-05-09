@@ -10,12 +10,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Customed</th>
-                    <th>Creator</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Imagen</th>
+                    <th>Personalizado</th>
+                    <th>Creador</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -25,13 +25,14 @@
                     <tr>
                         <td>{{ toc.id }}</td>
                         <td>{{ toc.name }}</td>
-                        <td>{{ toc.description }}</td>
+                        <td class="w-25">{{ toc.description }}</td>
                         <td><img src="/uploads/images/{{ toc.image }}" alt="Imagen del TOC de {{ toc.name }}" width="35" height="auto" style="border-radius: 5px;" /></td>
                         <td>{{ toc.customed ? 'Sí' : 'No' }}</td>
                         <td>{{ toc.creator ? toc.creator.username : '' }}</td>
                         <td>
-                            <a href="{{ path('app_toc_show', {'id': toc.id}) }}">Mostrar</a>
-                            <a href="{{ path('app_toc_edit', {'id': toc.id}) }}">Editar</a>
+                            <a href="{{ path('app_toc_show', {'id': toc.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
+                            <a href="{{ path('app_toc_edit', {'id': toc.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
+                            {{ include('toc/_delete_form.html.twig') }}
                         </td>
                     </tr>
                 {% endif %}

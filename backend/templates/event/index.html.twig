@@ -10,13 +10,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Text</th>
-                    <th>Date</th>
-                    <th>Location</th>
-                    <th>Price(€)</th>
-                    <th>Image</th>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Texto</th>
+                    <th>Fecha</th>
+                    <th>Localización</th>
+                    <th>Precio(€)</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -26,13 +26,14 @@
                     <td>{{ event.id }}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.text }}</td>
-                    <td>{{ event.date ? event.date|date('Y-m-d H:i:s') : '' }}</td>
+                    <td style="width: 150px;">{{ event.date ? event.date|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ event.location ? event.location : 'Virtual / online' }}</td>
                     <td>{{ event.price ? event.price : 'Gratuito' }}</td>
                     <td><img src="/uploads/images/{{ event.image }}" alt="Imagen del evento {{ event.title }}" width="50" height="auto" style="border-radius: 5px;" /></td>
-                    <td>
-                        <a href="{{ path('app_event_show', {'id': event.id}) }}">Mostrar</a>
-                        <a href="{{ path('app_event_edit', {'id': event.id}) }}">Editar</a>
+                    <td style="width: 100px;">
+                        <a href="{{ path('app_event_show', {'id': event.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
+                        <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
+                        {{ include('event/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

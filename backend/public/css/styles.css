@@ -1,4 +1,4 @@
-/* Importa la fuente Montserrat (regular) para poder usarla en cualquier momento */
+/* Import the Montserrat (regular) font so you can use it anytime */
 @font-face {
     font-family: 'Montserrat';
     src: url('/fonts/Montserrat-Regular.woff2') format('woff2'),
@@ -8,22 +8,87 @@
     font-display: swap;
 }
 
-/* Se aplica a todos los elementos dentro del body (cuerpo) del documento HTML */
-body { box-sizing: border-box; font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #000; margin: 0; padding: 0; }
+/* It is applied to all elements within the body of the HTML document */
+body {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
 
-/* Aplicado a los enlaces del navbar */
+/* It is applied to navbar links */
 .nav-link { font-size: 1.2rem; }
 
-/* Aplicado a los enlaces del navbar al pasar el cursor por encima */
-.nav-link:hover { color: #1a1a1a; }
+/* It is applied to navbar links on hover */
+.nav-link:hover { color: #1A1A1A; }
 
-/* Aplicado a todos los mensajes flash */
+/* It is applied to all flash messages */
 .flash { background-color: #D3D3D3; font-weight: bold; border-radius: 5px; padding: 15px; margin: 15px 0px; }
 
-/* Aplicado a los mensajes flash según el tipo */
-.flash-success { background-color: #4ADE80; border: 1px solid #008000; color: #fff; }
-.flash-warning { background-color: #FBBF24; border: 1px solid #9b6500; color: #fff; }
-.flash-error { background-color: #F87171; border: 1px solid #FF0000; color: #fff; }
+/* It is applied to flash messages according to success type */
+.flash-success {
+    background-color: #BDFFD5;
+    border: 1px solid #99FFBE;
+    color: #0D3F0D;
+    font-weight: lighter;
+}
+
+/* It is applied to flash messages according to warning type */
+.flash-warning {
+    background-color: #FFE195;
+    border: 1px solid #FDDD8B;
+    color: #4d3c14;
+    font-weight: lighter;
+}
+
+/* It is applied to flash messages according to danger type */
+.flash-error {
+    background-color: #FFD7D7;
+    border: 1px solid #FFC1C1;
+    color: #360000;
+    font-weight: lighter;
+}
 
 h1 { color: #2AB7FA; font-size: 1.6rem; margin-bottom: 30px; }
-form { background-color: #F3F4F6; padding: 30px; border-radius: 5px; }
+
+form {
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom right, #F5F5F5, #F7F7F7);
+    padding: 30px;
+    border-radius: 2px 50px 2px 50px;
+    box-shadow: 20px -16px #96DEFF;
+}
+
+form input { margin-bottom: 8px; }
+
+form label { color: darkslategray; }
+
+/* Because by default, symfony puts error messages in li elements in forms */
+form li { color: #FF0000; }
+
+/* It is applied to delete forms, overriding the general style for forms */
+.delete_form {
+    background-color: #FFF;
+    background-image: none;
+    padding: 0px;
+    border-radius: 0px;
+    box-shadow: none;
+    display: inline;
+}
+
+/* It is applied on delete buttons */
+.btn_erase { color: #dc3545; }
+
+/* It is applied on delete buttons when hover */
+.btn_erase:hover { color: #a71d2a; }
+
+/* It is applied to achieve a separation between checkboxes and their labels */
+.role-checkbox { margin-right: 4px; }
+
+/* It is applied to the label that follows the checkbox */
+.role-checkbox + label { margin-right: 8px; display: inline-block; vertical-align: middle; }
+
+/* Ensures that each input and label set are aligned horizontally */
+input.role-checkbox { display: inline-block; vertical-align: middle; }

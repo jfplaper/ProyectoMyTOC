@@ -10,11 +10,11 @@ services:
     environment:
       CHOKIDAR_USEPOLLING: "true" # Activa polling para asegurar detección de cambios en Docker
     depends_on:
-      - backend
+      - api
     networks:
       - mytoc_jfpp
 
-  backend:
+  api:
     restart: unless-stopped
     build:
       context: ./backend
@@ -64,7 +64,7 @@ services:
       - ./web/certificado:/etc/nginx/certs
     depends_on:
       - frontend
-      - backend
+      - api
     networks:
       - mytoc_jfpp
 

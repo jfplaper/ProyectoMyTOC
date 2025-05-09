@@ -3,44 +3,44 @@
 {% block title %}MyTOC - Evento{% endblock %}
 
 {% block body %}
-    <h1>Datos del evento {{ event.title }}</h1>
+    <a href="{{ path('app_event_index') }}" class="mb-2">Volver</a>
+    <h1>Datos del evento</h1>
     <img src="/uploads/images/{{ event.image }}" alt="Imagen del evento de {{ event.title }}" width="200" height="auto" style="border-radius: 5px;" />
     <br>
     <table class="table w-50">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ event.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Título</th>
                 <td>{{ event.title }}</td>
             </tr>
             <tr>
-                <th>Text</th>
+                <th>Texto</th>
                 <td>{{ event.text }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>Fecha</th>
                 <td>{{ event.date ? event.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Location</th>
+                <th>Localización</th>
                 <td>{{ event.location ? event.location : 'Virtual / online' }}</td>
             </tr>
             <tr>
-                <th>Price(€)</th>
+                <th>Precio(€)</th>
                 <td>{{ event.price ? event.price : 'Gratuito' }}</td>
             </tr>
             <tr>
-                <th>Image</th>
+                <th>Imagen</th>
                 <td>{{ event.image }}</td>
             </tr>
             <tr>
-                <th>Creator</th>
+                <th>Creador</th>
                 <td>{{ event.creator ? event.creator.username : '' }}</td>
             </tr>
         </tbody>
     </table>
-    <a href="{{ path('app_event_index') }}">Volver</a>
 {% endblock %}

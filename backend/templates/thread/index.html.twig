@@ -3,16 +3,16 @@
 {% block title %}MyTOC - Thread{% endblock %}
 
 {% block body %}
-    <h1>Threads</h1>
+    <h1>Threads / Hilos</h1>
     <div class="container">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Date</th>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Fecha</th>
                     <th>Visible</th>
-                    <th>Author</th>
+                    <th>Autor</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -20,13 +20,14 @@
             {% for thread in threads %}
                 <tr>
                     <td>{{ thread.id }}</td>
-                    <td>{{ thread.title }}</td>
+                    <td class="w-25">{{ thread.title }}</td>
                     <td>{{ thread.date ? thread.date|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ thread.visible ? 'Sí' : 'No' }}</td>
                     <td>{{ thread.author ? thread.author.username : '' }}</td>
                     <td>
-                        <a href="{{ path('app_thread_show', {'id': thread.id}) }}">Mostrar</a>
-                        <a href="{{ path('app_thread_edit', {'id': thread.id}) }}">Editar</a>
+                        <a href="{{ path('app_thread_show', {'id': thread.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
+                        <a href="{{ path('app_thread_edit', {'id': thread.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
+                        {{ include('thread/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

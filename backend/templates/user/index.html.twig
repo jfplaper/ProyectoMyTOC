@@ -8,12 +8,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>ID</th>
                     <th>Username</th>
                     <th>Roles</th>
                     <th>Email</th>
-                    <th>Banned</th>
-                    <th>Image</th>
+                    <th>Baneado</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -27,8 +27,9 @@
                     <td>{{ user.banned ? 'Sí' : 'No' }}</td>
                     <td><img src="/uploads/images/{{ user.image }}" alt="Imagen de perfil de {{ user.username }}" width="35" height="auto" style="border-radius: 5px;" /></td>
                     <td>
-                        <a href="{{ path('app_user_show', {'id': user.id}) }}">Mostrar</a>
-                        <a href="{{ path('app_user_edit', {'id': user.id}) }}">Editar</a>
+                        <a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
+                        {{ include('user/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

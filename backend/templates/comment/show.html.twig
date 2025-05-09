@@ -3,19 +3,20 @@
 {% block title %}MyTOC - Comentario{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_comment_index') }}" class="mb-2">Volver</a>
     <h1>Datos del comentario</h1>
     <table class="table w-50">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ comment.id }}</td>
             </tr>
             <tr>
-                <th>Text</th>
+                <th>Texto</th>
                 <td>{{ comment.text }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>Fecha</th>
                 <td>{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -23,14 +24,13 @@
                 <td>{{ comment.visible ? 'Sí' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Author</th>
+                <th>Autor</th>
                 <td>{{ comment.author ? comment.author.username : '' }}</td>
             </tr>
             <tr>
-                <th>Thread</th>
+                <th>Thread/hilo</th>
                 <td>{{ comment.thread ? comment.thread.title : '' }}</td>
             </tr>
         </tbody>
     </table>
-    <a href="{{ path('app_comment_index') }}">Volver</a>
 {% endblock %}

@@ -18,17 +18,20 @@ class ClinicType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control', 'autofocus' => true],
+                'label' => 'Nombre',
+                'attr' => ['class' => 'form-control mb-3', 'autofocus' => true],
             ])
             ->add('description', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'label' => 'Descripción',
+                'attr' => ['class' => 'form-control mb-3'],
             ])
             ->add('location', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'label' => 'Localización',
+                'attr' => ['class' => 'form-control mb-3'],
             ])
             ->add('email', EmailType::class, [
                 'mapped' => true,
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mb-3'],
                 'required' => false,
                 'constraints' => [
                     new Assert\Optional([
@@ -39,10 +42,12 @@ class ClinicType extends AbstractType
                 ],
             ])
             ->add('phone', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'label' => 'Teléfono',
+                'attr' => ['class' => 'form-control mb-3'],
                 'required' => false,
             ])
             ->add('url', TextType::class, [
+                'label' => 'URL (sitio web)',
                 'attr' => ['class' => 'form-control mb-3'],
                 'required' => false,
             ])

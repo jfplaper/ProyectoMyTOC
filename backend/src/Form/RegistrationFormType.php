@@ -23,11 +23,13 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'attr' => ['class' => 'form-control', 'autofocus' => true],
+                'label' => 'Nombre de usuario *',
+                'attr' => ['class' => 'form-control mb-3', 'autofocus' => true, 'placeholder' => '(ejemplo: juan)'],
             ])
             ->add('email', EmailType::class, [
+                'label' => 'Email *',
                 'mapped' => true,
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: juan@gmail.com)'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Debes rellenar este campo',
@@ -38,7 +40,9 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Acepto los términos *',
                 'mapped' => false,
+                'attr' => ['class' => 'mx-1'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Deberías estar de acuerdo con nuestros términos.',
@@ -48,7 +52,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly, this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
+                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control mb-3', 'placeholder' => 'Mín. 6 caracteres'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Por favor, introduce un password.',
@@ -63,7 +67,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('confirmationPlainPassword', PasswordType::class, [
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
+                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control mb-3'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Por favor, introduce de nuevo el password.',
@@ -79,7 +83,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Sube una imagen de perfil (jpeg, jpg o png)',
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
-                'attr' => ['class' => 'px-1'],
+                'attr' => ['class' => 'px-1 mb-3'],
                 // make it optional so you don't have to re-upload the PDF file every time you edit the Product details
                 'required' => false,
                 // unmapped fields can't define their validation using attributes in the associated entity, so you can use the PHP constraint classes

@@ -3,9 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Thread;
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,18 +15,19 @@ class ThreadType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'label' => 'Título',
+                'attr' => ['class' => 'form-control mb-3'],
                 'mapped' => true,
             ])
             ->add('date', null, [
+                'label' => 'Fecha',
                 'widget' => 'single_text',
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control mb-3'],
                 'mapped' => true,
             ])
-            ->add('visible')
-            ->add('author', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
+            ->add('visible', CheckboxType::class, [
+                'label' => 'Visible',
+                'attr' => ['class' => 'mx-1 mb-4'],
             ])
         ;
     }

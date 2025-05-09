@@ -8,12 +8,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Text</th>
-                    <th>Date</th>
+                    <th>ID</th>
+                    <th>Texto</th>
+                    <th>Fecha</th>
                     <th>Visible</th>
-                    <th>Author</th>
-                    <th>Thread</th>
+                    <th>Autor</th>
+                    <th>Thread/hilo</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -21,14 +21,15 @@
             {% for comment in comments %}
                 <tr>
                     <td>{{ comment.id }}</td>
-                    <td>{{ comment.text }}</td>
-                    <td>{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
+                    <td class="w-25">{{ comment.text }}</td>
+                    <td style="width: 150px;">{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ comment.visible ? 'Sí' : 'No' }}</td>
                     <td>{{ comment.author ? comment.author.username : '' }}</td>
-                    <td>{{ comment.thread ? comment.thread.title : '' }}</td>
-                    <td>
-                        <a href="{{ path('app_comment_show', {'id': comment.id}) }}">Mostrar</a>
-                        <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editar</a>
+                    <td class="w-25">{{ comment.thread ? comment.thread.title : '' }}</td>
+                    <td style="width: 100px;">
+                        <a href="{{ path('app_comment_show', {'id': comment.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
+                        <a href="{{ path('app_comment_edit', {'id': comment.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
+                        {{ include('comment/_delete_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

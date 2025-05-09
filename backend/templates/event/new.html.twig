@@ -3,7 +3,8 @@
 {% block title %}MyTOC - Evento{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_event_index') }}">Volver</a>
+    <a href="{{ path('app_event_index') }}" class="mb-2">Volver</a>
     <h1 class="h3 mb-3 font-weight-normal">Formulario de creación de evento</h1>
+    <br>
     {{ include('event/_form.html.twig') }}
 {% endblock %}
