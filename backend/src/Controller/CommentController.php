@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +17,19 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted("ROLE_ADMIN")]
 final class CommentController extends AbstractController{
     #[Route(name: 'app_comment_index', methods: ['GET'])]
-    public function index(CommentRepository $commentRepository): Response
+    public function index(CommentRepository $commentRepository, UserRepository $userRepository, Request $request): Response
     {
+        $comments = $commentRepository->findAll();
+        // Guardamos el texto del input tipo texto en una variable
+        $text = $request->query->get('find');
+        if (isset($text) && $text != "") {
+            $user = $userRepository->findOneBy(['username' => $text]);
+            if ($user)
+                $comments = $commentRepository->findBy(['author' => $user->getId()]);
+        }
+        
         return $this->render('comment/index.html.twig', [
-            'comments' => $commentRepository->findAll(),
+            'comments' => $comments,
         ]);
     }
 

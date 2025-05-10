@@ -78,6 +78,9 @@ form li { color: #FF0000; }
     display: inline;
 }
 
+/* It is applied to searching forms, overriding the general style for forms */
+.searching_form { padding: 24px; }
+
 /* It is applied on delete buttons */
 .btn_erase { color: #dc3545; }
 

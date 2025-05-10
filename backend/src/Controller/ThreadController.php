@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Thread;
 use App\Form\ThreadType;
 use App\Repository\ThreadRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +17,19 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted("ROLE_ADMIN")]
 final class ThreadController extends AbstractController{
     #[Route(name: 'app_thread_index', methods: ['GET'])]
-    public function index(ThreadRepository $threadRepository): Response
+    public function index(ThreadRepository $threadRepository, UserRepository $userRepository, Request $request): Response
     {
+        $threads = $threadRepository->findAll();
+        // Guardamos el texto del input tipo texto en una variable
+        $text = $request->query->get('find');
+        if (isset($text) && $text != "") {
+            $user = $userRepository->findOneBy(['username' => $text]);
+            if ($user)
+                $threads = $threadRepository->findBy(['author' => $user->getId()]);
+        }
+
         return $this->render('thread/index.html.twig', [
-            'threads' => $threadRepository->findAll(),
+            'threads' => $threads,
         ]);
     }
 

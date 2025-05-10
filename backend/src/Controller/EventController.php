@@ -20,10 +20,21 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted("ROLE_ADMIN")]
 final class EventController extends AbstractController{
     #[Route(name: 'app_event_index', methods: ['GET'])]
-    public function index(EventRepository $eventRepository): Response
+    public function index(EventRepository $eventRepository, Request $request): Response
     {
+        $events = $eventRepository->findAll();
+        // Para comprobar si el usuario ha seleccionado un botón de tipo radio
+        $search = $request->query->get('search');
+        // Guardamos el texto del input tipo texto en una variable
+        $text = $request->query->get('find');
+        if (isset($text) && $text != "") {
+            if (isset($search)) {
+                $events = ($search == "title") ? 
+                    $eventRepository->findByTitle($text) : $eventRepository->findByLocation($text);
+            }
+        }
         return $this->render('event/index.html.twig', [
-            'events' => $eventRepository->findAll(),
+            'events' => $events,
         ]);
     }
 

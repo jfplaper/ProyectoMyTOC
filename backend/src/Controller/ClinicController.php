@@ -20,10 +20,22 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted("ROLE_ADMIN")]
 final class ClinicController extends AbstractController{
     #[Route(name: 'app_clinic_index', methods: ['GET'])]
-    public function index(ClinicRepository $clinicRepository): Response
+    public function index(ClinicRepository $clinicRepository, Request $request): Response
     {
+        $clinics = $clinicRepository->findAll();
+        // Para comprobar si el usuario ha seleccionado un botón de tipo radio
+        $search = $request->query->get('search');
+        // Guardamos el texto del input tipo texto en una variable
+        $text = $request->query->get('find');
+        if (isset($text) && $text != "") {
+            if (isset($search)) {
+                $clinics = ($search == "name") ? 
+                    $clinicRepository->findByName($text) : $clinicRepository->findByLocation($text);
+            }
+        }
+
         return $this->render('clinic/index.html.twig', [
-            'clinics' => $clinicRepository->findAll(),
+            'clinics' => $clinics,
         ]);
     }
 

@@ -6,6 +6,23 @@
     <h1>Eventos</h1>
     <a href="{{ path('app_event_new') }}">Crear nuevo evento</a>
     <br>
+
+    <div class="mt-2 mb-4">
+        <form class="searching_form d-flex flex-column justify-content-between align-items-center" 
+            action="{{ path('app_event_index') }}" method="get">
+            <div class="d-inline-flex justify-content-between align-items-center">
+                <input class="form-control" type="text" name="find" placeholder="Término a buscar" />
+                <input class="btn btn-primary ml-2" type="submit" value="Buscar" />
+            </div>
+            <div class="d-inline-flex justify-content-between align-items-center mt-1">
+                <input class="mr-1" type="radio" id="title" name="search" value="title">
+                <label class="mr-3" for="title">Por título</label>
+                <input class="mr-1" type="radio" id="location" name="search" value="location">
+                <label for="location">Por localización</label>
+            </div>
+        </form>
+    </div>
+
     <div class="container">
         <table class="table">
             <thead>

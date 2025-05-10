@@ -16,10 +16,16 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted("ROLE_ADMIN")]
 final class UserController extends AbstractController{
     #[Route(name: 'app_user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, Request $request): Response
     {
+        $users = $userRepository->findAll();
+        // Guardamos el texto del input tipo texto en una variable
+        $text = $request->query->get('find');
+        if (isset($text) && $text != "")
+            $users = $userRepository->findByUsername($text);
+
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $users,
         ]);
     }
 
