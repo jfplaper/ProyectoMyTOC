@@ -49,7 +49,8 @@ final class ClinicControllerTest extends WebTestCase
 
         $client->request('GET', "/clinic/{$testClinic->getId()}");
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Datos de la clínica ' . $testClinic->getName());
+        // data-testid="clinic-name" is indicated in the td element in show.html.twig
+        $this->assertSelectorTextContains('[data-testid="clinic-name"]', $testClinic->getName());
     }
 
     /** @test */
@@ -115,7 +116,7 @@ final class ClinicControllerTest extends WebTestCase
     }
 
     /** @test */
-    public function testDeleteClinic(): void
+    public function testsDeleteClinic(): void
     {
         $client = static::createClient();
 
@@ -125,14 +126,14 @@ final class ClinicControllerTest extends WebTestCase
 
         $clinicRepository = static::getContainer()->get(ClinicRepository::class);
         $testClinicToDelete = $clinicRepository->findOneBy(['name' => 'Nueva clínica editada']);
-        $crawler = $client->request('POST', "/clinic/{$testClinicToDelete->getId()}/edit");
+        $crawler = $client->request('POST', "/clinic/{$testClinicToDelete->getId()}");
         $this->assertResponseIsSuccessful();
 
         // Get form
         $form = $crawler->selectButton('Eliminar')->form();
 
         $client->request('POST', "/clinic/{$testClinicToDelete->getId()}", [
-            '_token' => 'valid_token_here' // Must obtain a valid CSRF token
+            '_token' => 'valid_token_here'
         ]);
 
         // Send form
@@ -145,4 +146,5 @@ final class ClinicControllerTest extends WebTestCase
         $client->followRedirect();
         $this->assertSelectorTextContains('h1', 'Clínicas');
     }
+
 }

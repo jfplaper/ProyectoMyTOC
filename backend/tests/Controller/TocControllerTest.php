@@ -38,7 +38,8 @@ final class TocControllerTest extends WebTestCase
 
         $client->request('GET', "/toc/{$testToc->getId()}");
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Datos del TOC ' . $testToc->getName());
+        // data-testid="toc-name" is indicated in the td element in show.html.twig
+        $this->assertSelectorTextContains('[data-testid="toc-name"]', $testToc->getName());
     }
 
     /** @test */
@@ -119,7 +120,7 @@ final class TocControllerTest extends WebTestCase
         $form = $crawler->selectButton('Eliminar')->form();
 
         $client->request('POST', "/toc/{$testTocToDelete->getId()}", [
-            '_token' => 'valid_token_here' // Must obtain a valid CSRF token
+            '_token' => 'valid_token_here'
         ]);
 
         // Send form

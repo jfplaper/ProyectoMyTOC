@@ -15,12 +15,12 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('text', TextType::class, [
-                'label' => 'Texto',
-                'attr' => ['class' => 'form-control mb-3'],
+                'label' => 'Texto *',
+                'attr' => ['class' => 'form-control mb-3', 'autofocus' => true, 'placeholder' => '(ejemplo: Pues ayer...)'],
                 'mapped' => true,
             ])
             ->add('date', null, [
-                'label' => 'Fecha',
+                'label' => 'Fecha *',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-control mb-3'],
                 'mapped' => true,
@@ -28,6 +28,7 @@ class CommentType extends AbstractType
             ->add('visible', CheckboxType::class, [
                 'label' => 'Visible',
                 'attr' => ['class' => 'mx-1 mb-4'],
+                'required' => false,
             ])
         ;
     }

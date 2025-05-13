@@ -38,7 +38,8 @@ final class CommentControllerTest extends WebTestCase
 
         $client->request('GET', "/comment/{$testComment->getId()}");
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Datos del comentario');
+        // data-testid="comment-text" is indicated in the td element in show.html.twig
+        $this->assertSelectorTextContains('[data-testid="comment-text"]', $testComment->getText());
     }
 
     /** @test */
@@ -90,7 +91,7 @@ final class CommentControllerTest extends WebTestCase
         $form = $crawler->selectButton('Eliminar')->form();
 
         $client->request('POST', "/comment/{$testCommentToDelete->getId()}", [
-            '_token' => 'valid_token_here' // Must obtain a valid CSRF token
+            '_token' => 'valid_token_here'
         ]);
 
         // Send form

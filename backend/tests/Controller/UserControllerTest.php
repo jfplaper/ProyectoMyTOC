@@ -33,7 +33,8 @@ final class UserControllerTest extends WebTestCase
         
         $client->request('GET', "/user/{$testUser->getId()}");
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Datos del usuario ' . $testUser->getUsername());
+        // data-testid="user-username" is indicated in the td element in show.html.twig
+        $this->assertSelectorTextContains('[data-testid="user-username"]', $testUser->getUsername());
     }
 
     /** @test */
@@ -110,7 +111,7 @@ final class UserControllerTest extends WebTestCase
         $form = $crawler->selectButton('Eliminar')->form();
 
         $client->request('POST', "/user/{$testUserToDelete->getId()}", [
-            '_token' => 'valid_token_here' // Must obtain a valid CSRF token
+            '_token' => 'valid_token_here'
         ]);
 
         // Send form

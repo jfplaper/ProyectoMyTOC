@@ -34,32 +34,32 @@ class RegistrationController extends AbstractController
                 /** @var string $plainPassword */
                 $plainPassword = $form->get('plainPassword')->getData();
                 $confirmationPlainPassword = $form->get('confirmationPlainPassword')->getData();
-                // Comprueba que el password introducido por el usuario coincide con el de confirmación y si
-                // no coincide muestra un mensaje al usuario y renderiza la vista del registro
+                // Checks that the password entered by the user matches the confirmation password and if it 
+                // does not match, displays a message to the user and renders the record view
                 if ($plainPassword !== $confirmationPlainPassword) {
                     $this->addFlash('error', 'No coinciden ambos password introducidos');
                     return $this->redirectToRoute('app_register');
                 }
     
-                // Codifica el password plano/puro (tal cual lo escribe el usuario sin hash)
+                // Encodes the plain/pure password (as typed by the user without hashing)
                 $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
                 /** @var UploadedFile $imageFile */
                 $imageFile = $form->get('image')->getData();
 
-                // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
-                // de que, si el usuario no sube una imagen, le pondremos una por defecto
+                // Since the image field is not required but cannot be null in the database, we ensure that if 
+                // the user does not upload an image, we will set a default one
                 $newFilename = "avatar_default.png";
 
-                // Esta condición es necesaria porque el campo 'image' no es requerido, de manera que la 
-                // imagen debe ser procesada sólo cuando una imagen es subida
+                // This condition is necessary because the 'image' field is not required, so the image should 
+                // be processed only when an image is uploaded
                 if ($imageFile) {
                     $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    // Esto es necesario para incluir de manera segura el nombre de la imagen como parte de la URL
+                    // This is necessary to safely include the image name as part of the URL
                     $safeFilename = $slugger->slug($originalFilename);
                     $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                    // Mueve la imagen a la carpeta donde las imágenes subidas por los usuarios son almacenadas
+                    // Move the image to the folder where user-uploaded images are stored
                     try {
                         $imageFile->move($imagesDirectory, $newFilename);
                     } catch (FileException $e) {
@@ -67,13 +67,13 @@ class RegistrationController extends AbstractController
                     }
                 }
 
-                // Actualiza la propiedad 'image' de la entidad User almacenando el nombre de la imagen 
-                // subida o el del avatar por defecto si el usuario no sube una (pero no la imagen en sí)
+                // Updates the 'image' property of the User entity by storing the name of the uploaded image, 
+                // or the default avatar name if the user doesn't upload one (but not the image itself)
                 $user->setImage($newFilename);
-                // Guardo todos los datos restantes
+                // Save all remaining data
                 $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
                 $user->setBanned(false);
-                //$user->setEmail($request->get('email')); // No es necesario porque está mapped a true en RegistrationFormType
+                //$user->setEmail($request->get('email')); // It is not necessary because it is mapped to true in RegistrationFormType
 
                 $entityManager->persist($user);
                 $entityManager->flush();

@@ -23,9 +23,9 @@ final class EventController extends AbstractController{
     public function index(EventRepository $eventRepository, Request $request): Response
     {
         $events = $eventRepository->findAll();
-        // Para comprobar si el usuario ha seleccionado un botón de tipo radio
+        // To check if the user has selected a radio button
         $search = $request->query->get('search');
-        // Guardamos el texto del input tipo texto en una variable
+        // Save the text of the text input in a variable
         $text = $request->query->get('find');
         if (isset($text) && $text != "") {
             if (isset($search)) {
@@ -51,33 +51,36 @@ final class EventController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imageFile */
-            $imageFile = $form->get('image')->getData();
+            if ($form->get('title')->getData() && $form->get('text')->getData()) {
+                /** @var UploadedFile $imageFile */
+                $imageFile = $form->get('image')->getData();
 
-            // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
-            // de que, si el usuario no sube una imagen, le pondremos una por defecto al evento
-            $newFilename = "event_default.jpg";
+                // Since the image field is not required but cannot be null in the database, it is necessary to 
+                // ensure that if the user does not upload an image, a default image will be set for the event
+                $newFilename = "event_default.jpg";
 
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                if ($imageFile) {
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move($imagesDirectory, $newFilename);
-                } catch (FileException $e) {
-                    throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                    try {
+                        $imageFile->move($imagesDirectory, $newFilename);
+                    } catch (FileException $e) {
+                        throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                    }
                 }
+
+                // Updates the 'image' property of the Event entity by storing the uploaded event name or the 
+                // default event image if the user does not upload one (but not the image itself)
+                $event->setImage($newFilename);
+                $event->setCreator($this->getUser());
+                $entityManager->persist($event);
+                $entityManager->flush();
+
+                $this->addFlash('success', '¡Registro del evento creado con éxito!');
+                return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
             }
-
-            // Actualiza la propiedad 'image' de la entidad Event almacenando el nombre del evento 
-            // subido o el de la imagen de evento por defecto si el usuario no sube una (pero no la imagen en sí)
-            $event->setImage($newFilename);
-            $entityManager->persist($event);
-            $entityManager->flush();
-
-            $this->addFlash('success', '¡Registro del evento creado con éxito!');
-            return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('event/new.html.twig', [
@@ -117,7 +120,7 @@ final class EventController extends AbstractController{
 
                 try {
                     $imageFile->move($imagesDirectory, $newFilename);
-                    // Actualiza la propiedad 'image' de la entidad Event almacenando el nombre de la nueva imagen
+                    // Updates the 'image' property of the Event entity by storing the name of the new image
                     $event->setImage($newFilename);
                 } catch (FileException $e) {
                     throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());

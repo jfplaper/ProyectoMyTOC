@@ -4,7 +4,7 @@
 
 {% block body %}
     {% if app.user %}
-        {# --------------------------------- V I S T A   A D M I N --------------------------------- #}
+        {# --------------------------------- A D M I N   V I E W --------------------------------- #}
 		{% if 'ROLE_ADMIN' in app.user.roles %}
             <h1>Dashboard</h1>
             <h4 style="font-size: 1.1rem;">Almacenamiento / gestión de la base de datos de MyTOC</h4>

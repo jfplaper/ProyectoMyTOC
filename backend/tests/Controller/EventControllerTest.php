@@ -4,9 +4,7 @@ namespace App\Tests\Controller;
 
 use App\Repository\UserRepository;
 use App\Repository\EventRepository;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use function Symfony\Component\Clock\now;
 
 final class EventControllerTest extends WebTestCase
 {
@@ -40,7 +38,8 @@ final class EventControllerTest extends WebTestCase
 
         $client->request('GET', "/event/{$testEvent->getId()}");
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Datos del evento ' . $testEvent->getTitle());
+        // data-testid="event-title" is indicated in the td element in show.html.twig
+        $this->assertSelectorTextContains('[data-testid="event-title"]', $testEvent->getTitle());
     }
 
     /** @test */
@@ -60,8 +59,9 @@ final class EventControllerTest extends WebTestCase
 
         $form['event[title]'] = 'Nuevo evento';
         $form['event[text]'] = 'Texto explicativo del nuevo evento';
-        $form['event[date]'] = '2025-04-29 12:28:00';
+        $form['event[date]'] = '2025-05-12 12:28:00';
         $form['event[location]'] = 'Granada';
+        $form['event[price]'] = '10';
 
         // Send form
         $client->submit($form);
@@ -93,8 +93,9 @@ final class EventControllerTest extends WebTestCase
 
         $form['event[title]'] = 'Nuevo evento editado';
         $form['event[text]'] = 'Texto explicativo del nuevo evento editado';
-        $form['event[date]'] = '2025-04-29 12:30:00';
+        $form['event[date]'] = '2025-05-12 12:30:00';
         $form['event[location]'] = 'Granada editada';
+        $form['event[price]'] = '20';
 
         // Send form
         $client->submit($form);
@@ -125,7 +126,7 @@ final class EventControllerTest extends WebTestCase
         $form = $crawler->selectButton('Eliminar')->form();
 
         $client->request('POST', "/event/{$testEventToDelete->getId()}", [
-            '_token' => 'valid_token_here' // Must obtain a valid CSRF token
+            '_token' => 'valid_token_here'
         ]);
 
         // Send form

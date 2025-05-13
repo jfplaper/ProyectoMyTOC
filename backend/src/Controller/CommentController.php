@@ -20,7 +20,7 @@ final class CommentController extends AbstractController{
     public function index(CommentRepository $commentRepository, UserRepository $userRepository, Request $request): Response
     {
         $comments = $commentRepository->findAll();
-        // Guardamos el texto del input tipo texto en una variable
+        // Save the text of the text input in a variable
         $text = $request->query->get('find');
         if (isset($text) && $text != "") {
             $user = $userRepository->findOneBy(['username' => $text]);
@@ -48,10 +48,12 @@ final class CommentController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            if ($form->get('text')->getData()) {
+                $entityManager->flush();
 
-            $this->addFlash('success', '¡Registro del comentario actualizado con éxito!');
-            return $this->redirectToRoute('app_comment_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', '¡Registro del comentario actualizado con éxito!');
+                return $this->redirectToRoute('app_comment_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('comment/edit.html.twig', [

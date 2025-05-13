@@ -18,20 +18,20 @@ class ClinicType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nombre',
-                'attr' => ['class' => 'form-control mb-3', 'autofocus' => true],
+                'label' => 'Nombre *',
+                'attr' => ['class' => 'form-control mb-3', 'autofocus' => true, 'placeholder' => '(ejemplo: Clínica Granada-TOC)'],
             ])
             ->add('description', TextType::class, [
-                'label' => 'Descripción',
-                'attr' => ['class' => 'form-control mb-3'],
+                'label' => 'Descripción *',
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: Somos especialistas en...)'],
             ])
             ->add('location', TextType::class, [
-                'label' => 'Localización',
-                'attr' => ['class' => 'form-control mb-3'],
+                'label' => 'Localización *',
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: C/ Albondón, 12, 18003 - Granada)'],
             ])
             ->add('email', EmailType::class, [
                 'mapped' => true,
-                'attr' => ['class' => 'form-control mb-3'],
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: clinicagrtoc@gmail.com)'],
                 'required' => false,
                 'constraints' => [
                     new Assert\Optional([
@@ -43,12 +43,12 @@ class ClinicType extends AbstractType
             ])
             ->add('phone', TextType::class, [
                 'label' => 'Teléfono',
-                'attr' => ['class' => 'form-control mb-3'],
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: 600111222)'],
                 'required' => false,
             ])
             ->add('url', TextType::class, [
                 'label' => 'URL (sitio web)',
-                'attr' => ['class' => 'form-control mb-3'],
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: https://www.clinicagrtoc.com/)'],
                 'required' => false,
             ])
             ->add('image', FileType::class, [

@@ -20,7 +20,7 @@ final class ThreadController extends AbstractController{
     public function index(ThreadRepository $threadRepository, UserRepository $userRepository, Request $request): Response
     {
         $threads = $threadRepository->findAll();
-        // Guardamos el texto del input tipo texto en una variable
+        // Save the text of the text input in a variable
         $text = $request->query->get('find');
         if (isset($text) && $text != "") {
             $user = $userRepository->findOneBy(['username' => $text]);
@@ -48,10 +48,12 @@ final class ThreadController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            if ($form->get('title')->getData()) {
+                $entityManager->flush();
 
-            $this->addFlash('success', '¡Registro del thread actualizado con éxito!');
-            return $this->redirectToRoute('app_thread_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', '¡Registro del thread actualizado con éxito!');
+                return $this->redirectToRoute('app_thread_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('thread/edit.html.twig', [

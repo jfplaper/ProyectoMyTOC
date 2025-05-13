@@ -23,9 +23,9 @@ final class ClinicController extends AbstractController{
     public function index(ClinicRepository $clinicRepository, Request $request): Response
     {
         $clinics = $clinicRepository->findAll();
-        // Para comprobar si el usuario ha seleccionado un botón de tipo radio
+        // To check if the user has selected a radio button
         $search = $request->query->get('search');
-        // Guardamos el texto del input tipo texto en una variable
+        // Save the text of the text input in a variable
         $text = $request->query->get('find');
         if (isset($text) && $text != "") {
             if (isset($search)) {
@@ -52,33 +52,36 @@ final class ClinicController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imageFile */
-            $imageFile = $form->get('image')->getData();
+            if ($form->get('name')->getData() && $form->get('description')->getData() 
+                && $form->get('location')->getData()) {
+                /** @var UploadedFile $imageFile */
+                $imageFile = $form->get('image')->getData();
 
-            // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
-            // de que, si el usuario no sube una imagen, le pondremos una por defecto a la clínica
-            $newFilename = "clinic_default.jpg";
+                // Since the image field is not required but cannot be null in the database, it is necessary to 
+                // ensure that if the user does not upload an image, a default image will be set for the clinic
+                $newFilename = "clinic_default.jpg";
 
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                if ($imageFile) {
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move($imagesDirectory, $newFilename);
-                } catch (FileException $e) {
-                    throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                    try {
+                        $imageFile->move($imagesDirectory, $newFilename);
+                    } catch (FileException $e) {
+                        throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                    }
                 }
+
+                // Updates the 'image' property of the Clinic entity by storing the uploaded clinic name or the 
+                // default clinic image if the user does not upload one (but not the image itself)
+                $clinic->setImage($newFilename);
+                $entityManager->persist($clinic);
+                $entityManager->flush();
+
+                $this->addFlash('success', '¡Registro de la clínica creado con éxito!');
+                return $this->redirectToRoute('app_clinic_index', [], Response::HTTP_SEE_OTHER);
             }
-
-            // Actualiza la propiedad 'image' de la entidad Clinic almacenando el nombre de la clínica 
-            // subido o el de la imagen de clínica por defecto si el usuario no sube una (pero no la imagen en sí)
-            $clinic->setImage($newFilename);
-            $entityManager->persist($clinic);
-            $entityManager->flush();
-
-            $this->addFlash('success', '¡Registro de la clínica creado con éxito!');
-            return $this->redirectToRoute('app_clinic_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('clinic/new.html.twig', [
@@ -118,7 +121,7 @@ final class ClinicController extends AbstractController{
 
                 try {
                     $imageFile->move($imagesDirectory, $newFilename);
-                    // Actualiza la propiedad 'image' de la entidad Clinic almacenando el nombre de la nueva imagen
+                    // Updates the 'image' property of the Clinic entity by storing the name of the new image
                     $clinic->setImage($newFilename);
                 } catch (FileException $e) {
                     throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());

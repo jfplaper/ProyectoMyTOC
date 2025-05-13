@@ -38,7 +38,8 @@ final class ThreadControllerTest extends WebTestCase
 
         $client->request('GET', "/thread/{$testThread->getId()}");
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Datos del thread');
+        // data-testid="thread-title" is indicated in the td element in show.html.twig
+        $this->assertSelectorTextContains('[data-testid="thread-title"]', $testThread->getTitle());
     }
 
     /** @test */
@@ -90,7 +91,7 @@ final class ThreadControllerTest extends WebTestCase
         $form = $crawler->selectButton('Eliminar')->form();
 
         $client->request('POST', "/thread/{$testThreadToDelete->getId()}", [
-            '_token' => 'valid_token_here' // Must obtain a valid CSRF token
+            '_token' => 'valid_token_here'
         ]);
 
         // Send form

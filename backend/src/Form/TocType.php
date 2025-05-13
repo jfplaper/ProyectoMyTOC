@@ -16,13 +16,13 @@ class TocType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nombre',
-                'attr' => ['class' => 'form-control mb-3',  'autofocus' => true],
+                'label' => 'Nombre *',
+                'attr' => ['class' => 'form-control mb-3',  'autofocus' => true, 'placeholder' => '(ejemplo: Limpieza)'],
                 'mapped' => true,
             ])
             ->add('description', TextType::class, [
-                'label' => 'Descripción',
-                'attr' => ['class' => 'form-control mb-3'],
+                'label' => 'Descripción *',
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: Este TOC consiste en...)'],
                 'mapped' => true,
             ])
             ->add('image', FileType::class, [

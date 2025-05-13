@@ -40,36 +40,39 @@ final class TocController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imageFile */
-            $imageFile = $form->get('image')->getData();
+            if ($form->get('name')->getData() && $form->get('description')->getData()) {
+                /** @var UploadedFile $imageFile */
+                $imageFile = $form->get('image')->getData();
 
-            // Cómo el campo image no es requerido pero en la base de datos no puede ser null nos aseguramos 
-            // de que, si el usuario no sube una imagen, le pondremos una por defecto al TOC
-            $newFilename = "toc_default_1.png";
+                // Since the image field is not required but cannot be null in the database, it is necessary to 
+                // ensure that if the user does not upload an image, a default image will be set for the toc
+                $newFilename = "toc_default_1.png";
 
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                if ($imageFile) {
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move($imagesDirectory, $newFilename);
-                } catch (FileException $e) {
-                    throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                    try {
+                        $imageFile->move($imagesDirectory, $newFilename);
+                    } catch (FileException $e) {
+                        throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());
+                    }
                 }
+
+                // Updates the 'image' property of the Toc entity by storing the uploaded toc name or the 
+                // default toc image if the user does not upload one (but not the image itself)
+                $toc->setImage($newFilename);
+                // Save all remaining data
+                $toc->setCreator($this->getUser());
+                $toc->setCustomed(false);
+                // name and description are not needed because they are mapped to true in TocType
+                $entityManager->persist($toc);
+                $entityManager->flush();
+
+                $this->addFlash('success', '¡Registro TOC creado con éxito!');
+                return $this->redirectToRoute('app_toc_index', [], Response::HTTP_SEE_OTHER);
             }
-
-            // Actualiza la propiedad 'image' de la entidad Toc almacenando el nombre del TOC 
-            // subido o el de la imagen TOC por defecto si el usuario no sube una (pero no la imagen en sí)
-            $toc->setImage($newFilename);
-            // Guardo todos los datos restantes
-            $toc->setCustomed(false);
-            // name y description no es necesario porque está mapped a true en TocType
-            $entityManager->persist($toc);
-            $entityManager->flush();
-
-            $this->addFlash('success', '¡Registro TOC creado con éxito!');
-            return $this->redirectToRoute('app_toc_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('toc/new.html.twig', [
@@ -109,7 +112,7 @@ final class TocController extends AbstractController{
 
                 try {
                     $imageFile->move($imagesDirectory, $newFilename);
-                    // Actualiza la propiedad 'image' de la entidad Toc almacenando el nombre de la nueva imagen
+                    // Updates the 'image' property of the Toc entity by storing the name of the new image
                     $toc->setImage($newFilename);
                 } catch (FileException $e) {
                     throw new FileException("Error al mover y almacenar la imagen subida " . $e->getMessage());

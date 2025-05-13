@@ -19,7 +19,7 @@ final class UserController extends AbstractController{
     public function index(UserRepository $userRepository, Request $request): Response
     {
         $users = $userRepository->findAll();
-        // Guardamos el texto del input tipo texto en una variable
+        // Save the text of the text input in a variable
         $text = $request->query->get('find');
         if (isset($text) && $text != "")
             $users = $userRepository->findByUsername($text);

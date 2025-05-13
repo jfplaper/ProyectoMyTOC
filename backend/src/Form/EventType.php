@@ -17,29 +17,30 @@ class EventType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Título',
-                'attr' => ['class' => 'form-control mb-3',  'autofocus' => true],
+                'label' => 'Título *',
+                'attr' => ['class' => 'form-control mb-3',  'autofocus' => true, 'placeholder' => '(ejemplo: Reunión y charla)'],
                 'mapped' => true,
             ])
             ->add('text', TextType::class, [
-                'label' => 'Texto',
-                'attr' => ['class' => 'form-control mb-3'],
+                'label' => 'Texto *',
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: Os invitamos a compartir...)'],
                 'mapped' => true,
             ])
             ->add('date', null, [
-                'label' => 'Fecha',
+                'label' => 'Fecha *',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-control mb-3'],
                 'mapped' => true,
             ])
             ->add('location', TextType::class, [
                 'label' => 'Localización',
-                'attr' => ['class' => 'form-control mb-3'],
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: Facultad de Psicología, Granada)'],
                 'mapped' => true,
+                'required' => false
             ])
             ->add('price', IntegerType::class, [
                 'label' => 'Precio (en €)',
-                'attr' => ['class' => 'form-control mb-3'],
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: 10)'],
                 'mapped' => true,
                 'required' => false,
             ])

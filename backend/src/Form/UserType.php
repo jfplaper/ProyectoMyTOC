@@ -19,12 +19,13 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label' => 'Nombre de usuario',
-                'attr' => ['class' => 'form-control mb-3'],
+                'label' => 'Nombre de usuario *',
+                'attr' => ['class' => 'form-control mb-3', 'autofocus' => true, 'placeholder' => '(ejemplo: juan)'],
             ])
             ->add('email', EmailType::class, [
+                'label' => 'Email *',
                 'mapped' => true,
-                'attr' => ['class' => 'form-control mb-3'],
+                'attr' => ['class' => 'form-control mb-3', 'placeholder' => '(ejemplo: juan@gmail.com)'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Debes rellenar este campo',
@@ -36,22 +37,21 @@ class UserType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'ROLE_USER' => 'ROLE_USER',
                     'ROLE_ADMIN' => 'ROLE_ADMIN',
                 ],
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => ['class' => 'mb-3'],
                 'choice_attr' => [
-                    'ROLE_USER' => ['class' => 'role-checkbox'],
                     'ROLE_ADMIN' => ['class' => 'role-checkbox'],
                 ],
-                // Establecer los roles seleccionados por defecto
+                // Set the selected roles by default (if there is more than one)
                 'data' => $options['data']->getRoles()
             ])
             ->add('banned', CheckboxType::class, [
                 'label' => 'Baneado',
                 'attr' => ['class' => 'mx-1 mb-4'],
+                'required' => false,
             ])
         ;
     }
