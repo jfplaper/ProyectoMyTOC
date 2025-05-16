@@ -13,9 +13,9 @@
         </form>
     </div>
 
-    <div class="container">
-        <table class="table">
-            <thead>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
                 <tr>
                     <th>ID</th>
                     <th>Texto</th>
@@ -35,7 +35,7 @@
                     <td>{{ comment.visible ? 'Sí' : 'No' }}</td>
                     <td>{{ comment.author ? comment.author.username : '' }}</td>
                     <td class="w-25">{{ comment.thread ? comment.thread.title : '' }}</td>
-                    <td style="width: 100px;">
+                    <td class="text-nowrap">
                         <a href="{{ path('app_comment_show', {'id': comment.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
                         <a href="{{ path('app_comment_edit', {'id': comment.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
                         {{ include('comment/_delete_form.html.twig') }}

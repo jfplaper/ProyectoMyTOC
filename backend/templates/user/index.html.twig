@@ -13,9 +13,9 @@
         </form>
     </div>
 
-    <div class="container">
-        <table class="table">
-            <thead>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
@@ -35,7 +35,7 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.banned ? 'Sí' : 'No' }}</td>
                     <td><img src="/uploads/images/{{ user.image }}" alt="Imagen de perfil de {{ user.username }}" width="35" height="auto" style="border-radius: 5px;" /></td>
-                    <td>
+                    <td class="text-nowrap">
                         <a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
                         <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
                         {{ include('user/_delete_form.html.twig') }}

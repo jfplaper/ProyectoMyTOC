@@ -4,77 +4,81 @@
 
 {% block body %}
     <h1>API doc</h1>
-    <h4>Event</h4>
+    <h4 class="h4-api-doc">Event</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Request</th>
-                <th>Path / Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_event_get_one', {'id': '1'}) }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/event/{id}</code> Recupera un recurso Event</td>
-            </tr>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_event_get_all') }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/event</code> Recupera la colección de recursos Event</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Request</th>
+                    <th>Path / Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_event_get_one', {'id': '1'}) }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/event/{id}</code> Recupera un recurso Event</td>
+                </tr>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_event_get_all') }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/event</code> Recupera la colección de recursos Event</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Schemas</h4>
+    <h4 class="h4-api-doc">Schemas</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th>Type / Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
-                <td><code class="mx-2 text-primary">integer</code> El id de este evento</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">creator</td>
-                <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este evento</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">title</td>
-                <td><code class="mx-2 text-primary">string</code> El título de este evento</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">text</td>
-                <td><code class="mx-2 text-primary">string</code> El texto o contenido de este evento</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">date</td>
-                <td><code class="mx-2 text-primary">string($date-time)</code> La fecha de publicación de este evento</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">location</td>
-                <td><code class="mx-2 text-primary">string</code> <i class="text-secondary">(nullable: true)</i> La ubicación de este evento</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">price</td>
-                <td><code class="mx-2 text-primary">integer</code> <i class="text-secondary">(nullable: true)</i> El precio de este evento</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
-                <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de este evento</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Field</th>
+                    <th>Type / Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id de este evento</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">creator</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este evento</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">title</td>
+                    <td><code class="mx-2 text-primary">string</code> El título de este evento</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">text</td>
+                    <td><code class="mx-2 text-primary">string</code> El texto o contenido de este evento</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">date</td>
+                    <td><code class="mx-2 text-primary">string($date-time)</code> La fecha de publicación de este evento</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">location</td>
+                    <td><code class="mx-2 text-primary">string</code> <i class="text-secondary">(nullable: true)</i> La ubicación de este evento</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">price</td>
+                    <td><code class="mx-2 text-primary">integer</code> <i class="text-secondary">(nullable: true)</i> El precio de este evento</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
+                    <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de este evento</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Ejemplo JSON de event</h4>
+    <h4 class="h4-api-doc">Ejemplo JSON de event</h4>
     <br>
     <div class="container w-50">
         <code class="mx-6">{</code><br>

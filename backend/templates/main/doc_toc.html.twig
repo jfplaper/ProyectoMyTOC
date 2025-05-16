@@ -4,87 +4,91 @@
 
 {% block body %}
     <h1>API doc</h1>
-    <h4>Toc</h4>
+    <h4 class="h4-api-doc">Toc</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Request</th>
-                <th>Path / Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_toc_get_one', {'id': '1'}) }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/toc/{id}</code> Recupera un recurso Toc</td>
-            </tr>
-            <tr>
-                <td class="bg-warning rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_toc">PUT</a>
-                </td>
-                <td><code class="mx-2">/api/toc/{id}</code> Reemplaza el recurso Toc</td>
-            </tr>
-            <tr>
-                <td class="bg-danger rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_toc">DELETE</a>
-                </td>
-                <td><code class="mx-2">/api/toc/{id}</code> Elimina el recurso Toc</td>
-            </tr>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_toc_get_all') }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/toc</code> Recupera la colección de recursos Toc</td>
-            </tr>
-            <tr>
-                <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_toc">POST</a>
-                </td>
-                <td><code class="mx-2">/api/toc</code> Crea un recurso Toc</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Request</th>
+                    <th>Path / Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_toc_get_one', {'id': '1'}) }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/toc/{id}</code> Recupera un recurso Toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-warning rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_json_toc">PUT</a>
+                    </td>
+                    <td><code class="mx-2">/api/toc/{id}</code> Reemplaza el recurso Toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-danger rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_json_toc">DELETE</a>
+                    </td>
+                    <td><code class="mx-2">/api/toc/{id}</code> Elimina el recurso Toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_toc_get_all') }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/toc</code> Recupera la colección de recursos Toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-success rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_post_toc">POST</a>
+                    </td>
+                    <td><code class="mx-2">/api/toc</code> Crea un recurso Toc</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Schemas</h4>
+    <h4 class="h4-api-doc">Schemas</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th>Type / Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
-                <td><code class="mx-2 text-primary">integer</code> El id de este toc</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">creator</td>
-                <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este toc</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">name</td>
-                <td><code class="mx-2 text-primary">string</code> El nombre de este toc</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">description</td>
-                <td><code class="mx-2 text-primary">string</code> La descripción de este toc</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
-                <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de este toc</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">customed</td>
-                <td><code class="mx-2 text-primary">boolean</code> Estado de personalización de este toc</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Field</th>
+                    <th>Type / Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id de este toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">creator</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">name</td>
+                    <td><code class="mx-2 text-primary">string</code> El nombre de este toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">description</td>
+                    <td><code class="mx-2 text-primary">string</code> La descripción de este toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
+                    <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de este toc</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">customed</td>
+                    <td><code class="mx-2 text-primary">boolean</code> Estado de personalización de este toc</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Ejemplo JSON de toc</h4>
+    <h4 class="h4-api-doc">Ejemplo JSON de toc</h4>
     <br>
     <div id="ejemplo_json_toc" class="container w-50">
         <code class="mx-6">{</code><br>
@@ -108,7 +112,7 @@
         <code class="mx-6">}</code>
     </div>
     <br>
-    <h4>Ejemplo de datos esperados para POST</h4>
+    <h4 class="h4-api-doc">Ejemplo de datos esperados para POST</h4>
     <br>
     <div id="ejemplo_post_toc" class="container w-50">
         <code class="mx-6">{</code><br>

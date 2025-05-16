@@ -14,34 +14,74 @@
         {% endblock %}
     </head>
     <body>
-        <div class="navbar navbar-expand-lg shadow-lg mb-4" style="height: 75px; background-image: linear-gradient(#2ABF7A, #1F8F5B);">
-            <div class="container-fluid d-flex justify-content-between align-items-center">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-lg mb-4" 
+            style="background-image: linear-gradient(#2ABF7A, #1F8F5B);">
+            <div class="container-fluid">
+                {# Brand and toggle button #}
+                <a class="navbar-brand font-weight-bold text-body pr-4 lg-border-right" 
+                    href="{{ path('app_main') }}">MyTOC</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {# Collapsible menu #}
+                <div id="mainNavbar" class="collapse navbar-collapse">
                 {% if app.user %}
-                    <div class="d-flex justify-content-start align-items-center">
-                        <h3 class="h4 mt-2 font-weight-bold">MyTOC</h3>
-                        <a class="nav-link text-white" href="{{ path('app_main') }}">Dashboard</a>
-                        <a class="nav-link text-white" href="{{ path('app_user_index') }}">Usuarios</a>
-                        <a class="nav-link text-white" href="{{ path('app_toc_index') }}">TOC</a>
-                        <a class="nav-link text-white" href="{{ path('app_clinic_index') }}">Clínicas</a>
-                        <a class="nav-link text-white" href="{{ path('app_event_index') }}">Eventos</a>
-                        <a class="nav-link text-white" href="{{ path('app_thread_index') }}">Threads</a>
-                        <a class="nav-link text-white" href="{{ path('app_comment_index') }}">Comentarios</a>
-                    </div>
-                    <div class="d-flex justify-content-end align-items-center">
-                        <b class="px-2 h5 mt-2 font-weight-bold">{{ app.user.username }}</b>
-                        <img src="/uploads/images/{{ app.user.image }}" alt="Imagen de perfil" class="rounded-circle" style="width: 50px; height: auto;" />
-                        <a class="nav-link text-white" href="{{ path('app_logout') }}">Cerrar sesión</a>
-                    </div>
+                    {# Left nav links #}
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a id="dashboard-link" class="nav-link text-dark font-weight-bold" 
+                                href="{{ path('app_main') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_user_index') }}">Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_toc_index') }}">TOC</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_clinic_index') }}">Clínicas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_event_index') }}">Eventos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_thread_index') }}">Threads</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_comment_index') }}">Comentarios</a>
+                        </li>
+                    </ul>
+                    {# User/logout block on the right #}
+                    <ul class="navbar-nav">
+                        <li id="li-username" class="nav-item d-flex align-items-center">
+                            <span id="username" class="navbar-text text-dark font-weight-bold pr-2" 
+                                style="font-size: 1.2rem; margin-bottom: 5px">
+                                {{ app.user.username }}
+                            </span>
+                            <img src="/uploads/images/{{ app.user.image }}" alt="Imagen de perfil" 
+                                class="rounded-circle mr-2" style="width: 50px; height: auto;">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_logout') }}">Cerrar sesión</a>
+                        </li>
+                    </ul>
                 {% else %}
-                    <div class="d-flex justify-content-end align-items-center">
-                        <a class="nav-link text-white" href="{{ path('app_login') }}">Iniciar sesión</a>
-                        <a class="nav-link text-white" href="{{ path('app_register') }}">Registrarse</a>
-                    </div>
+                    {# If not logged in, just show login/register on the right #}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_login') }}">Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_register') }}">Registrarse</a>
+                        </li>
+                    </ul>
                 {% endif %}
+                </div>
             </div>
-        </div>
+        </nav>
 
-        <div class="d-flex flex-column justify-content-center align-items-center bg-white p-5 min-vh-55">
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center bg-white p-5">
             {# Reads and displays all flash messages with a different style depending on their label #}
             {% for label, messages in app.flashes(['success', 'warning', 'error']) %}
                 {% for message in messages %}
@@ -50,6 +90,7 @@
                     </div>
                 {% endfor %}
             {% endfor %}
+            {# Content of each template's view #}
             {% block body %}{% endblock %}
 		</div>
 

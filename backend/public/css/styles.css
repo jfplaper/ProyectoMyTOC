@@ -21,9 +21,6 @@ body {
 /* It is applied to navbar links */
 .nav-link { font-size: 1.2rem; }
 
-/* It is applied to navbar links on hover */
-.nav-link:hover { color: #1A1A1A; }
-
 /* It is applied to all flash messages */
 .flash { background-color: #D3D3D3; font-weight: bold; border-radius: 5px; padding: 15px; margin: 15px 0px; }
 
@@ -95,3 +92,48 @@ form li { color: #FF0000; }
 
 /* Ensures that each input and label set are aligned horizontally */
 input.role-checkbox { display: inline-block; vertical-align: middle; }
+
+
+/* -------------- MEDIA QUERIES -------------- */
+
+@media (max-width: 992px) {
+    /* It is applied to the collapsed menu so that the lines are clearly visible */
+    .navbar-collapse { background-color: #5c5c5c; margin: 10px 0px; border-radius: 5px; }
+
+    .navbar-collapse .navbar-nav { width: 100%; }
+
+    .navbar-collapse .navbar-nav .nav-item { width: 100%; padding: 0px 10px; }
+
+    /* Separator only between links and items, and only when the collapsed menu is visible */
+    .navbar-collapse.show .navbar-nav .nav-item + .nav-item {
+        border-top: 1px solid #FFF;
+        padding-top: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    #li-username { border-top: 1px solid #FFF; padding-top: 0.5rem; margin-top: 0.5rem; }
+
+    /* It is applied to Dashboard link */
+    #dashboard-link { color: #FFF !important; }
+    
+    /* It is applied to span that shows username */
+    #username { color: #FFF !important; }
+
+    h1 { font-size: 1.2rem; }
+
+    /* It is applied to specific h1 of edit and create */
+    .h1-edit-create { font-size: 1.2rem; }
+
+    /* It is applied to specific h4 of API doc */
+    .h4-api-doc { font-size: 1.1rem; }
+}
+
+@media (min-width: 992px) {
+    /* It is applied to MyTOC link */
+    .lg-border-right {
+        border-right: 1px solid rgba(255,255,255,0.5) !important;
+        padding-right: 1rem;
+        margin-right: 1rem;
+        padding: 0px 10px;
+    }
+}

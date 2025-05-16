@@ -23,9 +23,9 @@
         </form>
     </div>
 
-    <div class="container">
-        <table class="table">
-            <thead>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
@@ -45,7 +45,7 @@
                     <td>{{ clinic.email ? clinic.email : 'No disponible' }}</td>
                     <td style="width: 140px;">{{ clinic.phone ? clinic.phone : 'No disponible' }}</td>
                     <td><img src="/uploads/images/{{ clinic.image }}" alt="Imagen de la clínica {{ clinic.name }}" width="50" height="auto" style="border-radius: 5px;" /></td>
-                    <td style="width: 100px;">
+                    <td class="text-nowrap">
                         <a href="{{ path('app_clinic_show', {'id': clinic.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
                         <a href="{{ path('app_clinic_edit', {'id': clinic.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
                         {{ include('clinic/_delete_form.html.twig') }}

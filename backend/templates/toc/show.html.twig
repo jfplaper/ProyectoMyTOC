@@ -7,32 +7,34 @@
     <h1>Datos del TOC</h1>
     <img src="/uploads/images/{{ toc.image }}" alt="Imagen del TOC de {{ toc.name }}" width="200" height="auto" style="border-radius: 5px;" />
     <br>
-    <table class="table w-50">
-        <tbody>
-            <tr>
-                <th>ID</th>
-                <td>{{ toc.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td data-testid="toc-name">{{ toc.name }}</td>
-            </tr>
-            <tr>
-                <th>Descripción</th>
-                <td>{{ toc.description }}</td>
-            </tr>
-            <tr>
-                <th>Imagen</th>
-                <td>{{ toc.image }}</td>
-            </tr>
-            <tr>
-                <th>Personalizado</th>
-                <td>{{ toc.customed ? 'Sí' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Creador</th>
-                <td>{{ toc.creator ? toc.creator.username : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ toc.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td data-testid="toc-name">{{ toc.name }}</td>
+                </tr>
+                <tr>
+                    <th>Descripción</th>
+                    <td>{{ toc.description }}</td>
+                </tr>
+                <tr>
+                    <th>Imagen</th>
+                    <td>{{ toc.image }}</td>
+                </tr>
+                <tr>
+                    <th>Personalizado</th>
+                    <td>{{ toc.customed ? 'Sí' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>Creador</th>
+                    <td>{{ toc.creator ? toc.creator.username : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -5,32 +5,34 @@
 {% block body %}
     <a href="{{ path('app_comment_index') }}" class="mb-2">Volver</a>
     <h1>Datos del comentario</h1>
-    <table class="table w-50">
-        <tbody>
-            <tr>
-                <th>ID</th>
-                <td>{{ comment.id }}</td>
-            </tr>
-            <tr>
-                <th>Texto</th>
-                <td data-testid="comment-text">{{ comment.text }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Visible</th>
-                <td>{{ comment.visible ? 'Sí' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Autor</th>
-                <td>{{ comment.author ? comment.author.username : '' }}</td>
-            </tr>
-            <tr>
-                <th>Thread/hilo</th>
-                <td>{{ comment.thread ? comment.thread.title : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ comment.id }}</td>
+                </tr>
+                <tr>
+                    <th>Texto</th>
+                    <td data-testid="comment-text">{{ comment.text }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha</th>
+                    <td>{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Visible</th>
+                    <td>{{ comment.visible ? 'Sí' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>Autor</th>
+                    <td>{{ comment.author ? comment.author.username : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Thread/hilo</th>
+                    <td>{{ comment.thread ? comment.thread.title : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

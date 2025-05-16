@@ -13,9 +13,9 @@
         </form>
     </div>
 
-    <div class="container">
-        <table class="table">
-            <thead>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
@@ -33,7 +33,7 @@
                     <td>{{ thread.date ? thread.date|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ thread.visible ? 'Sí' : 'No' }}</td>
                     <td>{{ thread.author ? thread.author.username : '' }}</td>
-                    <td>
+                    <td class="text-nowrap">
                         <a href="{{ path('app_thread_show', {'id': thread.id}) }}" class="text-primary mr-2"><i class="fa fa-search"></i></a>
                         <a href="{{ path('app_thread_edit', {'id': thread.id}) }}" class="text-warning mr-2"><i class="fa fa-pencil-alt"></i></a>
                         {{ include('thread/_delete_form.html.twig') }}

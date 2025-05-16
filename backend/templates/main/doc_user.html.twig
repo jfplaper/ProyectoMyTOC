@@ -4,103 +4,107 @@
 
 {% block body %}
     <h1>API doc</h1>
-    <h4>User</h4>
+    <h4 class="h4-api-doc">User</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Request</th>
-                <th>Path / Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_user_get_one', {'id': '1'}) }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/user/{id}</code> Recupera un recurso User</td>
-            </tr>
-            <tr>
-                <td class="bg-warning rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_user">PUT</a>
-                </td>
-                <td><code class="mx-2">/api/user/{id}</code> Reemplaza el recurso User</td>
-            </tr>
-            <tr>
-                <td class="bg-danger rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_user">DELETE</a>
-                </td>
-                <td><code class="mx-2">/api/user/{id}</code> Elimina el recurso User</td>
-            </tr>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_user_get_all') }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/user</code> Recupera la colección de recursos User</td>
-            </tr>
-            <tr>
-                <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_user_y_register">POST</a>
-                </td>
-                <td><code class="mx-2">/api/user</code> Crea un recurso User</td>
-            </tr>
-            <tr>
-                <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_user_y_register">POST</a>
-                </td>
-                <td><code class="mx-2">/api/register</code> Crea un recurso User</td>
-            </tr>
-            <tr>
-                <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_login">POST</a>
-                </td>
-                <td><code class="mx-2">/api/login</code> Autentica y recupera un recurso User</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Request</th>
+                    <th>Path / Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_user_get_one', {'id': '1'}) }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/user/{id}</code> Recupera un recurso User</td>
+                </tr>
+                <tr>
+                    <td class="bg-warning rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_json_user">PUT</a>
+                    </td>
+                    <td><code class="mx-2">/api/user/{id}</code> Reemplaza el recurso User</td>
+                </tr>
+                <tr>
+                    <td class="bg-danger rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_json_user">DELETE</a>
+                    </td>
+                    <td><code class="mx-2">/api/user/{id}</code> Elimina el recurso User</td>
+                </tr>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_user_get_all') }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/user</code> Recupera la colección de recursos User</td>
+                </tr>
+                <tr>
+                    <td class="bg-success rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_post_user_y_register">POST</a>
+                    </td>
+                    <td><code class="mx-2">/api/user</code> Crea un recurso User</td>
+                </tr>
+                <tr>
+                    <td class="bg-success rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_post_user_y_register">POST</a>
+                    </td>
+                    <td><code class="mx-2">/api/register</code> Crea un recurso User</td>
+                </tr>
+                <tr>
+                    <td class="bg-success rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_post_login">POST</a>
+                    </td>
+                    <td><code class="mx-2">/api/login</code> Autentica y recupera un recurso User</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Schemas</h4>
+    <h4 class="h4-api-doc">Schemas</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th>Type / Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
-                <td><code class="mx-2 text-primary">integer</code> El id de este usuario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">username</td>
-                <td><code class="mx-2 text-primary">string</code> El username de este usuario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">roles</td>
-                <td><code class="mx-2 text-primary">array (string)</code> Los roles de este usuario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">password</td>
-                <td><code class="mx-2 text-primary">string</code> El password de este usuario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">email</td>
-                <td><code class="mx-2 text-primary">string</code> El email de este usuario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
-                <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de este usuario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">banned</td>
-                <td><code class="mx-2 text-primary">boolean</code> Estado de bloqueo de este usuario</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Field</th>
+                    <th>Type / Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id de este usuario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">username</td>
+                    <td><code class="mx-2 text-primary">string</code> El username de este usuario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">roles</td>
+                    <td><code class="mx-2 text-primary">array (string)</code> Los roles de este usuario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">password</td>
+                    <td><code class="mx-2 text-primary">string</code> El password de este usuario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">email</td>
+                    <td><code class="mx-2 text-primary">string</code> El email de este usuario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">image</td>
+                    <td><code class="mx-2 text-primary">string</code> El nombre de la imagen de este usuario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">banned</td>
+                    <td><code class="mx-2 text-primary">boolean</code> Estado de bloqueo de este usuario</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Ejemplo JSON de user</h4>
+    <h4 class="h4-api-doc">Ejemplo JSON de user</h4>
     <br>
     <div id="ejemplo_json_user" class="container w-50">
         <code class="mx-6">{</code><br>
@@ -117,7 +121,7 @@
         <code class="mx-6">}</code>
     </div>
     <br>
-    <h4>Ejemplo de datos esperados para POST (/api/user y /api/register)</h4>
+    <h4 class="h4-api-doc">Ejemplo de datos esperados para POST (/api/user y /api/register)</h4>
     <br>
     <div id="ejemplo_post_user_y_register" class="container w-50">
         <code class="mx-6">{</code><br>
@@ -127,7 +131,7 @@
         <code class="mx-6">}</code>
     </div>
     <br>
-    <h4>Ejemplo de datos esperados para POST (/api/login)</h4>
+    <h4 class="h4-api-doc">Ejemplo de datos esperados para POST (/api/login)</h4>
     <br>
     <div id="ejemplo_post_login" class="container w-50">
         <code class="mx-6">{</code><br>

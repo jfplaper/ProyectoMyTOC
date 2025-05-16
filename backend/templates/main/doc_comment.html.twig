@@ -4,87 +4,91 @@
 
 {% block body %}
     <h1>API doc</h1>
-    <h4>Comment</h4>
+    <h4 class="h4-api-doc">Comment</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Request</th>
-                <th>Path / Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_comment_get_one', {'id': '1'}) }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/comment/{id}</code> Recupera un recurso Comment</td>
-            </tr>
-            <tr>
-                <td class="bg-warning rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_comment">PUT</a>
-                </td>
-                <td><code class="mx-2">/api/comment/{id}</code> Reemplaza el recurso Comment</td>
-            </tr>
-            <tr>
-                <td class="bg-danger rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_json_comment">DELETE</a>
-                </td>
-                <td><code class="mx-2">/api/comment/{id}</code> Elimina el recurso Comment</td>
-            </tr>
-            <tr>
-                <td class="bg-primary rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="{{ path('app_api_comment_get_all') }}">GET</a>
-                </td>
-                <td><code class="mx-2">/api/comment</code> Recupera la colección de recursos Comment</td>
-            </tr>
-            <tr>
-                <td class="bg-success rounded mx-auto d-block">
-                    <a class="nav-link text-white text-center p-0" href="#ejemplo_post_comment">POST</a>
-                </td>
-                <td><code class="mx-2">/api/comment</code> Crea un recurso Comment</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Request</th>
+                    <th>Path / Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_comment_get_one', {'id': '1'}) }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/comment/{id}</code> Recupera un recurso Comment</td>
+                </tr>
+                <tr>
+                    <td class="bg-warning rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_json_comment">PUT</a>
+                    </td>
+                    <td><code class="mx-2">/api/comment/{id}</code> Reemplaza el recurso Comment</td>
+                </tr>
+                <tr>
+                    <td class="bg-danger rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_json_comment">DELETE</a>
+                    </td>
+                    <td><code class="mx-2">/api/comment/{id}</code> Elimina el recurso Comment</td>
+                </tr>
+                <tr>
+                    <td class="bg-primary rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="{{ path('app_api_comment_get_all') }}">GET</a>
+                    </td>
+                    <td><code class="mx-2">/api/comment</code> Recupera la colección de recursos Comment</td>
+                </tr>
+                <tr>
+                    <td class="bg-success rounded mx-auto d-block">
+                        <a class="nav-link text-white text-center p-0" href="#ejemplo_post_comment">POST</a>
+                    </td>
+                    <td><code class="mx-2">/api/comment</code> Crea un recurso Comment</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Schemas</h4>
+    <h4 class="h4-api-doc">Schemas</h4>
     <br>
-    <table class="table w-50">
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th>Type / Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
-                <td><code class="mx-2 text-primary">integer</code> El id de este comentario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">author</td>
-                <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este comentario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">thread</td>
-                <td><code class="mx-2 text-primary">integer</code> El id del thread al que pertenece este comentario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">text</td>
-                <td><code class="mx-2 text-primary">string</code> El texto o contenido de este comentario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">date</td>
-                <td><code class="mx-2 text-primary">string($date-time)</code> La fecha de publicación de este comentario</td>
-            </tr>
-            <tr>
-                <td class="bg-secondary text-white text-center h5 mx-auto d-block">visible</td>
-                <td><code class="mx-2 text-primary">boolean</code> Estado de visibilidad de este comentario</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container table-responsive">
+        <table class="table mx-auto" style="width: auto;">
+            <thead class="bg-light">
+                <tr>
+                    <th>Field</th>
+                    <th>Type / Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">id</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id de este comentario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">author</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id del usuario que crea este comentario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">thread</td>
+                    <td><code class="mx-2 text-primary">integer</code> El id del thread al que pertenece este comentario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">text</td>
+                    <td><code class="mx-2 text-primary">string</code> El texto o contenido de este comentario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">date</td>
+                    <td><code class="mx-2 text-primary">string($date-time)</code> La fecha de publicación de este comentario</td>
+                </tr>
+                <tr>
+                    <td class="bg-secondary text-white text-center h5 mx-auto d-block">visible</td>
+                    <td><code class="mx-2 text-primary">boolean</code> Estado de visibilidad de este comentario</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    <h4>Ejemplo JSON de comment</h4>
+    <h4 class="h4-api-doc">Ejemplo JSON de comment</h4>
     <br>
     <div id="ejemplo_json_comment" class="container w-50">
         <code class="mx-6">{</code><br>
@@ -123,7 +127,7 @@
         <code class="mx-6">}</code>
     </div>
     <br>
-    <h4>Ejemplo de datos esperados para POST</h4>
+    <h4 class="h4-api-doc">Ejemplo de datos esperados para POST</h4>
     <br>
     <div id="ejemplo_post_comment" class="container w-50">
         <code class="mx-6">{</code><br>
