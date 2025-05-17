@@ -63,7 +63,7 @@ const Home = () => {
                 <p className="text-sm text-[#2AB7FA] leading-tight mb-2">
                     Utilizamos cookies para prestar, mantener y mejorar nuestros servicios, además de por 
                     motivos de seguridad. Al hacer clic en "Aceptar todo", aceptas nuestra
-                    <Link to="/" className="text-sm underline text-gray-700 hover:text-gray-900 ms-1">
+                    <Link to="/cookie_policies" className="text-sm underline text-gray-700 hover:text-gray-900 ms-1">
                         política de cookies
                     </Link>.
                 </p>

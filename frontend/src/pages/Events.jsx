@@ -42,11 +42,9 @@ const Events = () => {
                     </form>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 p-4">
+                <div className="container mx-auto px-4 py-8 flex flex-col space-y-6">
                 {filteredEvents.map((event) => (
-                    <div key={event.id} className="h-full">
-                        <EventsCard event={event} />
-                    </div>
+                    <EventsCard key={event.id} event={event} />
                 ))}
                 </div>
             </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MyTocAppManual = () => {
     return (
         <main className="min-h-screen flex justify-start items-center">
-            <section className="h-full w-2xl my-4 mx-auto">
+            <section className="h-full w-2xl my-12 mx-auto">
                 <img className="w-full h-auto border border-gray-700 rounded-xl" 
                     src="/images/manual_image.jpg" alt="Imagen visual explicativa de MyTOCApp Web" />
                 <div className="flex flex-col justify-center items-center">

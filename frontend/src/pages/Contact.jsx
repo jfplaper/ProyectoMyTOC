@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 const Contact = () => {
     return (
         <main className="min-h-screen flex justify-start items-center">
-            <section className="h-full w-2xl my-4 mx-auto">
+            <section className="h-full w-2xl my-12 mx-auto">
                 <img className="w-full h-auto rounded-xl" 
                     src="/images/contact_image.jpg" 
                     alt="Imagen de dos personas dándose la mano" />
                 <div className="flex flex-col justify-center items-center">
                     <h2 className="text-3xl font-light text-[#2ABF7A] my-4">INFORMACIÓN DE CONTACTO</h2>
-                    <p className="text-xl text-justify">
+                    <p className="text-lg text-justify">
                         Para informarte del funcionamiento de nuestra aplicación web de registros de TOC, 
                         <Link to="/mytocappmanual" className="text-[#2AB7FA] underline hover:text-blue-700 ms-1.5">
                             mytocAPP
@@ -19,7 +19,7 @@ const Contact = () => {
                         listado de clínicas no es necesario registrarse, salvo si deseas escribir en el foro.
                     </p>
                     <br/>
-                    <p className="text-xl text-justify">
+                    <p className="text-lg text-justify">
                         En el caso de padecer TOC te invitamos férreamente a registrarte, pues creemos que sería 
                         bueno para ti guardar tus datos y llevar así un registro diario del TOC o los TOC que 
                         padezcas. ¡No pierdes nada por probar!

@@ -13,6 +13,7 @@ import Contact from "../pages/Contact";
 import Profile from "../pages/Profile";
 import MyTocAppWeb from "../pages/MyTocAppWeb";
 import MyTocAppManual from "../pages/MyTocAppManual";
+import CookiePolicies from "../pages/CookiePolicies";
 
 export const router = createBrowserRouter([
     {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
             {
                 path: "mytocappmanual",
                 element: <MyTocAppManual />,
+            },
+            {
+                path: "cookie_policies",
+                element: <CookiePolicies />,
             },
         ],
     },

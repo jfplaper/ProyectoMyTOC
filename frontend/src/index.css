@@ -26,6 +26,9 @@
     font-display: swap;
 }
 
+/* It is applied to all HTML document */
+html { scroll-behavior: smooth; }
+
 /* It is applied to all elements within the body of the HTML document */
 body { font-family: 'Montserrat', sans-serif; }
 
