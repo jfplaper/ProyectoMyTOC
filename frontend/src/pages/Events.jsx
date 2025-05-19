@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useEvents } from '../contexts/EventsContext';
 import LoadingSpinner from "../components/LoadingSpinner";
 import EventsCard from "../components/EventsCard";
+import FavEventsCard from "../components/FavEventsCard";
 
 const Events = () => {
-    const { events, filteredEvents, setFilteredEvents, eventsLoading } = useEvents();
+    const { events, filteredEvents, setFilteredEvents, eventsLoading, favoriteEvents, 
+        addEventToFavorites, removeEventFromFavorites } = useEvents();
     const [selectedFilter, setSelectedFilter] = useState("");
     const optionsFilter = ["Gratuito", "No gratuito", "Todos"];
 
@@ -29,7 +31,7 @@ const Events = () => {
                 <h2 className="text-3xl font-light text-[#2ABF7A] mt-12 mb-6">EVENTOS PARA LA COMUNIDAD MYTOC</h2>
 
                 {/* Users can filter by price */}
-                <div className="my-4">
+                <div className="mt-4 mb-8">
                     <form className="flex justify-between items-center gap-2" onSubmit={handleSubmit}>
                         <h2 className="text-xl text-center text-gray-900 whitespace-nowrap">Filtrar por</h2>
                         <select className="p-2 border-gray-200 border rounded-lg focus:outline-[#2AB7FA] text-gray-700 text-sm" 
@@ -42,9 +44,29 @@ const Events = () => {
                     </form>
                 </div>
 
-                <div className="container mx-auto px-4 py-8 flex flex-col space-y-6">
+                {favoriteEvents.length !== 0 && (
+                    <h2 className="text-2xl font-light text-[#2ABF7A] mt-2 mb-6">Eventos favoritos</h2>
+                )}
+
+                {/* Favorite events */}
+                {favoriteEvents.length !== 0 && (
+                <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {favoriteEvents.map((favEvent) => (
+                        <div key={favEvent.id} className="h-full">
+                            <FavEventsCard event={favEvent} removeEventFromFavorites={removeEventFromFavorites} />
+                        </div>
+                    ))}
+                </div>
+                )}
+
+                {favoriteEvents.length !== 0 && (
+                    <div className="w-75 h-0.5 my-8 bg-gray-300"></div>
+                )}
+
+                {/* All and filtered events */}
+                <div className="container mx-auto px-4 py-8 mb-16 flex flex-col space-y-6">
                 {filteredEvents.map((event) => (
-                    <EventsCard key={event.id} event={event} />
+                    <EventsCard key={event.id} event={event} addEventToFavorites={addEventToFavorites} />
                 ))}
                 </div>
             </div>

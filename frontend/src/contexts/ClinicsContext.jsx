@@ -9,6 +9,7 @@ export const ClinicsProvider = ({ children }) => {
     const [clinics, setClinics] = useState({});
     const [filteredClinics, setFilteredClinics] = useState({});
     const [clinicsLoading, setClinicsLoading] = useState(false);
+    const [favoriteClinics, setFavoriteClinics] = useState([]);
 
     const fetchClinics = async () => {
         try {
@@ -29,12 +30,44 @@ export const ClinicsProvider = ({ children }) => {
         }
     };
 
+    const addClinicToFavorites = (clinic) => {
+        if (favoriteClinics.some((cli) => cli.id === clinic.id)) {
+            toast.error("La clínica ya está en favoritos", {
+                style: { background: "#fad1e6", color: "red", border: "2px solid red" },
+            });
+            return;
+        }
+
+        setFavoriteClinics((prev) => [...prev, clinic]);
+        toast.success(`Clínica ${clinic.name} añadida a favoritos`, {
+            style: { background: "#d1fae5", color: "black", border: "2px solid green" },
+            icon: "👍",
+        });
+    };
+  
+    const removeClinicFromFavorites = (clinicId) => {
+        setFavoriteClinics((prev) => prev.filter((cli) => cli?.id !== clinicId));
+        toast.success("Clínica eliminada de favoritos", {
+            style: { background: "#d1fae5", color: "black", border: "2px solid green" },
+            icon: "🗑️",
+        });
+    };
+
     useEffect(() => {
         fetchClinics();
     }, []);
     
     return (
-        <ClinicsContext.Provider value={{ clinics, filteredClinics, setFilteredClinics, clinicsLoading }}>
+        <ClinicsContext.Provider 
+            value={{ 
+                clinics, 
+                filteredClinics, 
+                setFilteredClinics, 
+                clinicsLoading, 
+                favoriteClinics, 
+                addClinicToFavorites, 
+                removeClinicFromFavorites 
+            }}>
             {children}
         </ClinicsContext.Provider>
     );

@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Mail, Phone, ExternalLink, Heart } from "lucide-react";
+import { MapPin, Mail, Phone, ExternalLink, BrushCleaning } from "lucide-react";
 
-function ClinicsCard({ clinic, addClinicToFavorites }) {
+function FavClinicsCard({ clinic, removeClinicFromFavorites }) {
     return (
         <motion.div className="flex flex-col justify-between bg-white border border-gray-200 rounded-2xl 
             shadow-md overflow-hidden transition-shadow hover:shadow-xl hover:scale-105 transform-gpu" 
@@ -11,10 +11,10 @@ function ClinicsCard({ clinic, addClinicToFavorites }) {
                 <img className="h-full w-full object-cover shadow-lg" 
                     src={`${import.meta.env.VITE_BASE_URL}/uploads/images/${clinic.image}`}
                     alt={`Imagen de la clínica ${clinic.name}`} loading="lazy" />
-                {/* Favorite button overlay */}
+                {/* Remove from favorite button overlay */}
                 <button className="absolute top-2 right-2 p-1 bg-white/80 rounded-full hover:bg-white" 
-                    onClick={() => addClinicToFavorites(clinic)}>
-                    <Heart className="w-6 h-6 text-[#2ABF7A] fill-[#2ABF7A]" />
+                    onClick={() => removeClinicFromFavorites(clinic.id)}>
+                    <BrushCleaning className="w-6 h-6 text-red-500 fill-red-500" />
                 </button>
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent 
                     p-2">
@@ -68,4 +68,4 @@ function ClinicsCard({ clinic, addClinicToFavorites }) {
     );
 }
 
-export default ClinicsCard;
+export default FavClinicsCard;

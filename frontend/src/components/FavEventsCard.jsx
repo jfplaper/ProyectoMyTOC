@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, ArrowRight, Heart } from "lucide-react";
+import { Calendar, MapPin, ArrowRight, BrushCleaning } from "lucide-react";
 
-function EventsCard({ event, addEventToFavorites }) {
+function FavEventsCard({ event, removeEventFromFavorites }) {
     const dateObj = new Date(event.date);
     const dateStr = dateObj.toLocaleDateString("es-ES", {
         day: "2-digit",
@@ -24,10 +24,10 @@ function EventsCard({ event, addEventToFavorites }) {
             <div className="w-full md:w-1/3 h-48 md:h-auto relative">
                 <img src={`${import.meta.env.VITE_BASE_URL}/uploads/images/${event.image}`} 
                     alt={`Imagen del evento ${event.title}`} className="object-cover w-full h-full" loading="lazy" />
-                {/* Favorite button overlay */}
+                {/* Remove from favorite button overlay */}
                 <button className="absolute top-2 right-2 p-1 bg-white/80 rounded-full hover:bg-white" 
-                    onClick={() => addEventToFavorites(event)}>
-                    <Heart className="w-6 h-6 text-[#2ABF7A] fill-[#2ABF7A]" />
+                    onClick={() => removeEventFromFavorites(event.id)}>
+                    <BrushCleaning className="w-6 h-6 text-red-500 fill-red-500" />
                 </button>
             </div>
 
@@ -71,4 +71,4 @@ function EventsCard({ event, addEventToFavorites }) {
     );
 }
 
-export default EventsCard;
+export default FavEventsCard;

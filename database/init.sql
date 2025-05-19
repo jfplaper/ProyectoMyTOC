@@ -151,7 +151,7 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id`, `creator_id`, `title`, `text`, `date`, `location`, `price`, `image`) VALUES
 (1, 1, 'Conferencia "Aborda el TOC"', 'Os invitamos a una conferencia de puertas abiertas donde uno de los más expertos y prestigiosos psicólogos nos concederá una master class explicándonos qué herramientas y recursos emplear para afrontar el trastorno obsesivo-compulsivo. ¡Animaos a venir!', '2025-06-21 18:00:00', 'Facultad de Psicología, Granada', NULL, 'evento-conferencia-67ddb0cb97cc4.jpg'),
-(2, 2, 'Festival de música verano 2025', 'Este verano ven a escuchar a tus cantantes favoritos en uno de los festivales de música indie más populares de Granada. La venta de entradas es online', '2025-06-26 22:30:00', 'Plaza de toros, Granada', 25, 'evento-festival-67ddb0ec44e2c.jpg'),
+(2, 2, 'Festival de música 2025', 'Este verano ven a escuchar a tus cantantes favoritos en uno de los festivales de música indie más populares de Granada. La venta de entradas es online', '2025-06-26 22:30:00', 'Palacio de deportes, Granada', 25, 'evento-festival-67ddb0ec44e2c.jpg'),
 (3, 3, 'Viaje y comida de despedida', 'Hemos organizado un viaje a Málaga y una comida para despedirnos hasta la vuelta en verano, y para celebrar los avances y logros conseguidos a lo largo de esta temporada. ¡Os esperamos!', '2025-06-12 14:30:00', 'Bodega Bar El Pimpi, Málaga', 18, 'evento-comida-67ddb2ca83978.jpg');
 
 -- --------------------------------------------------------

@@ -67,7 +67,7 @@ const ThreadDetail = () => {
                 </div>
                 )}
 
-                <div className="w-full max-w-7xl my-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8">
+                <div className="w-full max-w-7xl my-4 p-4 mb-24 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8">
                     <div className="flex items-center justify-between mb-4">
                         <h5 className="text-xl font-bold leading-none text-gray-900">
                             ¡Regístrate y comenta libremente sobre el tema!

@@ -9,6 +9,7 @@ export const EventsProvider = ({ children }) => {
     const [events, setEvents] = useState({});
     const [filteredEvents, setFilteredEvents] = useState({});
     const [eventsLoading, setEventsLoading] = useState(false);
+    const [favoriteEvents, setFavoriteEvents] = useState([]);
 
     const fetchEvents = async () => {
         try {
@@ -29,12 +30,44 @@ export const EventsProvider = ({ children }) => {
         }
     };
 
+    const addEventToFavorites = (event) => {
+        if (favoriteEvents.some((eve) => eve.id === event.id)) {
+            toast.error("El evento ya está en favoritos", {
+                style: { background: "#fad1e6", color: "red", border: "2px solid red" },
+            });
+            return;
+        }
+
+        setFavoriteEvents((prev) => [...prev, event]);
+        toast.success(`Evento ${event.title} añadido a favoritos`, {
+            style: { background: "#d1fae5", color: "black", border: "2px solid green" },
+            icon: "👍",
+        });
+    };
+  
+    const removeEventFromFavorites = (eventId) => {
+        setFavoriteEvents((prev) => prev.filter((eve) => eve?.id !== eventId));
+        toast.success("Evento eliminado de favoritos", {
+            style: { background: "#d1fae5", color: "black", border: "2px solid green" },
+            icon: "🗑️",
+        });
+    };
+
     useEffect(() => {
         fetchEvents();
     }, []);
     
     return (
-        <EventsContext.Provider value={{ events, filteredEvents, setFilteredEvents, eventsLoading }}>
+        <EventsContext.Provider 
+            value={{ 
+                events, 
+                filteredEvents, 
+                setFilteredEvents, 
+                eventsLoading, 
+                favoriteEvents, 
+                addEventToFavorites, 
+                removeEventFromFavorites 
+            }}>
             {children}
         </EventsContext.Provider>
     );
