@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -10,34 +10,35 @@ const Register = () => {
     const [passwordInput, setPasswordInput] = useState("");
     const [confirmationPasswordInput, setConfirmationPasswordInput] = useState("");
     // Even if form fields are required, errors are handled more safely with error and setError
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
+        setError("");
         const username = usernameInput.trim();
         const email = emailInput.trim();
         const password = passwordInput.trim();
         const confirmationPassword = confirmationPasswordInput.trim();
         if (!username || !email || !password || (password.length < 6) 
             || !confirmationPassword || (confirmationPassword.length < 6)) {
-            setError('Por favor, completa todos los campos correctamente.');
+            setError("Por favor, completa todos los campos correctamente.");
             return;
         }
         if (password !== confirmationPassword) {
-            setError('Deben coincidir ambos password.');
+            setError("Deben coincidir ambos password.");
             return;
         }
         try {
             await register(username, password, email);
             navigate("/login");
         } catch (err) {
-            setError(err.message || 'Error al registrarte. Inténtalo de nuevo.');
+            setError(err.message || "Error al registrarte. Inténtalo de nuevo.");
         }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-green-50 p-4">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-green-50 p-4" 
+            style={{ backgroundImage: "url('/images/background_register.jpg')" }}>
             <div className="bg-white w-full max-w-md p-8 rounded-2xl shadow-xl transform transition-transform hover:scale-105 animate-fadeIn">
                 <h1 className="text-3xl font-bold text-center mb-6 text-[#2ABF7A]">Registro de usuario</h1>
                 {error && (
@@ -65,7 +66,7 @@ const Register = () => {
                         type="submit">Registrarme</button>
                 </form>
                 <p className="mt-6 text-center text-sm text-gray-600">
-                    ¿Ya tienes cuenta?{' '}
+                    ¿Ya tienes cuenta?{" "}
                     <Link to="/login" className="text-[#2ABF7A] hover:underline">Inicia sesión</Link>
                 </p>
                 <p className="text-center mt-4">

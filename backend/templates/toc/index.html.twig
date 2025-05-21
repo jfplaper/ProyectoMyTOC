@@ -10,7 +10,6 @@
         <table class="table mx-auto" style="width: auto;">
             <thead class="bg-light">
                 <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Imagen</th>
@@ -23,7 +22,6 @@
             {% for toc in tocs %}
                 {% if toc.customed == false %}
                     <tr>
-                        <td>{{ toc.id }}</td>
                         <td>{{ toc.name }}</td>
                         <td class="w-25">{{ toc.description }}</td>
                         <td><img src="/uploads/images/{{ toc.image }}" alt="Imagen del TOC de {{ toc.name }}" width="35" height="auto" style="border-radius: 5px;" /></td>

@@ -8,22 +8,22 @@ const Login = () => {
     const [usernameLoginInput, setUsernameLoginInput] = useState("");
     const [passwordLoginInput, setPasswordLoginInput] = useState("");
     // Even if form fields are required, errors are handled more safely with error and setError
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
 
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
-        setError('');
+        setError("");
         const username = usernameLoginInput.trim();
         const password = passwordLoginInput.trim();
         if (!username || !password) {
-            setError('Por favor, completa todos los campos correctamente.');
+            setError("Por favor, completa todos los campos correctamente.");
             return;
         }
         try {
             await login(username, password);
             navigate("/");
         } catch (err) {
-            setError(err.message || 'Error al iniciar sesión. Inténtalo de nuevo.');
+            setError(err.message || "Error al iniciar sesión. Inténtalo de nuevo.");
         }
     };
 
@@ -50,7 +50,7 @@ const Login = () => {
                         type="submit">Iniciar sesión</button>
                 </form>
                 <p className="mt-6 text-center text-sm text-gray-600">
-                    *Si no te has registrado,{' '}
+                    *Si no te has registrado,{" "}
                     <Link to="/register" className="text-[#2ABF7A] hover:underline">hazlo aquí</Link>
                 </p>
             </div>

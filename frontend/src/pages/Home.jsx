@@ -1,190 +1,189 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+
+const statistics = [
+    { label: "70M+", subtitle: "personas en el mundo", key: "worldwide" },
+    { label: "300K+", subtitle: "solo en España", key: "spain" },
+    { label: "50%", subtitle: "mejora síntomas", key: "recovery" }
+];
+
+const testimonials = [
+    {
+        name: "Claudia",
+        text: "Al principio me daba vergüenza, no me atrevía a reconocer mi problema, pero ahora me alegro mucho de haber dado el paso",
+        img: "/images/person1testimonial.jpg",
+        role: "6 meses de terapia",
+        provider: "Atendida por ITEGRA Psicología",
+    },
+    {
+        name: "Julián",
+        text: "He aprendido a manejar mejor mi ansiedad y he ganado en calidad de vida. ¡Ahora me arrepiento de no haber pedido ayuda antes!",
+        img: "/images/person2testimonial.jpg",
+        role: "3 meses de terapia",
+        provider: "Atendido por Asociación TOC Granada",
+    },
+    {
+        name: "Estefanía",
+        text: "Realmente recomiendo la herramienta de registro online de MyTOC complementado con terapia; tomas más conciencia del problema y es muy útil",
+        img: "/images/person3testimonial.jpg",
+        role: "1 mes de terapia",
+        provider: "Atendida por NB Psicología",
+    },
+    {
+        name: "Raquel",
+        text: "Tenía multitud de TOC diferentes y era desesperante. Llegó un momento en que ya no podía ni disimular y estaba afectando a mi familia. ¡Gracias MyTOC!",
+        img: "/images/person4testimonial.jpg",
+        role: "9 meses de terapia",
+        provider: "Atendida por Centro Zoraida Rodríguez",
+    }
+];
 
 const Home = () => {
     const [cookiesAccepted, setCookiesAccepted] = useState(false);
+    const controls = useAnimation();
+    const [current, setCurrent] = useState(0);
+    const prevTestimonial = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    const nextTestimonial = () => setCurrent((prev) => (prev + 1) % testimonials.length);
 
-    // Activate the animation when user see the statistics section
     useEffect(() => {
         const observer = new IntersectionObserver(
-            (entries) => {
+            entries => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const bars = document.querySelectorAll('.stats-bar');
-                        bars.forEach(bar => {
-                            bar.classList.add('animate');
-                        });
-                    }
+                    if (entry.isIntersecting) controls.start('visible');
                 });
             },
             { threshold: 0.3 }
         );
-        
-        const statsSection = document.querySelector('.statistics-section');
+        const statsSection = document.getElementById('stats-section');
         if (statsSection)
             observer.observe(statsSection);
-        
-        return () => {
-            if (statsSection)
-                observer.unobserve(statsSection);
-        };
-    }, []);
+        return () => statsSection && observer.unobserve(statsSection);
+    }, [controls]);
 
     return (
-        <>
-            <main className="min-h-[525px] flex flex-col flex-grow justify-center bg-[#ccdfcd] bg-[url('/images/showcase_image.jpg')] bg-no-repeat bg-center bg-cover bg-blend-luminosity text-[#2ABF7A] lg:pl-[90px]">
-                <section className="max-w-[500px]">
-                    <h2 className="text-[25px] font-light text-white mb-2">
+        <div className="flex flex-col">
+            {/* Hero section */}
+            <section className="relative min-h-[75vh] md:h-screen bg-cover bg-center" 
+                style={{ backgroundImage: "url('/images/showcase_image.jpg')" }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-green-600/30"></div>
+                <div className="relative z-10 flex flex-col items-start justify-center h-full lg:pl-24 
+                    p-4 md:p-8">
+                    <motion.h1
+                        className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white mb-4"
+                        initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} 
+                        transition={{ duration: 0.8 }}>
                         Libérate del TOC y maneja tu ansiedad
-                    </h2>
-                    <div className="bg-white opacity-80 rounded-xl p-2">
-                        <p className="text-xl text-justify font-medium text-[#2ABF7A] my-2 leading-tight">
-                            Regístrate y usa gratis nuestra
-                            <Link to="/mytocappmanual" className="text-[#2AB7FA] hover:text-blue-700 ms-2 me-2">
-                                herramienta de registro mytocApp
-                            </Link>
-                            para llevar un control de tu TOC diario, pudiendo complementarlo además con citas 
-                            presenciales u online con psicólogos especializados.
-                        </p>
-                        <p className="text-xl text-justify font-medium text-[#2ABF7A] my-2">
-                            Porque eres TÚ quien debe dirigir su vida y no el TOC, da el paso.
-                            <Link to="/forum" className="text-[#2AB7FA] hover:text-blue-700 ms-2">
-                                ¡No estás sol@!
-                            </Link>
-                        </p>
+                    </motion.h1>
+                    <motion.p className="text-base sm:text-lg max-w-full md:max-w-xl text-white mb-6" 
+                        initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} 
+                        transition={{ delay: 0.3, duration: 0.8 }}>
+                        Regístrate y usa gratis nuestra 
+                        <Link to="/mytocappmanual" className="hover:text-green-500 hover:font-bold ms-1">
+                            herramienta de registro diario
+                        </Link>
+                        , complementable con citas presenciales u online.
+                    </motion.p>
+                    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                        <Link to="/register" className="px-5 py-2 sm:px-6 sm:py-3 bg-green-500 text-white 
+                            rounded-lg font-medium hover:bg-green-600 transition text-center">
+                            Comenzar
+                        </Link>
+                        <Link to="/forum" className="px-5 py-2 sm:px-6 sm:py-3 border border-white text-white 
+                            rounded-lg font-medium hover:bg-white hover:text-green-600 transition text-center">
+                            Visitar foro
+                        </Link>
                     </div>
-                </section>
-            </main>
+                </div>
+            </section>
 
-            {/* Cookies container */}
+            {/* Statistics section */}
+            <section id="stats-section" className="statistics-section py-12 md:py-20 bg-green-50">
+                <h2 className="text-2xl sm:text-3xl font-light text-center text-green-600 mb-6 md:mb-8">
+                    Datos y estadísticas
+                </h2>
+                <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+                {statistics.map((stats, index) => (
+                    <motion.div className="text-center px-4 py-6 bg-white rounded-lg shadow-md" 
+                        key={stats.key} 
+                        initial="hidden" 
+                        animate={controls} 
+                        variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }} 
+                        transition={{ delay: index * 0.2, duration: 0.6 }}>
+                            <div className={`stats-bar ${stats.key}`}></div>
+                        <div className="text-4xl sm:text-5xl font-extrabold text-green-600">{stats.label}</div>
+                        <div className="mt-2 text-gray-700 text-sm sm:text-base">{stats.subtitle}</div>
+                    </motion.div>
+                ))}
+                </div>
+            </section>
+
+            {/* Testimonials carousel */}
+            <section className="py-12 md:py-16 bg-white">
+                <h2 className="text-2xl sm:text-3xl font-light text-center text-green-600 mb-6 md:mb-8">
+                    Testimonios Reales
+                </h2>
+                <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+                {/* Render only the current testimonial to ensure visibility */}
+                <motion.div className="p-4 sm:p-6 lg:p-8 bg-white rounded-lg shadow-lg" 
+                    key={current} 
+                    initial={{ opacity: 0, scale: 0.95 }} 
+                    animate={{ opacity: 1, scale: 1 }} 
+                    transition={{ duration: 0.5 }}>
+                    <div className="flex flex-col items-center text-center">
+                        <img src={testimonials[current].img} 
+                            alt={`Imagen de paciente ${testimonials[current].name}`} 
+                            className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-cover rounded-full mb-4" />
+                        <div className="text-base sm:text-lg text-gray-800 mb-1 font-semibold">
+                            {testimonials[current].provider}
+                        </div>
+                        <p className="mb-3 text-gray-600 text-sm sm:text-base">
+                            "{testimonials[current].text}"
+                        </p>
+                        <div className="font-medium text-gray-500 text-xs sm:text-sm">
+                            {testimonials[current].name} - {testimonials[current].role}
+                        </div>
+                    </div>
+                </motion.div>
+                <button className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-green-500 
+                    text-white p-2 rounded-full hover:bg-green-600 transition hidden sm:block" 
+                    onClick={prevTestimonial}>
+                    <ChevronLeft />
+                </button>
+                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-green-500 
+                    text-white p-2 rounded-full hover:bg-green-600 transition hidden sm:block" 
+                    onClick={nextTestimonial}>
+                    <ChevronRight />
+                </button>
+                </div>
+            </section>
+
+            {/* Scroll to top and cookies banner */}
             {!cookiesAccepted && (
-            <div className="fixed bottom-0 left-0 w-full h-auto z-50 bg-gray-100 border-t border-gray-800 rounded-t-2xl shadow-lg p-4">
-                <h3 className="text-sm text-gray-900 font-semibold mb-2">Consentimiento de cookies</h3>
-                <p className="text-sm text-[#2AB7FA] leading-tight mb-2">
-                    Utilizamos cookies para prestar, mantener y mejorar nuestros servicios, además de por 
-                    motivos de seguridad. Al hacer clic en "Aceptar todo", aceptas nuestra
-                    <Link to="/cookie_policies" className="text-sm underline text-gray-700 hover:text-gray-900 ms-1">
-                        política de cookies
-                    </Link>.
-                </p>
-                <button className="w-36 text-sm border border-gray-800 rounded-lg py-2 font-medium bg-[#2AB7FA] hover:bg-blue-700"
-                    onClick={() => setCookiesAccepted(true)}>Aceptar todo</button>
-            </div>
+                <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white border border-gray-300 rounded-lg p-1 sm:p-4 flex flex-col sm:flex-row items-center sm:space-x-4 shadow-lg">
+                    <p className="text-xs sm:text-xs text-gray-800 text-center sm:text-left mb-2 sm:mb-0">
+                        Utilizamos cookies para prestar, mantener y mejorar nuestros servicios, además de por 
+                        motivos de seguridad. Al hacer clic en "Aceptar", aceptas nuestra 
+                        <Link to="/cookie_policies" className="text-xs underline text-green-500 
+                            hover:text-green-700 ms-1">
+                            política de cookies
+                        </Link>.
+                    </p>
+                    <button className="px-3 py-1 sm:px-4 sm:py-2 bg-green-500 text-white rounded-lg 
+                        hover:bg-green-600 transition text-xs sm:text-sm font-medium" 
+                        onClick={() => setCookiesAccepted(true)}>
+                        Aceptar
+                    </button>
+                </div>
             )}
 
-            {/* Arrow floating button to get up */}
-            <div className="flex justify-end sticky top-[360px] z-10 my-1.5 mx-6">
-                <div className="w-[50px] h-[50px] bg-[#2AB7FA] rounded-[50px] flex justify-center items-center">
-                    <a href="#header-page" className="text-5xl font-[500] text-black; no-underline">&#8593;</a>
-                </div>
-            </div>
-
-            <div className="my-0 mx-auto max-w-[1200px] overflow-visible">
-                <h2 className="text-3xl text-center font-light text-[#2ABF7A] my-12">
-                    Algunos datos y estadísticas
-                </h2>
-                <section className="statistics-section w-full flex justify-between items-end my-12 mx-0 py-0 px-5">
-                    <div className="statistics-container w-full flex flex-col justify-end items-center">
-                        <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">
-                            70 millones de personas en el mundo sufren TOC
-                        </h2>
-                        <div id="statistics_worldwide" className="stats-bar worldwide"></div>
-                    </div>
-                    <div className="statistics-container w-full flex flex-col justify-end items-center">
-                        <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">
-                            Más de 300.000 personas sólo en España
-                        </h2>
-                        <div id="statistics_spain" className="stats-bar spain"></div>
-                    </div>
-                    <div className="statistics-container w-full flex flex-col justify-end items-center">
-                        <h2 className="w-60 text-3xl font-light text-center text-[#2AB7FA] mb-4">
-                            Un 50% mejora los síntomas
-                        </h2>
-                        <div id="statistics_recovery" className="stats-bar recovery"></div>
-                    </div>
-                </section>
-
-                <h2 className="text-3xl text-center font-light text-[#2ABF7A] mt-18 mb-12">
-                    Testimonios reales
-                </h2>
-                <section className="grid mb-8 border border-gray-200 rounded-lg shadow-xs md:mb-12 md:grid-cols-2 bg-white">
-                    <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e">
-                        <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8">
-                            <h3 className="text-lg font-semibold text-[#2AB7FA]">
-                                Atendida por ITEGRA Psicología
-                            </h3>
-                            <p className="my-4" lang="es">
-                                "Al principio me daba vergüenza, no me atrevía a reconocer mi problema, pero 
-                                ahora me alegro mucho de haber dado el paso"
-                            </p>
-                        </blockquote>
-                        <figcaption className="flex items-center justify-center">
-                            <img className="rounded-full w-12 h-auto" src="/images/person1testimonial.jpg" 
-                                alt="Imagen de una paciente" />
-                            <div className="space-y-0.5 font-medium text-left rtl:text-right ms-3">
-                                <div>Claudia</div>
-                                <div className="text-sm text-gray-500">6 meses de terapia</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                    <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 md:rounded-se-lg">
-                        <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8">
-                            <h3 className="text-lg font-semibold text-[#2AB7FA]">
-                                Atendido por Asociación TOC Granada
-                            </h3>
-                            <p className="my-4" lang="es">"He aprendido a manejar mejor mi ansiedad y he ganado 
-                                en calidad de vida. ¡Ahora me arrepiento de no haber pedido ayuda antes!"
-                            </p>
-                        </blockquote>
-                        <figcaption className="flex items-center justify-center">
-                            <img className="rounded-full w-12 h-auto" src="/images/person2testimonial.jpg" 
-                                alt="Imagen de un paciente" />
-                            <div className="space-y-0.5 font-medium text-left rtl:text-right ms-3">
-                                <div>Julián</div>
-                                <div className="text-sm text-gray-500">3 meses de terapia</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                    <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 md:rounded-es-lg md:border-b-0 md:border-e">
-                        <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8">
-                            <h3 className="text-lg font-semibold text-[#2AB7FA]">
-                                Atendida por NB Psicología
-                            </h3>
-                            <p className="my-4" lang="es">"Realmente recomiendo la herramienta de registro online 
-                                de MyTOC complementado con terapia; tomas más conciencia del problema y es muy útil"
-                            </p>
-                        </blockquote>
-                        <figcaption className="flex items-center justify-center">
-                            <img className="rounded-full w-12 h-auto" src="/images/person3testimonial.jpg" 
-                                alt="Imagen de una paciente" />
-                            <div className="space-y-0.5 font-medium text-left rtl:text-right ms-3">
-                                <div>Estefanía</div>
-                                <div className="text-sm text-gray-500">1 mes de terapia</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                    <figure className="flex flex-col items-center justify-center p-8 text-center bg-white border-gray-200 rounded-b-lg md:rounded-se-lg">
-                        <blockquote className="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8">
-                            <h3 className="text-lg font-semibold text-[#2AB7FA]">
-                                Atendida por Zoraida Rodríguez Ctro. Psicología
-                            </h3>
-                            <p className="my-4" lang="es">"Tenía multitud de TOC diferentes y era desesperante. 
-                                Llegó un momento en que ya no podía ni disimular y estaba afectando a mi familia. 
-                                ¡Gracias MyTOC!"
-                            </p>
-                        </blockquote>
-                        <figcaption className="flex items-center justify-center">
-                            <img className="rounded-full w-12 h-auto" src="/images/person4testimonial.jpg" 
-                                alt="Imagen de una paciente" />
-                            <div className="space-y-0.5 font-medium text-left rtl:text-right ms-3">
-                                <div>Raquel</div>
-                                <div className="text-sm text-gray-500">9 meses de terapia</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </section>
-            </div>
-        </>
+            <button className="fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 p-3 sm:p-4 
+                rounded-full shadow-lg transition" 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <ChevronUp />
+            </button>
+        </div>
     );
 };
 

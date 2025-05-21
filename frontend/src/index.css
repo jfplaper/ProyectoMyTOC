@@ -39,12 +39,13 @@ body { font-family: 'Montserrat', sans-serif; }
     width: 100px;
     height: 0;
     background-image: linear-gradient(to bottom right, #2ABF7A, #ccdfcd);
-    border-right: 3px solid #2e2e2e;
-    border-left: 3px solid #2e2e2e;
-    border-bottom: 3px solid #2e2e2e;
+    border-right: 3px solid #374151;
+    border-left: 3px solid #374151;
+    border-bottom: 3px solid #374151;
     box-shadow: 8px 8px 6px lightgray;
     transform-origin: 0 100%;
     transform: scaleY(0);
+    margin: 8px auto 12px auto;
 }
   
 /* Specific heights for each bar */
@@ -54,10 +55,12 @@ body { font-family: 'Montserrat', sans-serif; }
 
 .stats-bar.spain {
     height: 50px;
+    margin-top: 160px;
 }
 
 .stats-bar.recovery {
     height: 100px;
+    margin-top: 110px;
 }
 
 /* Animation for the bars when the section is visible */

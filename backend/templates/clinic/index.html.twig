@@ -27,7 +27,6 @@
         <table class="table mx-auto" style="width: auto;">
             <thead class="bg-light">
                 <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Localización</th>
                     <th>Email</th>
@@ -39,7 +38,6 @@
             <tbody>
             {% for clinic in clinics %}
                 <tr>
-                    <td>{{ clinic.id }}</td>
                     <td>{{ clinic.name }}</td>
                     <td>{{ clinic.location }}</td>
                     <td>{{ clinic.email ? clinic.email : 'No disponible' }}</td>

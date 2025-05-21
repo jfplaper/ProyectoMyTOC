@@ -11,16 +11,23 @@
         <table class="table mx-auto" style="width: auto;">
             <tbody>
                 <tr>
-                    <th>ID</th>
-                    <td>{{ user.id }}</td>
-                </tr>
-                <tr>
                     <th>Username</th>
                     <td data-testid="user-username">{{ user.username }}</td>
                 </tr>
                 <tr>
                     <th>Roles</th>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>
+                    {% if user.roles %}
+                        {% for role in user.roles %}
+                            {% set label = role|replace({'ROLE_' : ''}) %}
+                            {% if 'ADMIN' in label %}
+                                <span class="text-primary">administrador</span>{% if not loop.last %},{% endif %}
+                            {% else %}
+                                <span class="text-black">usuario</span>{% if not loop.last %},{% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <th>Email</th>

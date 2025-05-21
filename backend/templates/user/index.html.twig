@@ -17,7 +17,6 @@
         <table class="table mx-auto" style="width: auto;">
             <thead class="bg-light">
                 <tr>
-                    <th>ID</th>
                     <th>Username</th>
                     <th>Roles</th>
                     <th>Email</th>
@@ -29,9 +28,19 @@
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>
+                    {% if user.roles %}
+                        {% for role in user.roles %}
+                            {% set label = role|replace({'ROLE_' : ''}) %}
+                            {% if 'ADMIN' in label %}
+                                <span class="text-primary">administrador</span>{% if not loop.last %},{% endif %}
+                            {% else %}
+                                <span class="text-black">usuario</span>{% if not loop.last %},{% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    </td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.banned ? 'Sí' : 'No' }}</td>
                     <td><img src="/uploads/images/{{ user.image }}" alt="Imagen de perfil de {{ user.username }}" width="35" height="auto" style="border-radius: 5px;" /></td>

@@ -37,13 +37,13 @@ class UserType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'ROLE_ADMIN' => 'ROLE_ADMIN',
+                    'administrador' => 'ROLE_ADMIN',
                 ],
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => ['class' => 'mb-3'],
                 'choice_attr' => [
-                    'ROLE_ADMIN' => ['class' => 'role-checkbox'],
+                    'administrador' => ['class' => 'role-checkbox'],
                 ],
                 // Set the selected roles by default (if there is more than one)
                 'data' => $options['data']->getRoles()

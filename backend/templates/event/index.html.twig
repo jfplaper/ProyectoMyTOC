@@ -27,7 +27,6 @@
         <table class="table mx-auto" style="width: auto;">
             <thead class="bg-light">
                 <tr>
-                    <th>ID</th>
                     <th>Título</th>
                     <th>Texto</th>
                     <th>Fecha</th>
@@ -40,7 +39,6 @@
             <tbody>
             {% for event in events %}
                 <tr>
-                    <td>{{ event.id }}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.text }}</td>
                     <td style="width: 150px;">{{ event.date ? event.date|date('Y-m-d H:i:s') : '' }}</td>

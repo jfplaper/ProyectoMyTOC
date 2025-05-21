@@ -17,7 +17,6 @@
         <table class="table mx-auto" style="width: auto;">
             <thead class="bg-light">
                 <tr>
-                    <th>ID</th>
                     <th>Texto</th>
                     <th>Fecha</th>
                     <th>Visible</th>
@@ -29,7 +28,6 @@
             <tbody>
             {% for comment in comments %}
                 <tr>
-                    <td>{{ comment.id }}</td>
                     <td class="w-25">{{ comment.text }}</td>
                     <td style="width: 150px;">{{ comment.date ? comment.date|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ comment.visible ? 'Sí' : 'No' }}</td>

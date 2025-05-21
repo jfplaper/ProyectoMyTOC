@@ -21,7 +21,7 @@ const RootLayout = () => {
             </header>
 
             {/* Navbar */}
-            <nav className="w-full min-h-10 flex flex-wrap justify-between items-center bg-[#2AB7FA] sticky top-0 z-10 mx-auto px-8 shadow-lg">
+            <nav className="w-full min-h-10 flex flex-wrap justify-between items-center bg-gradient-to-b from-[#2AB7FA] to-blue-500 sticky top-0 z-20 mx-auto px-8 shadow-lg">
                 <ul className="flex">
                     <li className="list-none">
                         <Link to="/" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
@@ -51,7 +51,7 @@ const RootLayout = () => {
                     {isAuthenticated && (
                     <li className="list-none">
                         <Link to="/mytocappweb" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
-                            mytocApp web
+                            MyTOCApp web
                         </Link>
                     </li>
                     )}
@@ -88,7 +88,7 @@ const RootLayout = () => {
             <Outlet />
         
             {/* Footer */}
-            <footer className="h-full bg-[#2ABF7A] p-2 px-0.5">
+            <footer className="h-full bg-gradient-to-r from-[#2ABF7A] to-green-500 p-2 px-0.5">
                 <div className="w-full flex justify-between">
                     <div className="w-full flex-grow flex flex-col justify-center items-center border-r-2 border-black">
                         <h1 className="text-3xl font-semibold my-2.5 leading-tight">My TOC</h1>
@@ -124,16 +124,20 @@ const RootLayout = () => {
                         </ul>
                     </nav>
                     <div className="w-full flex-grow flex flex-wrap justify-center items-center border-l-2 border-black space-x-2">
-                        <a href="#" className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                        <a href="https://x.com/?lang=es" target="_blank" 
+                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
                             <em className="fab fa-twitter fa-2x"></em>
                         </a>
-                        <a href="#" className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                        <a href="https://www.instagram.com/" target="_blank" 
+                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
                             <em className="fab fa-instagram fa-2x"></em>
                         </a>
-                        <a href="#" className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                        <a href="https://www.facebook.com/?locale=es_ES" target="_blank" 
+                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
                             <em className="fab fa-facebook fa-2x"></em>
                         </a>
-                        <a href="#" className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                        <a href="https://www.whatsapp.com/" target="_blank" 
+                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
                             <em className="fab fa-whatsapp fa-2x"></em>
                         </a>
                     </div>

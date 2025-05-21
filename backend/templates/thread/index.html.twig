@@ -17,7 +17,6 @@
         <table class="table mx-auto" style="width: auto;">
             <thead class="bg-light">
                 <tr>
-                    <th>ID</th>
                     <th>Título</th>
                     <th>Fecha</th>
                     <th>Visible</th>
@@ -28,7 +27,6 @@
             <tbody>
             {% for thread in threads %}
                 <tr>
-                    <td>{{ thread.id }}</td>
                     <td class="w-25">{{ thread.title }}</td>
                     <td>{{ thread.date ? thread.date|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ thread.visible ? 'Sí' : 'No' }}</td>
