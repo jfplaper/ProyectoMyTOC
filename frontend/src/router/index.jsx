@@ -14,6 +14,7 @@ import Profile from "../pages/Profile";
 import MyTocAppWeb from "../pages/MyTocAppWeb";
 import MyTocAppManual from "../pages/MyTocAppManual";
 import CookiePolicies from "../pages/CookiePolicies";
+import Inspiration from "../pages/Inspiration";
 
 export const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
             {
                 path: "cookie_policies",
                 element: <CookiePolicies />,
+            },
+            {
+                path: "inspiration",
+                element: <Inspiration />,
             },
         ],
     },

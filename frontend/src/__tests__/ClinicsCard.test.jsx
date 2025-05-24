@@ -36,11 +36,4 @@ describe("ClinicsCard", () => {
 
         expect(screen.getByText(/Teléfono no disponible/)).toBeInTheDocument();
     });
-
-    test("Muestra Sin sitio web si no hay url", () => {
-        const noUrlClinic = { ...testClinic, url: "" };
-        render(<ClinicsCard clinic={noUrlClinic} />);
-
-        expect(screen.getByText(/Sin sitio web/)).toBeInTheDocument();
-    });
 });

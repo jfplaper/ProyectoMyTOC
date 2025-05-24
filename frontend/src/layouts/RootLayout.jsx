@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -48,6 +48,11 @@ const RootLayout = () => {
                             Contacto
                         </Link>
                     </li>
+                    <li className="list-none">
+                        <Link to="/inspiration" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
+                            Inspírate
+                        </Link>
+                    </li>
                     {isAuthenticated && (
                     <li className="list-none">
                         <Link to="/mytocappweb" className="text-xl text-white no-underline mx-2.5 p-2.5 hover:text-black hover:border-b-2 hover:border-[#2ABF7A]">
@@ -91,8 +96,26 @@ const RootLayout = () => {
             <footer className="h-full bg-gradient-to-r from-[#2ABF7A] to-green-500 p-2 px-0.5">
                 <div className="w-full flex justify-between">
                     <div className="w-full flex-grow flex flex-col justify-center items-center border-r-2 border-black">
-                        <h1 className="text-3xl font-semibold my-2.5 leading-tight">My TOC</h1>
-                        <p className="text-lg my-2.5">Copyright &copy; 2025</p>
+                        <h1 className="text-3xl font-semibold mt-6 leading-tight">My TOC</h1>
+                        <p className="text-lg mt-1.5">Copyright &copy; 2025</p>
+                        <div className="w-full flex-grow flex flex-wrap justify-center items-center space-x-2">
+                            <a href="https://x.com/?lang=es" target="_blank" 
+                                className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                <em className="fab fa-twitter fa-2x"></em>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" 
+                                className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                <em className="fab fa-instagram fa-2x"></em>
+                            </a>
+                            <a href="https://www.facebook.com/?locale=es_ES" target="_blank" 
+                                className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                <em className="fab fa-facebook fa-2x"></em>
+                            </a>
+                            <a href="https://www.whatsapp.com/" target="_blank" 
+                                className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                <em className="fab fa-whatsapp fa-2x"></em>
+                            </a>
+                        </div>
                     </div>
                     <nav className="w-full flex-grow my-4">
                         <ul className="w-full flex flex-col items-center">
@@ -124,22 +147,25 @@ const RootLayout = () => {
                         </ul>
                     </nav>
                     <div className="w-full flex-grow flex flex-wrap justify-center items-center border-l-2 border-black space-x-2">
-                        <a href="https://x.com/?lang=es" target="_blank" 
-                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
-                            <em className="fab fa-twitter fa-2x"></em>
-                        </a>
-                        <a href="https://www.instagram.com/" target="_blank" 
-                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
-                            <em className="fab fa-instagram fa-2x"></em>
-                        </a>
-                        <a href="https://www.facebook.com/?locale=es_ES" target="_blank" 
-                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
-                            <em className="fab fa-facebook fa-2x"></em>
-                        </a>
-                        <a href="https://www.whatsapp.com/" target="_blank" 
-                            className="text-lg text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
-                            <em className="fab fa-whatsapp fa-2x"></em>
-                        </a>
+                        <h1 className="text-lg mt-3 leading-tight">Patrocinadores:</h1>
+                        <ul className="w-full flex flex-col items-center">
+                            <a href="https://www.ieshlanz.es/" target="_blank" 
+                                className="text-sm text-white no-underline px-1 pb-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                I.E.S. Politécnico H. Lanz
+                            </a>
+                            <a href="https://www.granada.org/" target="_blank" 
+                                className="text-sm text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                Ayuntamiento de Granada
+                            </a>
+                            <a href="https://www.ugr.es/" target="_blank" 
+                                className="text-sm text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                Universidad de Granada
+                            </a>
+                            <a href="https://www.cop.es/index.php" target="_blank" 
+                                className="text-sm text-white no-underline p-1 hover:text-black hover:border-b-0 hover:border-[#2ABF7A]">
+                                Consejo General de la Psicología de España
+                            </a>
+                        </ul>
                     </div>
                 </div>
             </footer>

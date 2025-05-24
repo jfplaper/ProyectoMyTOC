@@ -43,6 +43,18 @@ const testimonials = [
 const Home = () => {
     const [cookiesAccepted, setCookiesAccepted] = useState(false);
     const controls = useAnimation();
+
+    const [selectedFirstQuestion, setSelectedFirstQuestion] = useState(null);
+    const optionsFirstQuestion = ["Nada", "Menos de 1 hora al día o pensamientos ocasionales", 
+        "1 a 3 horas al día o frecuentes", "Más de 3 y hasta 8 horas al día o presentación sumamente frecuente", 
+        "Más de 8 horas al día o presentación casi constante"];
+    const [selectedSecondQuestion, setSelectedSecondQuestion] = useState(null);
+    const optionsSecondQuestion = ["Nada", "Ligera interferencia", "Interferencia media", 
+        "Mucha interferencia", "Incapacitante"];
+    const [selectedThirdQuestion, setSelectedThirdQuestion] = useState(null);
+    const optionsThirdQuestion = ["Nada", "No son demasiado inquietantes", "Inquietantes, pero manejables", 
+        "Sumamente inquietantes", "Inquietud casi constante e incapacitante"];
+    
     const [current, setCurrent] = useState(0);
     const prevTestimonial = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     const nextTestimonial = () => setCurrent((prev) => (prev + 1) % testimonials.length);
@@ -61,6 +73,40 @@ const Home = () => {
             observer.observe(statsSection);
         return () => statsSection && observer.unobserve(statsSection);
     }, [controls]);
+
+    const renderTestResult = () => {
+        if (selectedFirstQuestion && selectedSecondQuestion && selectedThirdQuestion) {
+            if ((selectedFirstQuestion === "Nada" || selectedFirstQuestion === 
+                "Menos de 1 hora al día o pensamientos ocasionales") && 
+                (selectedSecondQuestion === "Nada" || 
+                selectedSecondQuestion === "Ligera interferencia") && 
+                (selectedThirdQuestion === "Nada" || 
+                selectedThirdQuestion === "No son demasiado inquietantes")) {
+                return (
+                    <div className="flex justify-center items-center">
+                        <p className="text-green-500">
+                            <span className="text-black">Resultado: </span>TOC leve, pero no te confíes</p>
+                    </div>
+                );
+            } else if (selectedFirstQuestion === "1 a 3 horas al día o frecuentes" && 
+                selectedSecondQuestion === "Interferencia media" && 
+                selectedThirdQuestion === "Inquietantes, pero manejables") {
+                return (
+                    <div className="flex justify-center items-center">
+                        <p className="text-amber-500">
+                            <span className="text-black">Resultado: </span>TOC moderado, debes afrontarlo cuanto antes</p>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="flex justify-center items-center">
+                        <p className="text-red-500">
+                            <span className="text-black">Resultado: </span>TOC grave, pide ayuda de inmediato</p>
+                    </div>
+                );
+            }
+        }
+    };
 
     return (
         <div className="flex flex-col">
@@ -83,7 +129,10 @@ const Home = () => {
                         <Link to="/mytocappmanual" className="hover:text-green-500 hover:font-bold ms-1">
                             herramienta de registro diario
                         </Link>
-                        , complementable con citas presenciales u online.
+                        , complementable con citas presenciales u online. ¿Dudas aún? Inspírate 
+                        <Link to="/inspiration" className="hover:text-green-500 hover:font-bold ms-1 underline">
+                            aquí
+                        </Link>.
                     </motion.p>
                     <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
                         <Link to="/register" className="px-5 py-2 sm:px-6 sm:py-3 bg-green-500 text-white 
@@ -96,6 +145,14 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
+            </section>
+
+            {/* First advertisement banner */}
+            <section className="mx-96 my-12 p-4 flex flex-col border-2 border-gray-300 rounded-lg">
+                <h6 className="text-sm sm:text-sm font-light text-center text-black mb-6 md:mb-8">
+                    ANUNCIO
+                </h6>
+                <img className="w-full h-full" src="https://www.librerias-picasso.com/images/logo.png" />
             </section>
 
             {/* Statistics section */}
@@ -116,6 +173,64 @@ const Home = () => {
                         <div className="mt-2 text-gray-700 text-sm sm:text-base">{stats.subtitle}</div>
                     </motion.div>
                 ))}
+                </div>
+            </section>
+
+            {/* Second advertisement banner */}
+            <section className="mx-96 my-12 p-4 flex flex-col border-2 border-gray-300 rounded-lg">
+                <h6 className="text-sm sm:text-sm font-light text-center text-black mb-6 md:mb-8">
+                    ANUNCIO
+                </h6>
+                <img className="w-full h-full" src="https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2018/07/03/15306149779756.jpg" />
+            </section>
+
+            {/* TOC (OCD) patient test */}
+            <section className="py-12 md:py-16 bg-amber-50">
+                <div className="max-w-sm mx-auto">
+                    <h2 className="text-2xl sm:text-3xl font-light text-center text-green-600 mb-6 md:mb-8">
+                        Test rápido
+                    </h2>
+                    <div className="mb-4">
+                        <label className="block mb-3 text-center">
+                            ¿Cuánto de tu tiempo está ocupado por pensamientos obsesivos?
+                        </label>
+                        <select className="bg-blue-500 border border-blue-900 text-white 
+                            text-sm rounded-lg w-full p-2" 
+                            value={selectedFirstQuestion || ""} 
+                            onChange={(e) => setSelectedFirstQuestion(e.target.value)}>
+                            <option value="">Selecciona...</option>
+                            {optionsFirstQuestion.map((option, index) => (<option key={index} value={option}>{option}</option>))}
+                        </select>
+                    </div>
+                    {selectedFirstQuestion && (
+                    <div className="mb-4">
+                        <label className="block mb-3 text-center">
+                            ¿Cuánto interfieren estos pensamientos obsesivos en tu vida cotidiana?
+                        </label>
+                        <select className="bg-blue-500 border border-blue-900 text-white 
+                            text-sm rounded-lg w-full p-2" 
+                            value={selectedSecondQuestion || ""} 
+                            onChange={(e) => setSelectedSecondQuestion(e.target.value)}>
+                            <option value="">Selecciona...</option>
+                            {optionsSecondQuestion.map((option, index) => (<option key={index} value={option}>{option}</option>))}
+                        </select>
+                    </div>
+                    )}
+                    {selectedSecondQuestion && (
+                    <div className="mb-4">
+                        <label className="block mb-3 text-center">
+                            ¿Cuánto malestar te causan estos pensamientos obsesivos?
+                        </label>
+                        <select className="bg-blue-500 border border-blue-900 text-white 
+                            text-sm rounded-lg w-full p-2" 
+                            value={selectedThirdQuestion || ""} 
+                            onChange={(e) => setSelectedThirdQuestion(e.target.value)}>
+                            <option value="">Selecciona...</option>
+                            {optionsThirdQuestion.map((option, index) => (<option key={index} value={option}>{option}</option>))}
+                        </select>
+                    </div>
+                    )}
+                    {renderTestResult()}
                 </div>
             </section>
 

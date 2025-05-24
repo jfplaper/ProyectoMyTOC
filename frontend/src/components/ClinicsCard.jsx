@@ -41,7 +41,7 @@ function ClinicsCard({ clinic, addClinicToFavorites }) {
                         {clinic.email ? (
                         <a href={`mailto:${clinic.email}`} className="text-gray-900 truncate">{clinic.email}</a>
                         ) : (
-                        <span className="text-red-500">No disponible</span>
+                        <span className="text-red-500">Email no disponible</span>
                         )}
                     </div>
                     <div className="flex items-center gap-2">
@@ -49,7 +49,7 @@ function ClinicsCard({ clinic, addClinicToFavorites }) {
                         {clinic.phone ? (
                         <a href={`tel:${clinic.phone}`} className="text-gray-900">{clinic.phone}</a>
                         ) : (
-                        <span className="text-red-500">No disponible</span>
+                        <span className="text-red-500">Teléfono no disponible</span>
                         )}
                     </div>
                 </div>
