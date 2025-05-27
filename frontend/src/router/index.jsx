@@ -12,6 +12,7 @@ import Events from "../pages/Events";
 import Contact from "../pages/Contact";
 import Profile from "../pages/Profile";
 import MyTocAppWeb from "../pages/MyTocAppWeb";
+import Charts from "../pages/Charts";
 import MyTocAppManual from "../pages/MyTocAppManual";
 import CookiePolicies from "../pages/CookiePolicies";
 import Inspiration from "../pages/Inspiration";
@@ -67,6 +68,14 @@ export const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <MyTocAppWeb />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "charts/:id",
+                element: (
+                    <ProtectedRoute>
+                        <Charts />
                     </ProtectedRoute>
                 ),
             },

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Compulsion;
+use App\Entity\User;
 use App\Repository\CompulsionRepository;
 use App\Repository\TocRepository;
 use App\Repository\UserRepository;
@@ -18,6 +19,13 @@ final class ApiCompulsionController extends AbstractController{
     public function getAll(CompulsionRepository $compulsionRepository): JsonResponse
     {
         $compulsions = $compulsionRepository->findAll();
+        return $this->json($compulsions, Response::HTTP_OK, [], ['groups' => 'compulsion:read']);
+    }
+
+    #[Route('/api/compulsion/user/{id}', name: 'app_api_compulsion_user_get_all', methods: ['GET'])]
+    public function getAllByUser(User $user, CompulsionRepository $compulsionRepository): JsonResponse
+    {
+        $compulsions = $compulsionRepository->findBy(['user' => $user->getId()]);
         return $this->json($compulsions, Response::HTTP_OK, [], ['groups' => 'compulsion:read']);
     }
 

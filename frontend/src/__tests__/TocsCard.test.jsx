@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { AuthProvider } from "../contexts/AuthContext";
 import TocsCard from "../components/TocsCard";
 import '@testing-library/jest-dom';
@@ -25,9 +26,11 @@ describe("TocsCard", () => {
 
     test("Muestra correctamente la información del TOC", async () => {
         render(
-            <AuthProvider>
-                <TocsCard toc={testToc} />
-            </AuthProvider>
+            <MemoryRouter>
+                <AuthProvider>
+                    <TocsCard toc={testToc} />
+                </AuthProvider>
+            </MemoryRouter>
         );
 
         // Check that name and description are rendered

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { toast } from "sonner";
@@ -109,6 +110,14 @@ function TocsCard({ toc }) {
                     <p className="mb-3 font-normal text-gray-700">
                         <span className="text-gray-900 font-semibold">Total del año: </span>{currentYearCompulsions}
                     </p>
+                    <div className="flex justify-end items-center">
+                        <Link to={`/charts/${toc.id}`} className="bg-[#2AB7FA] text-white border-2 
+                            border-blue-500 hover:border-blue-700 hover:text-blue-700 
+                            hover:bg-slate-300 rounded-lg shadow-md p-2 mx-1">
+                            Ver gráficos 
+                            <i className="fas fa-chart-pie text-white hover:text-blue-700 ms-1"></i>
+                        </Link>
+                    </div>
                 </div>
             </div>
         );

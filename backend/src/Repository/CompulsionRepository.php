@@ -16,6 +16,35 @@ class CompulsionRepository extends ServiceEntityRepository
         parent::__construct($registry, Compulsion::class);
     }
 
+    /**
+     * Returns an array with the count of compulsions grouped by user_id
+     * @return array<int, array{user_id: int, total: int}>
+     */
+    public function countCompulsionsGroupedByUserId(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id) AS total', 'IDENTITY(c.user) AS user_id')
+            ->groupBy('c.user')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
+    /**
+     * Returns an array with the count of compulsions grouped by toc_id
+     * @return array<int, array{toc_id: int, total: int}>
+     */
+    public function countCompulsionsGroupedByTocId(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id) AS total', 'IDENTITY(c.toc) AS toc_id')
+            ->groupBy('c.toc')
+            ->orderBy('c.toc', 'ASC')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
 //    /**
 //     * @return Compulsion[] Returns an array of Compulsion objects
 //     */

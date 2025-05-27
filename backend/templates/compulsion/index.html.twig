@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyTOC - Compulsion{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_main') }}" class="mb-2">Volver</a>
+    <h1>Datos extraídos de las compulsiones registradas</h1>
+    <br>
+    <div class="container table-responsive">
+        <table class="table table-striped mx-auto" style="width: auto;">
+            <tbody>
+                <tr>
+                    <th>Total de usuarios con compulsiones registradas</th>
+                    <td>{{ countCompulsionsGroupedByUserIdData }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC de Limpieza</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[0].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC de Verificación</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[1].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC de Ordenación</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[2].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC de Pensamiento intrusivo</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[3].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC de Acumulación</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[4].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC Religioso</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[5].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC de Alineación</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[6].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC Numeral</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[7].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC Hipocondríaco</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[8].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC Sexual</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[9].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC Repetidor</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[10].total }}</td>
+                </tr>
+                <tr>
+                    <th>Total de compulsiones registradas del TOC de Perfeccionismo</th>
+                    <td>{{ countCompulsionsGroupedByTocIdData[11].total }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
